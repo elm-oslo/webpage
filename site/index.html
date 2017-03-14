@@ -4,23 +4,30 @@
     <meta charset="utf-8">
     <title>Oslo Elm Day</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main>
-      <header>
-        <h1>Oslo Elm <span>Day</span></h1>
-        <p>Saturday june 10th in Oslo</p>
+      <header class="header">
+        <h1 class="header__header">Oslo Elm <span class="header__sub">Day</span></h1>
+        <p class="header__date">Saturday june 10th in Oslo</p>
       </header>
 
-      <nav>
-        <a href="signup.html">Sign up!</a>
-        <button type="button" name="menu" />
+      <nav class="nav">
+        <a class="nav__signup" href="signup.html">Sign up!</a>
+        <button class="nav__menu" type="button" name="menu">
+          <svg class="nav__menu-icon" viewBox="0 0 10 9">
+            <rect x="0" y="1" height="1" width="10" />
+            <rect x="0" y="4" height="1" width="10" />
+            <rect x="0" y="7" height="1" width="10" />
+          </svg>
+        </button>
       </nav>
 
       <section class="summary">
-        <h2>So far &mdash;</h2>
-        <ul>
+        <h2 class="summary__header">So far &mdash;</h2>
+        <ul class="summary__list">
           <li>22 speakers</li>
           <li>170 attendees</li>
           <li>31 talks</li>
@@ -32,7 +39,7 @@
       <canvas id="backdrop" width="100" height="50"></canvas>
 
       <section class="information">
-        <article class="what">
+        <article class="information__block what">
           <h2>What?</h2>
           <p>
             A one-day conference about Elm in Oslo. Each year we bring together
@@ -44,33 +51,33 @@
           </p>
         </article>
 
-        <article class="who">
+        <article class="information__block who">
           <h2>Who?</h2>
-          <ul>
+          <ul class="who__list">
             <li>
               <a href="agenda.html">
-                <img src="placeholder.jpg" alt="Eirik Wendel">
-                Erik Wendel
+                <div class="who__avatar"><img src="placeholder.jpg" alt="Eirik Wendel"></div>
+                <div>Erik Wendel</div>
               </a>
             </li>
             <li>
               <a href="agenda.html">
-                <img src="placeholder.jpg" alt="Ingar Almklov">
-                Ingar Almklov
+                <div class="who__avatar"><img src="placeholder.jpg" alt="Ingar Almklov"></div>
+                <div>Ingar Almklov</div>
               </a>
             </li>
             <li>
               <a href="agenda.html">
-                <img src="placeholder.jpg" alt="Peder Korsveien">
-                Peder Korsveien
+                <div class="who__avatar"><img src="placeholder.jpg" alt="Peder Korsveien"></div>
+                <div>Peder Korsveien</div>
               </a>
             </li>
           </ul>
           <a href="agenda.html">See full agenda</a>
         </article>
 
-        <article class="sponsors">
-          <h2>Sponsors?</h2>
+        <article class="information__block sponsors">
+          <h2>Sponsors</h2>
           <p>
             The federal government doesn't stray too far from a few familiar
             topics when it comes to its agenda: the economy, health care,
@@ -82,7 +89,7 @@
           </ul>
         </article>
 
-        <article class="contact">
+        <article class="information__block contact">
           <h2>Contact</h2>
           <ul>
             <li><a href="https://twitter.com/osloelmday">@OsloElmDay</a></li>
