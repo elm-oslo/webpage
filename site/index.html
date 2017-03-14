@@ -1,15 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html>
+  <head>
     <meta charset="utf-8">
-    <title>Hello, Elm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-</head>
+    <title>Oslo Elm Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Oslo Elm <span>Day</span></h1>
+        <p>Saturday june 10th in Oslo</p>
+      </header>
 
-<body>
-    <h1>Hello, Elm</h1>
-    <p>This is just a placeholder!</p>
-</body>
+      <nav>
+        <a href="signup.html">Sign up!</a>
+        <button type="button" name="menu" />
+      </nav>
 
+      <section class="summary">
+        <h2>So far &mdash;</h2>
+        <ul>
+          <li>22 speakers</li>
+          <li>170 attendees</li>
+          <li>31 talks</li>
+          <li>4 nationalities</li>
+          <li>8 topics</li>
+        </ul>
+      </section>
+
+      <canvas id="backdrop" width="100" height="50"></canvas>
+
+      <section class="information">
+        <article class="what">
+          <h2>What?</h2>
+          <p>
+            A one-day conference about Elm in Oslo. Each year we bring together
+            people from around the world to talk about Elm.
+          </p>
+          <p>
+            The conference is located in the awesome venues of Grafill Oslo.
+            Rozenkrantz gate 21, 0160 Oslo.
+          </p>
+        </article>
+
+        <article class="who">
+          <h2>Who?</h2>
+          <ul>
+            <li>
+              <a href="agenda.html">
+                <img src="placeholder.jpg" alt="Eirik Wendel">
+                Erik Wendel
+              </a>
+            </li>
+            <li>
+              <a href="agenda.html">
+                <img src="placeholder.jpg" alt="Ingar Almklov">
+                Ingar Almklov
+              </a>
+            </li>
+            <li>
+              <a href="agenda.html">
+                <img src="placeholder.jpg" alt="Peder Korsveien">
+                Peder Korsveien
+              </a>
+            </li>
+          </ul>
+          <a href="agenda.html">See full agenda</a>
+        </article>
+
+        <article class="sponsors">
+          <h2>Sponsors?</h2>
+          <p>
+            The federal government doesn't stray too far from a few familiar
+            topics when it comes to its agenda: the economy, health care,
+            national defence, immigration, reproductive rights. But for roughly
+            a decade not long ago, good graphic design was a national priority.
+          </p>
+          <ul>
+            <li><a href="bekk.no">Bekk Consulting</a></li>
+          </ul>
+        </article>
+
+        <article class="contact">
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="https://twitter.com/osloelmday">@OsloElmDay</a></li>
+            <li><a href="mailto:hello@elm.com">hello@elm.com</a></li>
+          </ul>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="script.js" charset="utf-8"></script>
+  </body>
 </html>
