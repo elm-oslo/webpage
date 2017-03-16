@@ -137,7 +137,7 @@ function main(t) {
   var delta = t - t0;
 
   requestAnimationFrame(main);
-  if(t0 && delta < 16) { return; }
+  if(t0 && delta < 32) { return; }
 
   initialized.forEach(i => i());
 
