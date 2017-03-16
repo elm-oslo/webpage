@@ -1,17 +1,17 @@
-const canvas = document.querySelector('#backdrop');
-const defs = canvas.querySelector('defs');
-const createSVGElement = document.createElementNS.bind(document,  'http://www.w3.org/2000/svg');
-const setAttributes = (el, map) => Object.keys(map).forEach(k => el.setAttribute(k, map[k]));
-const setXlink = (use, id) => use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `#${id}`);
+var canvas = document.querySelector('#backdrop');
+var defs = canvas.querySelector('defs');
+var createSVGElement = document.createElementNS.bind(document,  'http://www.w3.org/2000/svg');
+var setAttributes = (el, map) => Object.keys(map).forEach(k => el.setAttribute(k, map[k]));
+var setXlink = (use, id) => use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `#${id}`);
 
-const cos = Math.cos;
-const sin = Math.sin;
+var cos = Math.cos;
+var sin = Math.sin;
 
 //internal SVG coordinate system
-const HEIGHT = 500;
-const WIDTH = 1000;
+var HEIGHT = 500;
+var WIDTH = 1000;
 
-const gradientColors = [
+var gradientColors = [
   ['#9012ef', '#ce6bdb'],
   ['#f0ad00', '#ce6bdb'],
   ['#60b4cc', '#8581b0'],
@@ -20,9 +20,9 @@ const gradientColors = [
 ];
 
 function createGradient([c1, c2], i) {
-  const el = createSVGElement('radialGradient');
-  const s1 = createSVGElement('stop');
-  const s2 = createSVGElement('stop');
+  var el = createSVGElement('radialGradient');
+  var s1 = createSVGElement('stop');
+  var s2 = createSVGElement('stop');
 
   setAttributes(el, {
     id: `gradient${i}`,
@@ -49,7 +49,7 @@ function createGradient([c1, c2], i) {
   return el;
 }
 
-const gradients = gradientColors
+var gradients = gradientColors
   .map(createGradient)
   .forEach(el => defs.appendChild(el));
 
@@ -58,15 +58,15 @@ function rand2(a, b) {
 }
 
 function randomSquare() {
-  const minWidth = 50;
-  const x = rand2(-WIDTH, -minWidth*4);;
-  const y = rand2(minWidth, HEIGHT - minWidth*4);
-  const w = rand2(minWidth, minWidth * 4);
-  const stroke = 'none';
-  const fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
-  const className = 'shape';
+  var minWidth = 50;
+  var x = rand2(-WIDTH, -minWidth*4);;
+  var y = rand2(minWidth, HEIGHT - minWidth*4);
+  var w = rand2(minWidth, minWidth * 4);
+  var stroke = 'none';
+  var fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
+  var className = 'shape';
 
-  const el = createSVGElement('rect');
+  var el = createSVGElement('rect');
   setAttributes(el, {
     x, y, stroke, fill,
     width: w, height: w,
@@ -76,15 +76,15 @@ function randomSquare() {
 }
 
 function randomTriangle() {
-  const minWidth = 25;
-  const x = rand2(-WIDTH, -minWidth*4);
-  const y = rand2(minWidth, HEIGHT - minWidth*4);
-  const w = rand2(minWidth, minWidth * 4);
-  const stroke = 'none';
-  const fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
-  const className = 'shape';
+  var minWidth = 25;
+  var x = rand2(-WIDTH, -minWidth*4);
+  var y = rand2(minWidth, HEIGHT - minWidth*4);
+  var w = rand2(minWidth, minWidth * 4);
+  var stroke = 'none';
+  var fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
+  var className = 'shape';
 
-  const el = createSVGElement('polygon');
+  var el = createSVGElement('polygon');
   setAttributes(el, {
     stroke, fill,
     points: `${x},${y} ${x + w},${y + w} ${x},${y + 2*w}`,
@@ -94,7 +94,7 @@ function randomTriangle() {
   return el;
 }
 
-const shapes = [
+var shapes = [
   randomSquare(),
   randomSquare(),
   randomSquare(),
@@ -110,43 +110,38 @@ const shapes = [
 function initialize(el) {
   canvas.appendChild(el);
 
-  const vx = rand2(0.5, 5);
-  const vr = rand2(0.36, 1.8);
-  const initialR = rand2(0, 180);
-  const initialX = -200;
+  var vx = rand2(0.5, 2.5);
+  var vr = rand2(0.09, 0.9);
+  var initialR = rand2(0, 180);
+  var initialX = -200;
 
-  let state = {
-    x: initialX,
-    r: initialR
-  }
+  var x = initialX;
+  var r = initialR;
 
   return function update() {
-    state.x = state.x + vx;
-    if(state.x > WIDTH*2) {
-      state.x = 0;
+    x = x + vx;
+    if(x > WIDTH*2) {
+      x = 0;
     }
 
-    state.r = state.r + vr;
-    if(state.r > 360) {
-      state.r = state.r - 360;
-    }
-    el.setAttribute('style', `transform: translateX(${state.x}px) rotate(${state.r}deg);`);
+    r = (r + vr) % 360;
+
+    el.setAttribute('style', `transform: translateX(${x}px) rotate(${r}deg);`);
   }
 }
 
-const initialized = shapes.map(initialize);
+var initialized = shapes.map(initialize);
 
-let t0 = 0;
-let rafId = 0;
+var t0 = 0;
 function main(t) {
-  const delta = t - t0;
+  var delta = t - t0;
 
-  rafID = requestAnimationFrame(main);
-  if(t0 && delta < (60/30) * 16 + 1) { return; }
+  requestAnimationFrame(main);
+  if(t0 && delta < 16) { return; }
 
   initialized.forEach(i => i());
 
   t0 = t;
 }
 
-rafID = requestAnimationFrame(main);
+requestAnimationFrame(main);
