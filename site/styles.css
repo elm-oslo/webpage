@@ -93,6 +93,10 @@ ul {
   flex-shrink: 0;
 }
 
+.nav__signup:active, .nav__signup:visited  {
+  color: #fff;
+}
+
 .nav__menu {
   background: none;
   border: none;
