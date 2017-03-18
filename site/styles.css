@@ -5,7 +5,7 @@
 body {
   font-size: 16px;
   color: #333;
-  font-family: 'Lato', sans-serif;
+  font-family: 'AvenirLTPro-Book', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -39,36 +39,38 @@ ul {
   justify-content: space-between;
   align-items: center;
   padding-right: 0;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 .header__header {
   margin: 0;
-  display: flex;
-  flex-direction: column;
   margin-top: 1.1rem;
   position: relative;
   margin-left: 2rem;
+  font-weight: normal;
 }
 
-.header__header:before {
-  display: block;
-  position: absolute;
-  content: '';
-  background-color: rgb(144,18,239);
-  top: 0.75rem;
-  left: -2rem;
-  width: 1rem;
-  height: 1rem;
+.header__oslo {
+  line-height: 32px;
 }
 
-.header__sub {
-  font-weight: 700;
-  font-size: 1rem;
+.header__elm {
+  position: relative;
+  left: 46px;
+  line-height: 32px;
+}
+
+.header__day {
+  position: relative;
+  left: 11px;
+  line-height: 24px;
 }
 
 .header__date {
   font-weight: 500;
   font-size: 2em;
+  line-height: 32px;
 }
 
 .nav {
@@ -107,6 +109,7 @@ ul {
   height: 3em;
   align-self: center;
   flex-shrink: 0;
+  display: none;
 }
 
 .nav__menu-icon {
@@ -126,6 +129,7 @@ ul {
   font-weight: 400;
   font-size: 1em;
   margin-right: 2em;
+  display: none;
 }
 
 .summary__list li {
@@ -151,8 +155,11 @@ ul {
   width: 15%;
 }
 
-.information__block h2 {
+.information__block h3 {
   margin-bottom: 1em;
+  font-family: 'AvenirLTPro-Medium', sans-serif;
+  font-weight: normal;
+  font-size: 1.0em;
 }
 
 .information__block p {
