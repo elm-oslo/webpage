@@ -83,7 +83,8 @@ ul {
 .nav__signup {
   display: inline-block;
   height: 2.5em;
-  width: 5em;
+  line-height: 27px;
+  width: 7em;
   padding: 0.5em;
   text-align: center;
   background-color: rgb(144,18,239);
