@@ -195,16 +195,24 @@ requestAnimationFrame(main);
 
 var $ = document.querySelector.bind(document);
 
+function trackPage() {
+  ga('send', 'pageview', {
+   'page': window.location.pathname + window.location.search  + window.location.hash
+  });
+}
+
 function render(e) {
   var newPage = window.location.hash.substr(1);
   if (!newPage) return closeContent();
 
+  trackPage();
   openContent(newPage);
 };
 
 (function(window) {
     var newPage = window.location.hash.substr(1);
     if (!newPage) return;
+    trackPage();
 
     openContent(newPage);
 })(window);
