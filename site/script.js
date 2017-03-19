@@ -196,7 +196,8 @@ function openContent(page) {
 }
 
 function closeContent() {
-  $('.content__page.open').removeClass('open');
+  var current = $('.content__page.open')
+  if (current) current.removeClass('open');
   $('.overlay').removeClass('open');
   window.location.hash = '';
 }
