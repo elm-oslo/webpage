@@ -1,3 +1,24 @@
+// Polyfills, tools, etc
+
+HTMLElement.prototype.addClass = function(add) {
+  this.className = this.className + " " + add;
+}
+
+HTMLElement.prototype.removeClass = function(remove) {
+    var newClassName = "";
+    var i;
+    var classes = this.className.split(" ");
+    for(i = 0; i < classes.length; i++) {
+        if(classes[i] !== remove) {
+            newClassName += classes[i] + " ";
+        }
+    }
+    this.className = newClassName;
+}
+
+
+// Animation
+
 var canvas = document.querySelector('#backdrop');
 var defs = canvas.querySelector('defs');
 var createSVGElement = document.createElementNS.bind(document,  'http://www.w3.org/2000/svg');
@@ -145,3 +166,27 @@ function main(t) {
 }
 
 requestAnimationFrame(main);
+
+// Navigation
+
+var $ = document.querySelector.bind(document);
+
+window.onhashchange = function(e) {
+  var newPage = window.location.hash.substr(1);
+  if (!newPage) return;
+
+  openContent(newPage);
+};
+
+function openContent(page) {
+  $('.overlay').addClass('open');
+  $('.content__page').removeClass('open');
+  $('.' + page).addClass('open');
+  window.location.hash = page;
+}
+
+function closeContent() {
+  $('.content__page.open').removeClass('open');
+  $('.overlay').removeClass('open');
+  window.location.hash = '';
+}
