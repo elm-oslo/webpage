@@ -39,8 +39,22 @@ var gradientColors = [
   ['#f0ad00', '#ce6bdb'],
   ['#60b4cc', '#8581b0'],
   ['#7fd13b', '#8581b0'],
+  ['#f0ad00', '#ce6bdb'],
+  ['#60b4cc', '#8581b0'],
+  ['#7fd13b', '#8581b0'],
   ['#5a6378', '#ce6bdb']
 ];
+
+var sizes = [
+  1,
+  2, 2,
+  3, 3, 3,
+  4, 4, 4, 4,
+  5, 5, 5, 5,
+  6, 6, 6,
+  7, 7,
+  8
+]
 
 function createGradient([c1, c2], i) {
   var el = createSVGElement('radialGradient');
@@ -80,71 +94,79 @@ function rand2(a, b) {
   return a + Math.random() * (b - a);
 }
 
-function randomSquare() {
-  var minWidth = 50;
-  var x = rand2(-WIDTH, -minWidth*4);;
-  var y = rand2(minWidth, HEIGHT - minWidth*4);
-  var w = rand2(minWidth, minWidth * 4);
+function spread(n, min, max) {
+  var step = (max-min)/n;
+  var ret = [];
+  for (var i = 1; i < n+1; i++) {
+    ret.push(min + i*step);
+  }
+  return ret;
+}
+
+function randomSquare(x) {
+  var minWidth = 40;
+  var y = rand2(minWidth, HEIGHT - minWidth * 8);
+  var w = minWidth * sizes[Math.floor(rand2(0,20))];
   var stroke = 'none';
-  var fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
+  var fill = `url(#gradient${Math.floor(rand2(0, 8))})`;
   var className = 'shape';
 
   var el = createSVGElement('rect');
   setAttributes(el, {
     x, y, stroke, fill,
+    rx: 3, ry: 3,
     width: w, height: w,
     class: className
   });
-  return el;
+  return {el, x};
 }
 
-function randomTriangle() {
-  var minWidth = 25;
-  var x = rand2(-WIDTH, -minWidth*4);
-  var y = rand2(minWidth, HEIGHT - minWidth*4);
-  var w = rand2(minWidth, minWidth * 4);
+function randomTriangle(x) {
+  var minWidth = 30;
+  var y = rand2(minWidth, HEIGHT - minWidth * 16);
+  var w = minWidth * sizes[Math.floor(rand2(0,20))];
   var stroke = 'none';
-  var fill = `url(#gradient${Math.floor(rand2(0, 5))})`;
+  var fill = `url(#gradient${Math.floor(rand2(0, 8))})`;
   var className = 'shape';
 
-  var el = createSVGElement('polygon');
+  var el = createSVGElement('path');
   setAttributes(el, {
     stroke, fill,
-    points: `${x},${y} ${x + w},${y + w} ${x},${y + 2*w}`,
+    d: `M${x},${y} L${x + w},${y + w} L${x},${y + 2*w} Z`,
     class: className
   });
 
-  return el;
+  return {el, x};
 }
 
+var xs = spread(8, -WIDTH, WIDTH);
 var shapes = [
-  randomSquare(),
-  randomSquare(),
-  randomSquare(),
-  randomSquare(),
-  randomSquare(),
-  randomTriangle(),
-  randomTriangle(),
-  randomTriangle(),
-  randomTriangle(),
-  randomTriangle()
+  randomSquare(xs[0]),
+  randomTriangle(xs[1]),
+  randomSquare(xs[2]),
+  randomTriangle(xs[3]),
+  randomSquare(xs[4]),
+  randomTriangle(xs[5]),
+  randomSquare(xs[6]),
+  randomTriangle(xs[7])
 ];
 
-function initialize(el) {
+function initialize({el, x: initialX}) {
   canvas.appendChild(el);
 
-  var vx = rand2(0.5, 2.5);
-  var vr = rand2(0.09, 0.9);
-  var initialR = rand2(0, 180);
-  var initialX = -200;
+  var endVX = rand2(0.5, 2);
+  var vx = endVX;
+  var endVR = rand2(0.09, 0.45);
+  var vr = endVR;
+  var initialR = rand2(45, 360-45);
 
-  var x = initialX;
+  var x = 0;
   var r = initialR;
 
   return function update() {
     x = x + vx;
-    if(x > WIDTH*2) {
-      x = 0;
+    if(initialX + x > WIDTH*1.5) {
+      x = initialR > 0 ? -1.75*WIDTH : 0;
     }
 
     r = (r + vr) % 360;
@@ -160,7 +182,7 @@ function main(t) {
   var delta = t - t0;
 
   requestAnimationFrame(main);
-  if(t0 && delta < 32) { return; }
+  if(t0 && delta < 16) { return; }
 
   initialized.forEach(i => i());
 
