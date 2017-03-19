@@ -1,6 +1,8 @@
 // Polyfills, tools, etc
 
 HTMLElement.prototype.addClass = function(add) {
+  if (/open/.test(this.className)) return;
+
   this.className = this.className + " " + add;
 }
 
@@ -173,15 +175,16 @@ var $ = document.querySelector.bind(document);
 
 function render(e) {
   var newPage = window.location.hash.substr(1);
-  if (!newPage) return;
+  if (!newPage) return closeContent();
 
   openContent(newPage);
 };
 
 function openContent(page) {
-  $('.overlay').addClass('open');
-  $('.content__page').removeClass('open');
+  var current = $('.content__page.open')
+  if (current) current.removeClass('open');
   $('.' + page).addClass('open');
+  $('.overlay').addClass('open');
   window.location.hash = page;
 }
 
