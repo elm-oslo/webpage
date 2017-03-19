@@ -37,32 +37,72 @@ randomGradientIndex pairs =
         Random.int 0 numberOfPairs
 
 
-randomStart : Float -> Generator ( Float, Float, Float, ( Float, Float, Float ) )
-randomStart minWidth =
+randomStart : Float -> Float -> Generator ( Float, Float, ( Float, Float, Float ) )
+randomStart modifier minWidth =
     let
         multipledMinWidth =
-            minWidth * 4
+            minWidth * modifier
 
         randomVX =
-            Random.float 0.5 2.5
+            Random.float 0.5 2
 
         randomVR =
-            Random.float 0.09 0.9
+            Random.float 0.09 0.45
 
         randomRotation =
-            Random.float 0 180
-    in
-        Random.map4
-            (,,,)
-            (Random.float -width (-multipledMinWidth))
+            Random.float 45 (360 - 45)
+
+        randomSize =
+            Random.int 0 (Array.length sizes)
+                |> Random.map
+                    (\index ->
+                        Array.get index sizes
+                            |> Maybe.withDefault 1
+                            |> (\size -> size * minWidth)
+                    )
+
+        randomY =
             (Random.float minWidth (height - multipledMinWidth))
-            (Random.float minWidth multipledMinWidth)
+    in
+        Random.map3
+            (,,)
+            randomY
+            randomSize
             (Random.map3 (,,) randomVX randomVR randomRotation)
+
+
+sizes : Array Float
+sizes =
+    [ 1
+    , 2
+    , 2
+    , 3
+    , 3
+    , 3
+    , 4
+    , 4
+    , 4
+    , 4
+    , 5
+    , 5
+    , 5
+    , 5
+    , 6
+    , 6
+    , 6
+    , 7
+    , 7
+    , 8
+    ]
+        |> Array.fromList
 
 
 gradientPairs : Array GradientPair
 gradientPairs =
     [ ( "#9012ef", "#ce6bdb" )
+    , ( "#f0ad00", "#ce6bdb" )
+    , ( "#60b4cc", "#8581b0" )
+    , ( "#7fd13b", "#8581b0" )
     , ( "#f0ad00", "#ce6bdb" )
     , ( "#60b4cc", "#8581b0" )
     , ( "#7fd13b", "#8581b0" )
@@ -97,20 +137,20 @@ type alias Triangle =
     }
 
 
-randomSquare : Generator Square
-randomSquare =
-    Random.pair (randomGradientIndex gradientPairs) (randomStart 50)
+randomSquare : Float -> Generator Square
+randomSquare x =
+    Random.pair (randomGradientIndex gradientPairs) (randomStart 8 40)
         |> Random.map
-            (\( colorIndex, ( x, y, size, ( vX, vR, rotation ) ) ) ->
+            (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
                 Square x y initialTranslateX 0 size rotation colorIndex vX vR
             )
 
 
-randomTriangle : Generator Triangle
-randomTriangle =
-    Random.pair (randomGradientIndex gradientPairs) (randomStart 25)
+randomTriangle : Float -> Generator Triangle
+randomTriangle x =
+    Random.pair (randomGradientIndex gradientPairs) (randomStart 16 30)
         |> Random.map
-            (\( colorIndex, ( x, y, size, ( vX, vR, rotation ) ) ) ->
+            (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
                 Triangle x y initialTranslateX 0 size rotation colorIndex vX vR
             )
 
@@ -147,6 +187,8 @@ viewSquare square =
         , fill <| "url(#gradient" ++ toString square.gradientIndex ++ ")"
         , class "shape"
         , Svg.Attributes.style ("transform: translateX(" ++ toString square.transformX ++ "px) rotate(" ++ toString square.rotation ++ "deg);")
+        , Svg.Attributes.rx "3"
+        , Svg.Attributes.ry "3"
         ]
         []
 
@@ -212,14 +254,17 @@ type Msg
     | GenerateMore
 
 
-moveX : { a | transformX : Float, velocityX : Float, size : Float } -> Float
-moveX { transformX, velocityX, size } =
+moveX : { a | x : Float, transformX : Float, velocityX : Float, size : Float, rotation : Float } -> Float
+moveX { x, transformX, velocityX, size, rotation } =
     let
         newX =
             transformX + velocityX
     in
-        if (newX > (width * 3 + size)) then
-            initialTranslateX
+        if x + newX > width * 1.5 then
+            if rotation > 0 then
+                -1.75 * width
+            else
+                0
         else
             newX
 
@@ -259,16 +304,11 @@ stepTriangle triangle =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
+        GenerateMore ->
             ( model, Cmd.none )
 
-        GenerateMore ->
-            ( model
-            , Cmd.batch
-                [ Random.generate NewSquares (Random.list 3 randomSquare)
-                , Random.generate NewTriangles (Random.list 3 randomTriangle)
-                ]
-            )
+        NoOp ->
+            ( model, Cmd.none )
 
         NewSquares squares ->
             ( { model | squares = (model.squares ++ squares) }, Cmd.none )
@@ -286,13 +326,48 @@ update msg model =
             )
 
 
+spreadOverWidth : Int -> Float -> Float -> List Float
+spreadOverWidth n min max =
+    let
+        step =
+            (max - min) / (toFloat n)
+    in
+        List.range 0 n
+            |> List.map toFloat
+            |> List.map (\index -> min + index * step)
+
+
+type ShapeGenerator
+    = TriangleShape Float
+    | SquareShape Float
+
+
+evenOddShapes : List Float -> List ShapeGenerator
+evenOddShapes spread =
+    spread
+        |> List.indexedMap
+            (\i size ->
+                if i % 2 == 0 then
+                    SquareShape size
+                else
+                    TriangleShape size
+            )
+
+
 init : ( Model, Cmd Msg )
 init =
     ( { squares = [], triangles = [], ticks = 0 }
-    , Cmd.batch
-        [ Random.generate NewSquares (Random.list 5 randomSquare)
-        , Random.generate NewTriangles (Random.list 5 randomTriangle)
-        ]
+    , evenOddShapes (spreadOverWidth 8 -width width)
+        |> List.map
+            (\shape ->
+                case shape of
+                    SquareShape size ->
+                        Random.generate NewSquares (Random.list 1 (randomSquare size))
+
+                    TriangleShape size ->
+                        Random.generate NewTriangles (Random.list 1 (randomTriangle size))
+            )
+        |> Cmd.batch
     )
 
 
