@@ -3,11 +3,13 @@
 }
 
 body {
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
   font-family: 'AvenirLTPro-Book', sans-serif;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 main {
@@ -19,8 +21,26 @@ a:active, a:visited, a {
   color: #333;
 }
 
+h1, h3 {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto; 
+}
+
 h1, h2, p {
   margin: 0;
+}
+
+h2 {
+  font-size: 1.33333333333em;
+  line-height: 1.66666666667em;
+}
+
+h3 {
+  line-height: em; 
+}
+
+p {
+  line-height: 1.44444444444em;
 }
 
 ul {
@@ -119,10 +139,6 @@ ul {
   fill: #aaa;
 }
 
-.content__menu-item {
-  width: 70px;
-}
-
 .summary {
   width: 100%;
   padding: 0 4rem;
@@ -203,7 +219,7 @@ ul {
   height: 100%;
   content: '';
   display: block;
-  background-color: rgba(144, 18, 239, 0.5);
+  background-color: rgba(144, 18, 239, 0.15);
   border-radius: 50%;
 }
 
@@ -227,9 +243,9 @@ ul {
   right: 0;
 }
 
-.content__page {
+.content__page {  
   display: none;
-  width: 730px;
+  width: 40.5555555556em;
   margin: 0 auto;
   min-height: 100vh;
   margin-top: 60px;
@@ -243,7 +259,7 @@ ul {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: -45px;
+  top: -40px;
   width: 100%;
 }
 
@@ -252,7 +268,8 @@ ul {
 }
 
 .content__menu-item {
-  display: flex;
+  width: 70px;
+  color: #333 !important;
 }
 
 .content__shapes {
@@ -267,12 +284,11 @@ ul {
 .content__page.open {
   display: block;
   height: 100%;
-  overflow: scroll;
 }
 
 .content__box {
-  padding: 80px 40px;
-  width: 460px;
+  padding: 80px 0px;
+  width: 25.5555555556em;
   margin: 0 auto;
 }
 
@@ -315,6 +331,30 @@ ul {
   color: #fff;
 }
 
+.speaker {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+
+.speaker:first-of-type {
+  margin-top: 4em;
+}
+
+.speaker__content {
+  width: 80%;
+}
+
+.speaker__name {
+  margin-top: 0px;
+}
+
+.speaker__image {
+  border-radius: 50%;
+  width: 5em;
+  margin-right: 2.22222222222em;
+  align-self: flex-start;
+}
 
 /* Responsive */
 
