@@ -244,6 +244,7 @@ type alias Model =
     , triangles : List Triangle
     , ticks : Int
     , seed : Seed
+    , lastDiff : Float
     }
 
 
@@ -317,12 +318,16 @@ update msg model =
         NewTriangles triangles ->
             ( { model | triangles = (model.triangles ++ triangles) }, Cmd.none )
 
-        MoveX newXSeed ->
-            ( { model
-                | squares = List.map stepSquare model.squares
-                , triangles = List.map stepTriangle model.triangles
-                , ticks = model.ticks + 1
-              }
+        MoveX newDiff ->
+            ( if model.lastDiff - newDiff < 16 then
+                { model | lastDiff = model.lastDiff + newDiff }
+              else
+                { model
+                    | squares = List.map stepSquare model.squares
+                    , triangles = List.map stepTriangle model.triangles
+                    , ticks = model.ticks + 1
+                    , lastDiff = 0
+                }
             , Cmd.none
             )
 
@@ -392,10 +397,19 @@ randomShapesFromSeed model =
             model
 
 
+initialModel : Model
+initialModel =
+    { squares = []
+    , triangles = []
+    , ticks = 0
+    , seed = Random.initialSeed 227852860
+    , lastDiff = 0
+    }
+
+
 init : ( Model, Cmd Msg )
 init =
-    ( { squares = [], triangles = [], ticks = 0, seed = Random.initialSeed 227852860 }
-        |> randomShapesFromSeed
+    ( randomShapesFromSeed initialModel
     , Cmd.none
     )
 
