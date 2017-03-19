@@ -34,7 +34,7 @@
      * © 2017 MyFonts Inc
     */
     -->
-    <link rel="stylesheet" type="text/css" href="MyFontsWebfontsKit.css">
+    <link rel="stylesheet" type="text/css" href="MyFontsWebfontsKit.css"/>
   </head>
   <body>
     <main>
@@ -68,9 +68,11 @@
         </ul>
       </section>
 
-      <svg id="backdrop" width="100vw" height="50vh" viewBox="0 0 1000 500">
-        <defs></defs>
-      </svg>
+      <div id="elm-host">
+        <svg id="backdrop" width="100vw" height="50vh" viewBox="0 0 1000 500">
+          <defs></defs>
+        </svg>
+      </div>
 
       <section class="information">
         <article class="information__block what">
@@ -134,6 +136,7 @@
 
     </main>
 
-    <script src="script.js" charset="utf-8"></script>
+    <script src="elm.js" charset="utf-8"></script>
+    <script type="text/javascript" src="script.js" charset="utf-8"></script>
   </body>
 </html>
