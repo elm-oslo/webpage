@@ -148,16 +148,35 @@ ul {
 
 .information {
   display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
   padding: 0 4rem;
   justify-content: space-between;
 }
 
-.what, .why {
-  width: 30%;
+@media (max-width: 600px) {
+    .information {
+        padding: 0 1rem;
+    }
 }
 
-.who, .contact {
-  width: 15%;
+.information__block {
+    flex-basis: 25%;
+    padding-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 900px) {
+.information__block {
+      flex-basis: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+    .information__block {
+        flex-basis: 100%;
+        padding-right: 0;
+    }
 }
 
 .information__block h3 {
