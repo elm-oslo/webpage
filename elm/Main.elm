@@ -1,6 +1,5 @@
 module Main exposing (..)
 
-import Time
 import Random.Pcg as Random exposing (Generator)
 import Svg exposing (Svg)
 import Svg.Attributes exposing (..)
@@ -257,7 +256,7 @@ stepTriangle triangle =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case Debug.log "msg" msg of
+    case msg of
         NoOp ->
             ( model, Cmd.none )
 
