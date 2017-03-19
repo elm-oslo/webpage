@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Random.Pcg as Random exposing (Generator)
+import Random.Pcg as Random exposing (Generator, Seed)
 import Svg exposing (Svg)
 import Svg.Attributes exposing (..)
 import Html
@@ -243,6 +243,7 @@ type alias Model =
     { squares : List Square
     , triangles : List Triangle
     , ticks : Int
+    , seed : Seed
     }
 
 
@@ -354,10 +355,9 @@ evenOddShapes spread =
             )
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( { squares = [], triangles = [], ticks = 0 }
-    , evenOddShapes (spreadOverWidth 8 -width width)
+randomShapes : List (Cmd Msg)
+randomShapes =
+    evenOddShapes (spreadOverWidth 8 -width width)
         |> List.map
             (\shape ->
                 case shape of
@@ -367,7 +367,36 @@ init =
                     TriangleShape size ->
                         Random.generate NewTriangles (Random.list 1 (randomTriangle size))
             )
-        |> Cmd.batch
+
+
+randomShapesFromSeed : Model -> Model
+randomShapesFromSeed model =
+    evenOddShapes (spreadOverWidth 8 -width width)
+        |> List.foldl
+            (\shape model ->
+                case shape of
+                    SquareShape size ->
+                        let
+                            ( newSquare, nextSeed ) =
+                                Random.step (randomSquare size) model.seed
+                        in
+                            { model | seed = nextSeed, squares = newSquare :: model.squares }
+
+                    TriangleShape size ->
+                        let
+                            ( newTriangle, nextSeed ) =
+                                Random.step (randomTriangle size) model.seed
+                        in
+                            { model | seed = nextSeed, triangles = newTriangle :: model.triangles }
+            )
+            model
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { squares = [], triangles = [], ticks = 0, seed = Random.initialSeed 227852860 }
+        |> randomShapesFromSeed
+    , Cmd.none
     )
 
 
@@ -380,11 +409,6 @@ main =
         , subscriptions =
             (\model ->
                 Sub.batch
-                    [ AnimationFrame.diffs (\seed -> MoveX seed)
-                    , if List.length model.squares < 20 then
-                        Time.every (Time.second * 3) (\_ -> GenerateMore)
-                      else
-                        Sub.none
-                    ]
+                    [ AnimationFrame.diffs (\seed -> MoveX seed) ]
             )
         }
