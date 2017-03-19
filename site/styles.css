@@ -260,7 +260,7 @@ ul {
   display: flex;
 }
 
-.content__menu-item {
+.content__menu-item, .content__menu-close {
   width: 70px;
   color: #333 !important;
 }
@@ -463,5 +463,11 @@ ul {
     position: relative;
     top:0;
     left: 0;
+  }
+  .content__page, .content__shapes {
+    max-width: 100%;
+  }
+  .content__menu-wrapper {
+    left: 20px;
   }
 }
