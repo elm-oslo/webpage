@@ -260,10 +260,13 @@ ul {
   width: 730px;
   top: 0px;
   left: 0px;
+  z-index: -1;
 }
 
 .content__page.open {
   display: block;
+  height: 100%;
+  overflow: scroll;
 }
 
 .content__box {
@@ -282,8 +285,18 @@ ul {
 }
 
 .speakers {
-  background-color: #ce6bdb;
-  color: #fff;
+    background-color: #ce6bdb;
+    color: #fff;
+}
+
+.codeofconduct {
+    background-color: #5a6378;
+    color: #fff;
+}
+
+.cfp {
+    background-color: #8581b0;
+    color: #fff;
 }
 
 .sponsors {

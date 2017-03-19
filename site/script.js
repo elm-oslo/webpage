@@ -180,6 +180,13 @@ function render(e) {
   openContent(newPage);
 };
 
+(function(window) {
+    var newPage = window.location.hash.substr(1);
+    if (!newPage) return;
+
+    openContent(newPage);
+})(window);
+
 function openContent(page) {
   var current = $('.content__page.open')
   if (current) current.removeClass('open');
