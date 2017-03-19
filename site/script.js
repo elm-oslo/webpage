@@ -171,7 +171,7 @@ requestAnimationFrame(main);
 
 var $ = document.querySelector.bind(document);
 
-window.onhashchange = function(e) {
+function render(e) {
   var newPage = window.location.hash.substr(1);
   if (!newPage) return;
 
@@ -190,3 +190,6 @@ function closeContent() {
   $('.overlay').removeClass('open');
   window.location.hash = '';
 }
+
+window.onhashchange = render;
+render();
