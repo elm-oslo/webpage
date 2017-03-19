@@ -157,6 +157,8 @@ ul {
   flex-wrap: wrap;
   padding: 0 4rem;
   justify-content: space-between;
+  position: relative;
+  top: -20px;
 }
 
 .what, .why {
