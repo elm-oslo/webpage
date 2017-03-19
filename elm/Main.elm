@@ -319,15 +319,11 @@ update msg model =
             ( { model | triangles = (model.triangles ++ triangles) }, Cmd.none )
 
         MoveX newDiff ->
-            ( if model.lastDiff - newDiff < 16 then
-                { model | lastDiff = model.lastDiff + newDiff }
-              else
-                { model
-                    | squares = List.map stepSquare model.squares
-                    , triangles = List.map stepTriangle model.triangles
-                    , ticks = model.ticks + 1
-                    , lastDiff = 0
-                }
+            ( { model
+                | squares = List.map stepSquare model.squares
+                , triangles = List.map stepTriangle model.triangles
+                , ticks = model.ticks + 1
+              }
             , Cmd.none
             )
 
