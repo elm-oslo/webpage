@@ -152,7 +152,7 @@ ul {
   justify-content: space-between;
 }
 
-.what, .sponsors {
+.what, .why {
   width: 30%;
 }
 
@@ -231,11 +231,11 @@ ul {
   width: 730px;
   margin: 0 auto;
   min-height: 100vh;
-  margin-top: 16vh;
+  margin-top: 60px;
   position: fixed;
-  top: 50%;
+  top: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 }
 
 .content__menu-wrapper {
@@ -286,12 +286,12 @@ ul {
   color: #fff;
 }
 
-.color-3 {
+.sponsors {
   background-color: #5a6378;
   color: #fff;
 }
 
-.color-4 {
+.codeofconduct {
   background-color: #8581b0;
   color: #fff;
 }
