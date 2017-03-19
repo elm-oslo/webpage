@@ -1,10 +1,12 @@
 module Main exposing (..)
 
 import Random.Pcg as Random exposing (Generator)
-import Html exposing (Html)
+import Svg exposing (Svg)
+import Svg.Attributes exposing (..)
+import Html
 import Array exposing (Array)
-import VirtualDom exposing (node, attribute)
 import AnimationFrame
+import Time
 
 
 height : Float
@@ -113,38 +115,38 @@ randomTriangle =
             )
 
 
-viewGradient : Int -> GradientPair -> Html msg
+viewGradient : Int -> GradientPair -> Svg msg
 viewGradient idIndex ( start, end ) =
-    node "radialGradient"
-        [ attribute "id" ("gradient" ++ toString idIndex)
-        , attribute "cx" "50%"
-        , attribute "cy" "50%"
-        , attribute "r" "75%"
-        , attribute "fx" "0%"
-        , attribute "fy" "0%"
+    Svg.radialGradient
+        [ Svg.Attributes.id ("gradient" ++ toString idIndex)
+        , Svg.Attributes.cx "50%"
+        , Svg.Attributes.cy "50%"
+        , Svg.Attributes.r "75%"
+        , Svg.Attributes.fx "0%"
+        , Svg.Attributes.fy "0%"
         ]
-        [ node "stop" [ attribute "stopColor" start, attribute "offset" "0%" ] []
-        , node "stop" [ attribute "stopColor" end, attribute "offset" "100%" ] []
+        [ Svg.stop [ stopColor start, Svg.Attributes.offset "0%" ] []
+        , Svg.stop [ stopColor end, Svg.Attributes.offset "100%" ] []
         ]
 
 
-viewGradients : Array GradientPair -> List (Html msg)
+viewGradients : Array GradientPair -> List (Svg msg)
 viewGradients =
     Array.indexedMap viewGradient
         >> Array.toList
 
 
-viewSquare : Square -> Html msg
+viewSquare : Square -> Svg msg
 viewSquare square =
-    node "rect"
-        [ attribute "x" <| toString square.x
-        , attribute "y" <| toString square.y
-        , attribute "stroke" "none"
-        , attribute "width" <| toString square.size
-        , attribute "height" <| toString square.size
-        , attribute "fill" <| "url(#gradient" ++ toString square.gradientIndex ++ ")"
-        , attribute "class" "shape"
-        , attribute "style" ("transform: translateX(" ++ toString square.transformX ++ "px) rotate(" ++ toString square.rotation ++ "deg);")
+    Svg.rect
+        [ x <| toString square.x
+        , y <| toString square.y
+        , stroke "none"
+        , Svg.Attributes.width <| toString square.size
+        , Svg.Attributes.height <| toString square.size
+        , fill <| "url(#gradient" ++ toString square.gradientIndex ++ ")"
+        , class "shape"
+        , Svg.Attributes.style ("transform: translateX(" ++ toString square.transformX ++ "px) rotate(" ++ toString square.rotation ++ "deg);")
         ]
         []
 
@@ -166,16 +168,16 @@ trianglePoints triangle =
         |> String.join ""
 
 
-viewTriangle : Triangle -> Html msg
+viewTriangle : Triangle -> Svg msg
 viewTriangle triangle =
-    node "polygon"
-        [ attribute "points" <| trianglePoints triangle
-        , attribute "stroke" "none"
-        , attribute "width" <| toString triangle.size
-        , attribute "height" <| toString triangle.size
-        , attribute "fill" <| "url(#gradient" ++ toString triangle.gradientIndex ++ ")"
-        , attribute "class" "shape"
-        , attribute "style" ("transform: translateX(" ++ toString triangle.transformX ++ "px) rotate(" ++ toString triangle.rotation ++ "deg);")
+    Svg.polygon
+        [ points <| trianglePoints triangle
+        , stroke "none"
+        , Svg.Attributes.width <| toString triangle.size
+        , Svg.Attributes.height <| toString triangle.size
+        , fill <| "url(#gradient" ++ toString triangle.gradientIndex ++ ")"
+        , class "shape"
+        , Svg.Attributes.style ("transform: translateX(" ++ toString triangle.transformX ++ "px) rotate(" ++ toString triangle.rotation ++ "deg);")
         ]
         []
 
@@ -185,7 +187,7 @@ viewSvgParts model =
     List.map viewSquare model.squares
         |> (++) (List.map viewTriangle model.triangles)
         |> (++) (viewGradients gradientPairs)
-        |> node "svg" [ attribute "width" "100vw", attribute "height" "50vh", VirtualDom.attribute "viewBox" "0 0 1000 500" ]
+        |> Svg.svg [ Svg.Attributes.width "100vw", Svg.Attributes.height "50vh", viewBox "0 0 1000 500" ]
 
 
 view : Model -> Html.Html Msg
@@ -207,6 +209,7 @@ type Msg
     | NewSquares (List Square)
     | NewTriangles (List Triangle)
     | MoveX Float
+    | GenerateMore
 
 
 moveX : { a | transformX : Float, velocityX : Float, size : Float } -> Float
@@ -259,11 +262,19 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        GenerateMore ->
+            ( model
+            , Cmd.batch
+                [ Random.generate NewSquares (Random.list 3 randomSquare)
+                , Random.generate NewTriangles (Random.list 3 randomTriangle)
+                ]
+            )
+
         NewSquares squares ->
-            ( { model | squares = squares }, Cmd.none )
+            ( { model | squares = (model.squares ++ squares) }, Cmd.none )
 
         NewTriangles triangles ->
-            ( { model | triangles = triangles }, Cmd.none )
+            ( { model | triangles = (model.triangles ++ triangles) }, Cmd.none )
 
         MoveX newXSeed ->
             ( { model
@@ -271,13 +282,7 @@ update msg model =
                 , triangles = List.map stepTriangle model.triangles
                 , ticks = model.ticks + 1
               }
-            , if model.ticks < 10 then
-                if List.length model.squares < List.length model.triangles then
-                    Random.generate NewSquares (Random.list 2 randomSquare)
-                else
-                    Random.generate NewSquares (Random.list 2 randomTriangle)
-              else
-                Cmd.none
+            , Cmd.none
             )
 
 
@@ -299,6 +304,12 @@ main =
         , view = view
         , subscriptions =
             (\model ->
-                AnimationFrame.diffs (\seed -> MoveX seed)
+                Sub.batch
+                    [ AnimationFrame.diffs (\seed -> MoveX seed)
+                    , if List.length model.squares < 20 then
+                        Time.every (Time.second * 3) (\_ -> GenerateMore)
+                      else
+                        Sub.none
+                    ]
             )
         }
