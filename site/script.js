@@ -192,6 +192,7 @@ function openContent(page) {
   if (current) current.removeClass('open');
   $('.' + page).addClass('open');
   $('.overlay').addClass('open');
+  $('main').addClass('content-open');
   window.location.hash = page;
 }
 
@@ -199,6 +200,7 @@ function closeContent() {
   var current = $('.content__page.open')
   if (current) current.removeClass('open');
   $('.overlay').removeClass('open');
+  $('main').removeClass('content-open');
   window.location.hash = '';
 }
 
