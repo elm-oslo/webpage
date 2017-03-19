@@ -17,13 +17,18 @@ main {
   flex-wrap: wrap;
 }
 
+.content-open {
+  position: fixed;
+  overflow: hidden;
+}
+
 a:active, a:visited, a {
   color: #333;
 }
 
 h1, h3 {
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto; 
+  -moz-osx-font-smoothing: auto;
 }
 
 h1, h2, p {
@@ -243,14 +248,13 @@ ul {
   right: 0;
 }
 
-.content__page {  
+.content__page {
   display: none;
-  width: 40.5555555556em;
-  margin: 0 auto;
+  width: 40.5em;
+  margin: 60px auto;
   min-height: 100vh;
-  margin-top: 60px;
-  position: fixed;
-  top: 0%;
+  position: absolute;
+  top: 0;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -283,7 +287,6 @@ ul {
 
 .content__page.open {
   display: block;
-  height: 100%;
 }
 
 .content__box {
