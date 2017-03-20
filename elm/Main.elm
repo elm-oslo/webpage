@@ -229,7 +229,7 @@ viewSvgParts model =
     List.map viewSquare model.squares
         |> (++) (List.map viewTriangle model.triangles)
         |> (++) (viewGradients gradientPairs)
-        |> Svg.svg [ Svg.Attributes.width "100vw", Svg.Attributes.height "50vh", viewBox "0 0 1000 500" ]
+        |> Svg.svg [ viewBox "0 0 1000 500" ]
 
 
 view : Model -> Html.Html Msg
