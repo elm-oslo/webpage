@@ -229,14 +229,12 @@ viewSvgParts model =
     List.map viewSquare model.squares
         |> (++) (List.map viewTriangle model.triangles)
         |> (++) (viewGradients gradientPairs)
-        |> Svg.svg [ viewBox "0 0 1000 500" ]
+        |> Svg.svg [ id "backdrop", viewBox "0 0 1000 500" ]
 
 
 view : Model -> Html.Html Msg
 view model =
-    Html.div
-        []
-        [ viewSvgParts model ]
+    viewSvgParts model
 
 
 type alias Model =
