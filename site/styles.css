@@ -16,12 +16,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   padding-top: 2rem;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 footer {
-  background: #ccc;
+  background: #f2f2f2;
   width: 100%;
+  padding-top: 3.05555555556em;
+}
+
+.hidden {
+  display: none;
 }
 
 .sr-only {
@@ -149,13 +154,22 @@ ul {
   top: -20px;
 }
 
-.what, .why {
+.what, .why, .sponsors-about {
   width: 30%;
 }
 
-.who, .contact {
+.who, .contact, .extras {
   width: 15%;
 }
+
+.sponsors-list {
+  width: 48%;
+}
+
+.sponsor-forsale {
+  font-size: 14px;
+}
+
 
 .information__block h2 {
   margin-bottom: 1em;
@@ -397,17 +411,15 @@ ul {
 }
 
 .sponsor__logo {
-    width: 100px;
-}
-
-.platinum {
-  margin-top: 2em;
+    width: 130px;
 }
 
 .sponsor__list {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  margin-bottom: 2.22222222222em !important;
+  width: 70%;
 }
 
 .sponsors a, .about a, .speakers a {
@@ -486,11 +498,7 @@ ul {
 }
 
 @media (max-width:740px) and (min-width:320px) {
-  .who, .contact {
-    width: 100%;
-  }
-
-  .what, .why {
+  .who, .contact, .what, .why, .sponsors-about, .sponsors-list, .extras {
     width: 100%;
   }
 
