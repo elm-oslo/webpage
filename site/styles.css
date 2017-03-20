@@ -329,11 +329,11 @@ ul {
 .speaker {
   display: flex;
   flex-direction: row;
-  margin-bottom: 2em;
+  padding-top: 2em;
 }
 
 .speaker:first-of-type {
-  margin-top: 4em;
+  padding-top: 4em;
 }
 
 .speaker__content {

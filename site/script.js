@@ -235,5 +235,11 @@ function closeContent() {
   window.location.hash = '';
 }
 
+function showSpeaker(speakerNo) {
+  setTimeout(function () {
+    document.querySelectorAll('.speaker')[speakerNo].scrollIntoView();
+  }, 0);
+}
+
 window.onhashchange = render;
 render();
