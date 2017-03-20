@@ -79,28 +79,30 @@
             <path d="M278.7,345.2l20.7-56.1H311l-33.9,85.5c-4.1,10.4-9.6,17.1-21.3,17.1c-2.9,0-5.9-0.1-8.8-1l1-9.3 c2.2,1.2,4.6,1.6,7.2,1.6c6.7,0,10.1-4.5,13-12.2l4.9-13l-27.8-68.7h12L278.7,345.2z"/>
           </g>
         </svg>
-        <p class="header__date">Saturday June 10</p>
-      </header>
+        <p class="animate animate--fixed header__date">Saturday June 10</p>
 
-      <div class="signup">
-        <a class="signup__signup" target="_blank" href="https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195">Get your tickets</a>
-      </div>
+      <nav class="nav animate animate--fixed">
+        <a class="nav__signup" target="_blank" href="https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195">Get your tickets</a>
+      </header>
 
       <section class="summary">
         <h2 class="sr-only">Summary</h2>
         <ul class="summary__list">
-          <li>1 day</li>
-          <li>6-8 talks</li>
-          <li>150 attendees</li>
+          <li class="animate animate--small seq-1">1 day</li>
+          <li class="animate animate--small seq-2">6-8 talks</li>
+          <li class="animate animate--small seq-3">150 attendees</li>
         </ul>
       </section>
 
-      <svg id="backdrop" width="100vw" height="50vh" viewBox="0 0 1000 500">
-        <defs></defs>
-      </svg>
+      <div class="backdrop-wrapper animate animate--backdrop">
+        <svg id="backdrop" width="100%" height="100%" viewBox="0 0 1000 500">
+          <defs></defs>
+        </svg>
+      </div>
+
 
       <div class="information">
-        <section class="information__block what">
+        <section class="information__block animate--medium seq-2 animate what">
           <h2>What?</h2>
           <p>
             A one-day conference about the Elm programming language and practical use of Elm in Norway and the Nordics.
@@ -111,8 +113,9 @@
           <a href="#about">Read more</a>
         </section>
 
-        <section class="information__block who">
+        <section class="information__block animate--medium seq-3 animate who">
           <h2>Who?</h2>
+
           <ul class="who__list">
             <li class="who__list-item">
               <a href="#speakers" onclick="showSpeaker(0)">
@@ -137,14 +140,14 @@
           <a href="#speakers">…and maybe you?</a>
         </section>
 
-        <section class="information__block why">
+        <section class="information__block animate--medium seq-4 animate why">
           <h2>Why?</h2>
           <p>
             The Nordic Elm community is growing rapidly, with large interest for the local meetups and Elm topics on practically every tech conference. Several local companies have started experimenting with Elm in their projects and it’s time to start sharing our experiences.
           </p>
         </section>
 
-        <section class="information__block contact">
+        <section class="information__block animate--medium seq-5 animate contact">
           <h2>Contact</h2>
           <ul>
             <li><a href="https://twitter.com/osloelmday">@OsloElmDay</a></li>
@@ -153,11 +156,41 @@
           <ul>
             <li><a href="#speakers">Call for Speakers</a></li>
             <li><a href="#codeofconduct">Code of Conduct</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
           </ul>
         </section>
       </div>
       </main>
+
+      <footer>
+        <h2>We ❤️ our sponsors!</h2>
+
+        <h2 class="platinum">Platinum</h2>
+        <p style="font-size: 14px;">
+          <a href="mailto:sponsors@osloelmday.no">sponsors@osloelmday.no</a>
+        </p>
+
+        <h2>Gold</h2>
+        <p class="sponsor__list">
+            <a href="https://www.bekk.no" target="_blank">
+              <img src="images/bekk_logo.svg" class="sponsor__logo" />
+            </a>
+            <a href="https://www.blank.no" target="_blank" style="position: relative; top: 12px;">
+              <img src="images/blank_logo.svg" class="sponsor__logo" />
+            </a>
+            <a href="http://www.kodemaker.no" target="_blank" style="position: relative; top: -5px;">
+              <img src="images/kodemaker_logo.svg" class="sponsor__logo" />
+            </a>
+        </p>
+
+        <h2>Silver</h2>
+        <p style="font-size: 14px;">
+          <a href="mailto:sponsors@osloelmday.no">sponsors@osloelmday.no</a>
+        </p>
+
+        <p>
+          Interested in sponsoring the conference? Check our our available <a target="_blank" href="https://docs.google.com/document/d/17WTEP8wmwgtRUVg0XyrbOoXs-ezIQ69_c4C1cM9G9og">sponsorship packages</a>. Hurry up - numbers are limited!
+        </p>
+      </footer>
 
       <div class="overlay" onclick="closeContent()"></div>
 
@@ -168,7 +201,6 @@
           <div class="content__menu">
             <a class="content__menu-item" href="#about">What?</a>
             <a class="content__menu-item" href="#speakers">Who?</a>
-            <a class="content__menu-item" href="#sponsors">Sponsors</a>
           </div>
           <a class="content__menu-close" href="#">Close</a>
         </nav>
@@ -251,7 +283,6 @@
           <div class="content__menu">
             <a class="content__menu-item" href="#about">What?</a>
             <a class="content__menu-item" href="#speakers">Who?</a>
-            <a class="content__menu-item" href="#sponsors">Sponsors</a>
           </div>
           <a class="content__menu-close" href="#">Close</a>
         </nav>
@@ -313,57 +344,6 @@
             </div>
           </article>
       </div>
-      </div>
-    </section>
-
-    <section class="content__page sponsors">
-        <svg class="shapes"></svg>
-
-        <nav class="content__menu-wrapper">
-          <div class="content__menu">
-            <a class="content__menu-item" href="#about">What?</a>
-            <a class="content__menu-item" href="#speakers">Who?</a>
-            <a class="content__menu-item" href="#sponsors">Sponsors</a>
-          </div>
-          <a class="content__menu-close" href="#">Close</a>
-        </nav>
-
-        <div class="content__box">
-          <article class="information__block">
-              <h3>
-                  <h2>We ❤️ our sponsors!</h2>
-                  <p>A great conference usually depends on three things: great speakers, an inspiring venue and dedicated sponsors. We'll do our best for the first two, but the third aspect is where you come in.
-                  </p>
-
-                  <p>
-                  We already have some pretty fine sponsors, but there's room for more. Read our
-                  <a href="https://docs.google.com/document/d/17WTEP8wmwgtRUVg0XyrbOoXs-ezIQ69_c4C1cM9G9og">sponsor document</a> for available sponsoring options.</p>
-
-                  <h2 class="platinum">Platinum sponsor</h2>
-                  <p style="font-size: 14px;">
-                    …you?
-                  </p>
-
-                  <h2>Gold sponsors</h2>
-                  <p class="sponsor__list">
-                      <a href="https://www.bekk.no" target="_blank">
-                        <img src="images/bekk_logo.svg" class="sponsor__logo" />
-                      </a>
-                      <a href="https://www.blank.no" target="_blank" style="position: relative; top: 12px;">
-                        <img src="images/blank_logo.svg" class="sponsor__logo" />
-                      </a>
-                      <a href="http://www.kodemaker.no" target="_blank" style="position: relative; top: -5px;">
-                        <img src="images/kodemaker_logo.svg" class="sponsor__logo" />
-                      </a>
-                  </p>
-
-                  <h2>Silver sponsors</h2>
-                  <p style="font-size: 14px;">
-                    …you?
-                  </p>
-
-              </h3>
-          </article>
       </div>
     </section>
 

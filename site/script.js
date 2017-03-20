@@ -191,6 +191,20 @@ function main(t) {
 
 requestAnimationFrame(main);
 
+
+
+
+document.addEventListener("DOMContentLoaded", function(e) {
+  setTimeout(function() {
+    document.querySelectorAll('.animate').forEach(function(node) {
+      if (node.addClass) node.addClass('animate-start');
+      else node.className += 'animate-start';
+      
+    })
+  }, 300);
+});
+
+
 // Navigation
 
 var $ = document.querySelector.bind(document);
@@ -254,3 +268,4 @@ function showSpeaker(speakerNo) {
 
 window.onhashchange = render;
 render();
+
