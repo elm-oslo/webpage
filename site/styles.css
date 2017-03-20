@@ -38,22 +38,13 @@ a:active, a:visited, a {
   color: #333;
 }
 
-h1, h3 {
+h1, h2 {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
 }
 
-h1, h2, p {
+h1, p {
   margin: 0;
-}
-
-h2 {
-  font-size: 1.33333333333em;
-  line-height: 1.66666666667em;
-}
-
-h3 {
-  line-height: em;
 }
 
 p {
@@ -154,7 +145,7 @@ ul {
   width: 15%;
 }
 
-.information__block h3 {
+.information__block h2 {
   margin-bottom: 1em;
   font-family: 'AvenirLTPro-Medium', sans-serif;
   font-weight: normal;
