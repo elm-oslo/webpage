@@ -34,7 +34,11 @@ main {
   overflow: hidden;
 }
 
-a:active, a:visited, a {
+a {
+  color: #333;
+}
+
+a:active, a:visited {
   color: #333;
 }
 
@@ -43,11 +47,8 @@ h1, h2 {
   -moz-osx-font-smoothing: auto;
 }
 
-h1, p {
-  margin: 0;
-}
-
 p {
+  margin: 0;
   line-height: 1.44444444444em;
 }
 
@@ -206,7 +207,6 @@ ul {
 .shape {
   transform-origin: center center;
 }
-
 
 .overlay {
   display: none;
