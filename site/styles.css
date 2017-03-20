@@ -412,7 +412,7 @@ ul {
 
 .content__menu-item:hover::after{
   transition: all 300ms ease;
-  opacity: 1;
+  opacity: 0.4;
 }
 
 
@@ -662,6 +662,10 @@ ul {
 @media (max-width:740px) and (min-width:320px) {
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
     width: 100%;
+  }
+
+  .content__menu-close {
+    margin-right: 3px;
   }
 
   .who, .contact, .what, .why {
