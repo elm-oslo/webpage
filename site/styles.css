@@ -474,6 +474,7 @@ ul {
   }
   .content__menu-wrapper {
     left: 20px;
+    width: 95%;
   }
 
 }
