@@ -105,36 +105,30 @@
           <p>
             A one-day conference about the Elm programming language and practical use of Elm in Norway and the Nordics.
           </p>
-          <p>
+          <p class="morespacebro">
               The conference will be held in the awesome venue of <a href="https://goo.gl/maps/NQWAKrxqJCQ2">Gamle Museet, Oslo</a>.
           </p>
-          <a href="#about">Read more</a>
+          <a onClick="triggerAnim()" href="#about">Read more</a>
         </section>
 
         <section class="information__block who">
           <h2>Who?</h2>
           <ul class="who__list">
             <li class="who__list-item">
-              <a href="#speakers">
                 <div class="who__avatar"><img src="images/richard.jpg" alt="Richard Feldman"></div>
-                <div>Richard Feldman</div>
-              </a>
+                <a onClick="triggerAnim()" href="#speakers">Richard Feldman</a>
             </li>
 
             <li class="who__list-item">
-              <a href="#speakers">
                 <div class="who__avatar"><img src="images/noah.jpg" alt="Noah Hall"></div>
-                <div>Noah Hall</div>
-              </a>
+                <a onClick="triggerAnim()" href="#speakers">Noah Hall</a>
             </li>
             <li class="who__list-item">
-              <a href="#speakers">
                 <div class="who__avatar"><img src="images/luke.jpg" alt="Luke Westby"></div>
-                <div>Luke Westby</div>
-              </a>
+                <a onClick="triggerAnim()" href="#speakers">Luke Westby</a>
             </li>
           </ul>
-          <a href="#speakers">…and maybe you?</a>
+          <a onClick="triggerAnim()" href="#speakers">…and maybe you?</a>
         </section>
 
         <section class="information__block why">
@@ -151,9 +145,9 @@
             <li><a href="mailto:hello@osloelmday.no">hello@osloelmday.no</a></li>
           </ul>
           <ul>
-            <li><a href="#speakers">Call for Speakers</a></li>
-            <li><a href="#codeofconduct">Code of Conduct</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
+            <li><a onClick="triggerAnim()" href="#speakers">Call for Speakers</a></li>
+            <li><a onClick="triggerAnim()" href="#codeofconduct">Code of Conduct</a></li>
+            <li><a onClick="triggerAnim()" href="#sponsors">Sponsors</a></li>
           </ul>
         </section>
       </div>
@@ -475,6 +469,9 @@
       });
 
       function triggerAnim() {
+        setTimeout(function () {
+
+
         var page = window.location.hash.substr(1);
         switch (page) {
           case 'about':
@@ -492,9 +489,10 @@
           default:
             break;
         }
+        }, 10);
       }
 
-      window.addEventListener('hashchange', triggerAnim);
+      // window.addEventListener('hashchange', triggerAnim);
     </script>
   </body>
 </html>
