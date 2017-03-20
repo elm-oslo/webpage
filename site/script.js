@@ -218,6 +218,7 @@ function render(e) {
 })(window);
 
 function openContent(page) {
+  window.scrollTo(0, 0);
   var current = $('.content__page.open')
   if (current) current.removeClass('open');
   $('.' + page).addClass('open');
