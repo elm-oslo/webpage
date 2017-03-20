@@ -154,10 +154,15 @@ ul {
   margin-right: 0px;
   flex-shrink: 0;
   border-bottom: none !important;
+  transition: opacity 100ms;
 }
 
 .nav__signup:active, .nav__signup:visited  {
   color: #fff;
+}
+
+.nav__signup:hover{
+  opacity: 0.7;
 }
 
 .summary {
@@ -311,7 +316,7 @@ ul {
 .content__page {
   display: none;
   width: 40.5em;
-  margin: 70px auto;
+  margin: 90px auto;
   min-height: 100vh;
   position: absolute;
   top: 0;
@@ -323,7 +328,7 @@ ul {
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: -40px;
+  top: -50px;
   width: 100%;
 }
 
@@ -351,6 +356,65 @@ ul {
 .content__menu-item:hover, .content__menu-close:hover{
   border-bottom: none;
 }
+
+.content__menu-item{
+  transition: all 300ms ease;
+}
+
+
+.menu-item-active:nth-child(1)::before{
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #333;
+  position: absolute;
+  top: 135%;
+  left: 30%;
+}
+
+.menu-item-active:nth-child(2)::before{
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #333;
+  position: absolute;
+  top: 135%;
+  left: 26%;
+}
+
+.content__menu-item:nth-child(1)::after{
+  transition: all 300ms ease;
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #333;
+  position: absolute;
+  top: 135%;
+  left: 30%;
+  opacity: 0;
+}
+
+.content__menu-item:nth-child(2)::after{
+  transition: all 300ms ease;
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #333;
+  position: absolute;
+  top: 135%;
+  left: 26%;
+  opacity: 0;
+}
+
+.content__menu-item:hover::after{
+  transition: all 300ms ease;
+  opacity: 0.4;
+}
+
 
 .shapes {
   position: absolute;
@@ -487,7 +551,7 @@ ul {
 }
 
 .speaker__name {
-  margin-top: 2em !important;
+  margin-top: 0em !important;
 }
 
 .speaker__image {
@@ -597,7 +661,11 @@ ul {
 
 @media (max-width:740px) and (min-width:320px) {
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
-    width: 100%;    
+    width: 100%;
+  }
+
+  .content__menu-close {
+    margin-right: 3px;
   }
 
   .who, .contact, .what, .why {
@@ -661,10 +729,12 @@ ul {
     text-align: center;
     padding-right: 0px;
     padding-left: 0px;
+    padding-top: 15px;
   }
 
   .header__date {
     font-size: 1.44444444em;
+    margin-top: 60px;
   }
 
   #logo {
