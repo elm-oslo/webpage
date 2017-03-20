@@ -6,7 +6,6 @@ import Svg.Attributes exposing (..)
 import Html
 import Array exposing (Array)
 import AnimationFrame
-import Time
 
 
 height : Float
@@ -246,18 +245,14 @@ view model =
 type alias Model =
     { squares : List Square
     , triangles : List Triangle
-    , ticks : Int
     , seed : Seed
-    , lastDiff : Float
     }
 
 
 type Msg
-    = NoOp
-    | NewSquares (List Square)
+    = NewSquares (List Square)
     | NewTriangles (List Triangle)
     | MoveX Float
-    | GenerateMore
 
 
 moveX : { a | x : Float, transformX : Float, velocityX : Float, size : Float, rotation : Float } -> Float
@@ -310,12 +305,6 @@ stepTriangle triangle =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GenerateMore ->
-            ( model, Cmd.none )
-
-        NoOp ->
-            ( model, Cmd.none )
-
         NewSquares squares ->
             ( { model | squares = (model.squares ++ squares) }, Cmd.none )
 
@@ -326,7 +315,6 @@ update msg model =
             ( { model
                 | squares = List.map stepSquare model.squares
                 , triangles = List.map stepTriangle model.triangles
-                , ticks = model.ticks + 1
               }
             , Cmd.none
             )
@@ -401,9 +389,7 @@ initialModel : Model
 initialModel =
     { squares = []
     , triangles = []
-    , ticks = 0
     , seed = Random.initialSeed 227852860
-    , lastDiff = 0
     }
 
 
