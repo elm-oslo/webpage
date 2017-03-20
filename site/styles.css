@@ -150,6 +150,8 @@ ul {
   padding: 0 4rem;
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  top: -40px;
 }
 
 .summary__list li {
@@ -170,7 +172,7 @@ ul {
   top: -20px;
 }
 
-.what, .why, .sponsors-about {
+.what, .why {
   width: 30%;
 }
 
@@ -178,14 +180,14 @@ ul {
   width: 15%;
 }
 
-.sponsors-list {
-  width: 48%;
-}
+.sponsors-platinum { width: 15%; }
+.sponsors-gold { width: 32%; }
+.sponsors-silver { width: 31.2%; }
+.sponsors-about { width: 15%; }
 
 .sponsor-forsale {
   font-size: 14px;
 }
-
 
 .information__block h2 {
   margin-bottom: 1em;
@@ -443,14 +445,11 @@ margin: 12px 0 0 0;
 
 .sponsor__logo {
     width: 130px;
+    max-height: 40px;
 }
 
 .sponsor__list {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
   margin-bottom: 2.22222222222em !important;
-  width: 70%;
 }
 
 .sponsors a, .about a, .speakers a {
@@ -467,6 +466,8 @@ margin: 12px 0 0 0;
 
 .sponsor__list a {
   border: none;
+  margin-right: 40px;
+  margin-bottom: 40px;
 }
 
 /**/
@@ -514,7 +515,17 @@ margin: 12px 0 0 0;
 /* Responsive */
 /**/
 
+@media (max-width:1500px) {
+  .sponsor__list {
+    width: 100%;
+  }
+}
+
 @media (max-width:1024px) and (min-width:740px) {
+  .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
+    width: 50%;
+  }
+
   .what, .why {
     width: 60%;
   }
@@ -529,7 +540,11 @@ margin: 12px 0 0 0;
 }
 
 @media (max-width:740px) and (min-width:320px) {
-  .who, .contact, .what, .why, .sponsors-about, .sponsors-list, .extras {
+  .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
+    width: 100%;    
+  }
+
+  .who, .contact, .what, .why {
     width: 100%;
   }
 
@@ -600,6 +615,13 @@ margin: 12px 0 0 0;
     position: relative;
     top:0;
     left: 0;
+  }
+
+  .sponsor__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   .content__page, .content__shapes {
