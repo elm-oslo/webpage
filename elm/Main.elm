@@ -90,9 +90,9 @@ sizes =
     , 6
     , 6
     , 6
+    , 6.5
+    , 6.5
     , 7
-    , 7
-    , 8
     ]
         |> Array.fromList
 
@@ -139,7 +139,7 @@ type alias Triangle =
 
 randomSquare : Float -> Generator Square
 randomSquare x =
-    Random.pair (randomGradientIndex gradientPairs) (randomStart 8 40)
+    Random.pair (randomGradientIndex gradientPairs) (randomStart 8 35)
         |> Random.map
             (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
                 Square x y initialTranslateX 0 size rotation colorIndex vX vR
@@ -148,7 +148,7 @@ randomSquare x =
 
 randomTriangle : Float -> Generator Triangle
 randomTriangle x =
-    Random.pair (randomGradientIndex gradientPairs) (randomStart 16 30)
+    Random.pair (randomGradientIndex gradientPairs) (randomStart 16 25)
         |> Random.map
             (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
                 Triangle x y initialTranslateX 0 size rotation colorIndex vX vR
@@ -219,7 +219,13 @@ viewTriangle triangle =
         , Svg.Attributes.height <| toString triangle.size
         , fill <| "url(#gradient" ++ toString triangle.gradientIndex ++ ")"
         , class "shape"
-        , Svg.Attributes.style ("transform: translateX(" ++ toString triangle.transformX ++ "px) rotate(" ++ toString triangle.rotation ++ "deg);")
+        , Svg.Attributes.style
+            ("transform: translateX("
+                ++ toString triangle.transformX
+                ++ "px) rotate("
+                ++ toString triangle.rotation
+                ++ "deg);"
+            )
         ]
         []
 
