@@ -16,6 +16,12 @@ main {
   display: flex;
   flex-wrap: wrap;
   padding-top: 2rem;
+  height: 100vh;
+}
+
+footer {
+  background: #ccc;
+  width: 100%;
 }
 
 .content-open {

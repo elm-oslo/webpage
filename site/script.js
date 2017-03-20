@@ -257,3 +257,4 @@ function showSpeaker(speakerNo) {
 
 window.onhashchange = render;
 render();
+
