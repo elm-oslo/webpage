@@ -348,6 +348,10 @@ ul {
   border-bottom: none;
 }
 
+.menu-item-active {
+  font-family: 'AvenirLTPro-Medium', sans-serif;
+}
+
 .content__menu-item:hover, .content__menu-close:hover{
   border-bottom: none;
 }
