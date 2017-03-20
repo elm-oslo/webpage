@@ -238,7 +238,7 @@ function closeContent() {
 function showSpeaker(speakerNo) {
   setTimeout(function () {
     document.querySelectorAll('.speaker')[speakerNo].scrollIntoView();
-  }, 0);
+  }, 100);
 }
 
 window.onhashchange = render;
