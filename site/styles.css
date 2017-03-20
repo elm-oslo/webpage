@@ -500,6 +500,7 @@ ul {
 .sponsor__logo {
     width: 130px;
     max-height: 40px;
+    position: relative;
 }
 
 .sponsor__list {
@@ -520,7 +521,7 @@ ul {
 
 .sponsor__list a {
   border: none;
-  margin-right: 40px;
+  margin-right: 20px;
   margin-bottom: 40px;
 }
 
@@ -565,15 +566,16 @@ ul {
   opacity: 1.0;
 }
 
+
+@media (min-width:740px) {
+  .bekk {  }
+  .blank { top: 5px; }
+  .kodemaker { bottom: 9px; }
+}
+
 /**/
 /* Responsive */
 /**/
-
-@media (max-width:1500px) {
-  .sponsor__list {
-    width: 100%;
-  }
-}
 
 @media (max-width:1024px) and (min-width:740px) {
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
