@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.querySelectorAll('.animate').forEach(function(node) {
       if (node.addClass) node.addClass('animate-start');
       else node.className += 'animate-start';
-      
+
     })
   }, 300);
 });
@@ -277,4 +277,3 @@ function showSpeaker(speakerNo) {
 
 window.onhashchange = render;
 render();
-

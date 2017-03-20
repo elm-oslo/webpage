@@ -87,7 +87,7 @@
       </nav>
 
       <section class="summary">
-        <h2 class="sr-only">Summary</h2>
+        <h3 class="sr-only">Summary</h3>
         <ul class="summary__list">
           <li class="animate animate--small seq-1">1 day</li>
           <li class="animate animate--small seq-2">6-8 talks</li>
@@ -103,7 +103,7 @@
 
       <div class="information">
         <section class="information__block animate--medium seq-2 animate what">
-          <h2>What?</h2>
+          <h3>What?</h3>
           <p>
             A one-day conference about the Elm programming language and practical use of Elm in Norway and the Nordics.
           </p>
@@ -114,7 +114,7 @@
         </section>
 
         <section class="information__block animate--medium seq-3 animate who">
-          <h2>Who?</h2>
+          <h3>Who?</h3>
 
           <ul class="who__list">
             <li class="who__list-item">
@@ -135,14 +135,14 @@
         </section>
 
         <section class="information__block animate--medium seq-4 animate why">
-          <h2>Why?</h2>
+          <h3>Why?</h3>
           <p>
             The Nordic Elm community is growing rapidly, with large interest for the local meetups and Elm topics on practically every tech conference. Several local companies have started experimenting with Elm in their projects and it’s time to start sharing our experiences.
           </p>
         </section>
 
         <section class="information__block animate--medium seq-5 animate contact">
-          <h2>Contact</h2>
+          <h3>Contact</h3>
           <ul>
             <li><a href="https://twitter.com/osloelmday">@OsloElmDay</a></li>
             <li><a href="mailto:hello@osloelmday.no">hello@osloelmday.no</a></li>
@@ -246,7 +246,7 @@
               <p><a href="http://elm-lang.org/">http://elm-lang.org/</a></p>
 
               <h3>Where?</h3>
-              <p>The conference will be hosted at the beautiful “Gamle Museet“ (The Old Museum) in downtown Oslo.</p>
+              <p>The conference will be hosted at the beautiful "Gamle Museet" (The Old Museum) in downtown Oslo.</p>
 
               <h3>Pre-Conference Workshop</h3>
               <p>TBA</p>
@@ -272,7 +272,7 @@
               <p>The conference is organized by enthusiastic members of the Oslo Elm Meetup community.</p>
 
               <p>
-                  <h4>The committee</h4>
+                  <h3>The committee</h3>
                   <ul>
                       <li>Erik Wendel - <a href="https://twitter.com/ewndl">@ewndl</a></li>
                       <li>Ingar Almklov - <a href="https://twitter.com/ingara">@ingara</a></li>
@@ -286,7 +286,7 @@
               <p>
                   <h3>With help from</h3>
                   <ul>
-                      <li>Jonathan Austigård - <a href="https://twitter.com/jonaaust">@jonaaust</a></li>
+                      <li>Jonatan Austigard - <a href="https://twitter.com/jonaaust">@jonaaust</a></li>
                       <li>Stian Veum Møllersen - <a href="https://twitter.com/mollerse">@mollerse</a></li>
                   </ul>
               </p>
@@ -375,9 +375,9 @@
         </nav>
         <div class="content__box">
           <article class="information__block">
-          <h3>
+          <h2>
           Code of Conduct
-          </h3>
+        </h2>
 
           All delegates, speakers, sponsors and volunteers are required to agree with the following code of conduct. Organizers will enforce this code throughout the event.
 
@@ -455,25 +455,23 @@
 
       function triggerAnim() {
         setTimeout(function () {
-
-
-        var page = window.location.hash.substr(1);
-        switch (page) {
-          case 'about':
-            aboutAnim.goToAndPlay(0);
-            break;
-          case 'speakers':
-            speakersAnim.goToAndPlay(0);
-            break;
-          case 'codeofconduct':
-            codeofconductAnim.goToAndPlay(0);
-            break;
-          case 'cfp':
-            cfpAnim.goToAndPlay(0);
-            break;
-          default:
-            break;
-        }
+          var page = window.location.hash.substr(1);
+          switch (page) {
+            case 'about':
+              aboutAnim.goToAndPlay(0);
+              break;
+            case 'speakers':
+              speakersAnim.goToAndPlay(0);
+              break;
+            case 'codeofconduct':
+              codeofconductAnim.goToAndPlay(0);
+              break;
+            case 'cfp':
+              cfpAnim.goToAndPlay(0);
+              break;
+            default:
+              break;
+          }
         }, 10);
       }
 
