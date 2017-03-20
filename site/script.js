@@ -191,6 +191,20 @@ function main(t) {
 
 requestAnimationFrame(main);
 
+
+
+
+document.addEventListener("DOMContentLoaded", function(e) {
+  setTimeout(function() {
+    document.querySelectorAll('.animate').forEach(function(node) {
+      if (node.addClass) node.addClass('animate-start');
+      else node.className += 'animate-start';
+      
+    })
+  }, 300);
+});
+
+
 // Navigation
 
 var $ = document.querySelector.bind(document);
@@ -232,6 +246,7 @@ function openContent(page) {
   $('.' + page).addClass('open');
   $('.overlay').addClass('open');
   $('main').addClass('content-open');
+  $('footer').addClass('hidden');
   window.location.hash = page;
 }
 
@@ -243,8 +258,16 @@ function closeContent() {
   }
   $('.overlay').removeClass('open');
   $('main').removeClass('content-open');
+  $('footer').removeClass('hidden');
   window.location.hash = '';
+}
+
+function showSpeaker(speakerNo) {
+  setTimeout(function () {
+    document.querySelectorAll('.speaker')[speakerNo].scrollIntoView();
+  }, 5);
 }
 
 window.onhashchange = render;
 render();
+
