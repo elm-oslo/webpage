@@ -13,6 +13,8 @@ if [[ "$#" != "1" ]]; then
   exit 1
 elif [[ ${1} == "prod" ]]; then
   BUCKET="elm-oslo-webpage"
+elif [[ ${1} == "test" ]]; then
+  BUCKET="elm-oslo-webpage-test"
 else
   echo "Environment not recognized: '$1'."
   exit 1
