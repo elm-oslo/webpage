@@ -661,10 +661,12 @@ ul {
     text-align: center;
     padding-right: 0px;
     padding-left: 0px;
+    padding-top: 15px;
   }
 
   .header__date {
     font-size: 1.44444444em;
+    margin-top: 60px;
   }
 
   #logo {
