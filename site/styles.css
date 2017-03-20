@@ -652,6 +652,8 @@ ul {
   .nav {
     width: 100%;
     text-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 
   .header__date {
