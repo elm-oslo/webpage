@@ -224,6 +224,10 @@ ul {
   margin-bottom: 1em;
 }
 
+.information__block p:last-of-type {
+  margin-bottom: 0;
+}
+
 .morespacebro{
   margin-bottom: 1.5em !important;
 }
@@ -604,7 +608,7 @@ ul {
   }
 
   .information__block {
-    margin-top: 2em;
+    margin-top: 1em;
   }
 
   .backdrop-wrapper {
