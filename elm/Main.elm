@@ -114,9 +114,9 @@ type alias Square =
     { x : Float
     , y : Float
     , transformX : Float
-    , transformY : Float
     , size : Float
     , rotation : Float
+    , initialRotation : Float
     , gradientIndex : Int
     , velocityX : Float
     , velocityR : Float
@@ -127,9 +127,9 @@ type alias Triangle =
     { x : Float
     , y : Float
     , transformX : Float
-    , transformY : Float
     , size : Float
     , rotation : Float
+    , initialRotation : Float
     , gradientIndex : Int
     , velocityX : Float
     , velocityR : Float
@@ -141,7 +141,7 @@ randomSquare x =
     Random.pair (randomGradientIndex gradientPairs) (randomStart 8 35)
         |> Random.map
             (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
-                Square x y initialTranslateX 0 size rotation colorIndex vX vR
+                Square x y initialTranslateX size rotation rotation colorIndex vX vR
             )
 
 
@@ -150,7 +150,7 @@ randomTriangle x =
     Random.pair (randomGradientIndex gradientPairs) (randomStart 16 25)
         |> Random.map
             (\( colorIndex, ( y, size, ( vX, vR, rotation ) ) ) ->
-                Triangle x y initialTranslateX 0 size rotation colorIndex vX vR
+                Triangle x y initialTranslateX size rotation rotation colorIndex vX vR
             )
 
 
@@ -255,14 +255,14 @@ type Msg
     | MoveX Float
 
 
-moveX : { a | x : Float, transformX : Float, velocityX : Float, size : Float, rotation : Float } -> Float
-moveX { x, transformX, velocityX, size, rotation } =
+moveX : { a | x : Float, transformX : Float, velocityX : Float, size : Float, initialRotation : Float } -> Float
+moveX { x, transformX, velocityX, size, initialRotation } =
     let
         newX =
             transformX + velocityX
     in
         if x + newX > width * 1.5 then
-            if rotation > 0 then
+            if initialRotation > 0 then
                 -1.75 * width
             else
                 0
