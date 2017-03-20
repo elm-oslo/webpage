@@ -23,6 +23,11 @@ main {
   overflow: hidden;
 }
 
+.backdrop-wrapper {
+  width: 100vw;
+  height: 50vh;
+}
+
 a:active, a:visited, a {
   color: #333;
 }
@@ -204,7 +209,6 @@ ul {
 }
 
 .who__avatar img {
-  mix-blend-mode: multiply;
   width: 100%;
   border-radius: 50%;
 }
@@ -379,6 +383,46 @@ ul {
   border: none;
 }
 
+/**/
+/* Animations */
+/**/
+
+.seq-1 { transition-delay: 0ms !important; }
+.seq-2 { transition-delay: 50ms !important; }
+.seq-3 { transition-delay: 100ms !important; }
+.seq-4 { transition-delay: 150ms !important; }
+.seq-5 { transition-delay: 200ms !important; }
+.seq-6 { transition-delay: 250ms !important; }
+.seq-7 { transition-delay: 300ms !important; }
+.seq-8 { transition-delay: 350ms !important; }
+.seq-9 { transition-delay: 400ms !important; }
+
+.animate {
+  transition: opacity 0.35s ease-in-out, 
+              transform 0.35s ease-in-out;
+  opacity: 0;
+}
+
+.animate--fixed {
+  transition-duration: 800ms;
+}
+
+.animate--backdrop {
+  transition-duration: 1500ms; 
+}
+
+.animate--small {
+  transform: translate(0, 20px);
+}
+
+.animate--medium {
+  transform: translate(0, 30px);
+}
+
+.animate-start {
+  transform: translate(0,0);
+  opacity: 1.0;
+}
 
 /**/
 /* Responsive */
@@ -416,7 +460,7 @@ ul {
       margin-top: 2em;
     }
 
-    #backdrop {
+    .backdrop-wrapper {
       height: 20vh;
     }
 
@@ -438,7 +482,7 @@ ul {
     visibility: hidden;
   }
 
-  #backdrop {
+  .backdrop-wrapper {
     height: 280px;
     width: 100vw;
     position: absolute;
