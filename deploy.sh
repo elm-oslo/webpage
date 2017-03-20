@@ -1,5 +1,7 @@
 #/bin/bash
 
+./build_elm.sh
+
 BASEDIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 while [ -h "$BASEDIR/$0" ]; do
     DIR=$(dirname -- "$BASEDIR/$0")
