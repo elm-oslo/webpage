@@ -166,8 +166,6 @@ ul {
   padding: 0 4rem;
   display: flex;
   justify-content: flex-end;
-  position: relative;
-  top: -40px;
 }
 
 .summary__list li {
