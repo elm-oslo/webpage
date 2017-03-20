@@ -128,13 +128,6 @@ ul {
   justify-content: flex-end;
 }
 
-.summary__header {
-  font-weight: 400;
-  font-size: 1em;
-  margin-right: 2em;
-  display: none;
-}
-
 .summary__list li {
   float: left;
   margin-right: 2em;
