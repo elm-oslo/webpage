@@ -251,10 +251,10 @@ ul {
   color: #333 !important;
 }
 
-.content__shapes {
+.shapes {
   position: absolute;
-  opacity: 0.25;
   width: 730px;
+  height: 600px;
   top: 0px;
   left: 0px;
   z-index: -1;
