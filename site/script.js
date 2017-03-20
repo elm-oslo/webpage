@@ -217,6 +217,14 @@ function render(e) {
     openContent(newPage);
 })(window);
 
+var menuItems = document.querySelectorAll('.content__menu-item');
+Array.prototype.forEach.call(menuItems, function(n) {
+  n.addEventListener('click', function(e) {
+    var page = n.href.substr(n.href.lastIndexOf('#') + 1);
+    $('.' + page).addClass('no-transform');
+  });
+});
+
 function openContent(page) {
   window.scrollTo(0, 0);
   var current = $('.content__page.open')
@@ -229,7 +237,10 @@ function openContent(page) {
 
 function closeContent() {
   var current = $('.content__page.open')
-  if (current) current.removeClass('open');
+  if (current) {
+    current.removeClass('open');
+    current.removeClass('no-transform');
+  }
   $('.overlay').removeClass('open');
   $('main').removeClass('content-open');
   window.location.hash = '';
