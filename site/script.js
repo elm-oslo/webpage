@@ -203,11 +203,12 @@ requestAnimationFrame(main);
 
 document.addEventListener("DOMContentLoaded", function(e) {
   setTimeout(function() {
-    document.querySelectorAll('.animate').forEach(function(node) {
+    var nodes = document.querySelectorAll('.animate');
+    for (var i = 0; i < nodes.length; i++){
+      var node = nodes[i];
       if (node.addClass) node.addClass('animate-start');
       else node.className += 'animate-start';
-
-    })
+    }
   }, 300);
 });
 
