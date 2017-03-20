@@ -30,6 +30,9 @@ var setXlink = (use, id) => use.setAttributeNS('http://www.w3.org/1999/xlink', '
 var cos = Math.cos;
 var sin = Math.sin;
 
+canvas.setAttribute('height', window.innerHeight/2);
+canvas.setAttribute('width', window.innerWidth);
+
 //internal SVG coordinate system
 var HEIGHT = 500;
 var WIDTH = 1000;
@@ -110,13 +113,15 @@ function randomSquare(x) {
   var stroke = 'none';
   var fill = `url(#gradient${Math.floor(rand2(0, 8))})`;
   var className = 'shape';
+  var transformOrigin = `transform-origin: ${x + w/2}px ${y + w/2}px;`;
 
   var el = createSVGElement('rect');
   setAttributes(el, {
     x, y, stroke, fill,
     rx: 3, ry: 3,
     width: w, height: w,
-    class: className
+    class: className,
+    style: transformOrigin
   });
   return {el, x};
 }
@@ -128,12 +133,14 @@ function randomTriangle(x) {
   var stroke = 'none';
   var fill = `url(#gradient${Math.floor(rand2(0, 8))})`;
   var className = 'shape';
+  var transformOrigin = `transform-origin: ${x + w/2}px ${y + w}px;`;
 
   var el = createSVGElement('path');
   setAttributes(el, {
     stroke, fill,
     d: `M${x},${y} L${x + w},${y + w} L${x},${y + 2*w} Z`,
-    class: className
+    class: className,
+    style: transformOrigin
   });
 
   return {el, x};
@@ -171,7 +178,7 @@ function initialize({el, x: initialX}) {
 
     r = (r + vr) % 360;
 
-    el.setAttribute('style', `transform: translateX(${x}px) rotate(${r}deg);`);
+    el.style.transform = `translateX(${x}px) rotate(${r}deg)`;
   }
 }
 
