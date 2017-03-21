@@ -575,10 +575,6 @@ ul {
     position: relative;
 }
 
-.sponsor__list {
-  margin-bottom: 2.22222222222em !important;
-}
-
 .sponsors a, .about a, .speakers a {
   color: #fff;
   /*border-bottom: 1px solid #fff;
@@ -681,19 +677,23 @@ ul {
 }
 
 @media (max-width:740px) and (min-width:320px) {
+  .content__box {
+    padding-top: 40px !important;
+  }
+
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
     width: 100%;
   }
 
   .content__menu-close {
-    margin-right: 3px;
+    margin-right: 6px;
   }
 
   .who, .contact, .what, .why {
     width: 100%;
   }
 
-  .information {
+  .information, .information-sponsors {
     padding: 0 1.5rem;
     padding-bottom: 60px;
   }
@@ -760,7 +760,7 @@ ul {
 
   #logo {
     width: 100%;
-    height: 150px;
+    height: 165px;
     position: relative;
     top:0;
     left: 0;
