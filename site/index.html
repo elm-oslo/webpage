@@ -156,7 +156,7 @@
           </ul>
           <ul>
             <li><a onClick="triggerAnim()" href="#speakers">Call for Speakers</a></li>
-            <li><a href="#codeofconduct">Code of Conduct</a></li>
+            <li><a onClick="triggerAnim()" href="#codeofconduct">Code of Conduct</a></li>
           </ul>
         </section>
       </div>
@@ -452,14 +452,6 @@
         path: 'animation.json'
       });
 
-      var cfpAnim = bodymovin.loadAnimation({
-        wrapper: document.querySelector('.cfp .shapes'),
-        animType: 'svg',
-        autoplay: true,
-        loop: false,
-        path: 'animation.json'
-      });
-
       function triggerAnim() {
         setTimeout(function () {
           var page = window.location.hash.substr(1);
@@ -473,16 +465,11 @@
             case 'codeofconduct':
               codeofconductAnim.goToAndPlay(0);
               break;
-            case 'cfp':
-              cfpAnim.goToAndPlay(0);
-              break;
             default:
               break;
           }
         }, 10);
       }
-
-      // window.addEventListener('hashchange', triggerAnim);
     </script>
   </body>
 </html>
