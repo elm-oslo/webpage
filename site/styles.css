@@ -598,6 +598,7 @@ ul {
   margin-bottom: 40px;
 }
 
+
 /**/
 /* Animations */
 /**/
@@ -649,6 +650,17 @@ ul {
 /**/
 /* Responsive */
 /**/
+
+
+@media (max-width:1400px) and (min-width:1024px) {
+  .richard { width: 75px; }
+  .luke { width: 62px; }
+}
+
+@media (max-width:774px) and (min-width:741px) {
+  .richard { width: 75px; }
+  .luke { width: 62px; }
+}
 
 @media (max-width:1700px) {
   .information {
