@@ -175,10 +175,13 @@ ul {
 .summary {
   position: absolute;
   top: 135px;
+  right: 0;
   width: 100%;
   padding: 0 4rem;
-  display: flex;
-  justify-content: flex-end;
+}
+
+.summary__list{
+  float: right;
 }
 
 .summary__list li {
