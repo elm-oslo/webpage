@@ -1,2 +1,4 @@
 .s3cfg
 **/.DS_Store
+elm-stuff
+site/elm.js

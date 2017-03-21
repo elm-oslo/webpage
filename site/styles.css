@@ -29,6 +29,7 @@ footer {
   background: #f2f2f2;
   width: 100%;
   padding-top: 3.05555555556em;
+  padding-bottom: 1.2222222222em;
 }
 
 li{
@@ -679,6 +680,10 @@ ul {
 @media (max-width:740px) and (min-width:320px) {
   .content__box {
     padding-top: 40px !important;
+  }
+
+  .what{
+    margin-top: 3em !important;
   }
 
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
