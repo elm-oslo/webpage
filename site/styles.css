@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-size: 18px;
   color: #333;
@@ -17,6 +22,7 @@ main {
   flex-wrap: wrap;
   padding-top: 2rem;
   min-height: 100vh;
+  position: relative;
 }
 
 footer {
