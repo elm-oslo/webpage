@@ -243,7 +243,6 @@ ul {
 
 .content__page .information__block p {
   hyphens: auto;
-  text-align: justify;
 }
 
 .information__block p:last-of-type {
@@ -701,7 +700,7 @@ ul {
 @media (max-width:740px) and (min-width:320px) {
   .speaker__image {
     width: 3.5em;
-    margin-right: 1.222222em;    
+    margin-right: 1.222222em;
   }
 
   .content__box {
