@@ -566,8 +566,8 @@ ul {
 
 .speaker__image {
   border-radius: 50%;
-  width: 5em;
-  margin-right: 2.22222222222em;
+  width: 4.2em;
+  margin-right: 1.8em;
   align-self: flex-start;
 }
 
@@ -679,6 +679,11 @@ ul {
 }
 
 @media (max-width:740px) and (min-width:320px) {
+  .speaker__image {
+    width: 3.5em;
+    margin-right: 1.222222em;    
+  }
+
   .content__box {
     padding-top: 40px !important;
   }
