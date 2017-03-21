@@ -239,8 +239,11 @@ ul {
 
 .information__block p {
   margin-bottom: 1em;
-  text-align: justify;
+}
+
+.content__page .information__block p {
   hyphens: auto;
+  text-align: justify;
 }
 
 .information__block p:last-of-type {
