@@ -444,14 +444,6 @@
         path: 'animation.json'
       });
 
-      var cfpAnim = bodymovin.loadAnimation({
-        wrapper: document.querySelector('.cfp .shapes'),
-        animType: 'svg',
-        autoplay: true,
-        loop: false,
-        path: 'animation.json'
-      });
-
       function triggerAnim() {
         setTimeout(function () {
           var page = window.location.hash.substr(1);
@@ -464,9 +456,6 @@
               break;
             case 'codeofconduct':
               codeofconductAnim.goToAndPlay(0);
-              break;
-            case 'cfp':
-              cfpAnim.goToAndPlay(0);
               break;
             default:
               break;
