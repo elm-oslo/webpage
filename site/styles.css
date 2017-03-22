@@ -768,6 +768,24 @@ ul {
   }
 }
 
+@media (max-width:1480px) and (min-width:1024px) {
+  #logo{
+    top: 30px;
+  }
+  .header__date{
+    top: 56px;
+  }
+  #ticket_btn{
+    margin-top: -1em;
+  }
+  .about_btn{
+    margin-top: 1em;
+  }
+  .summary{
+    top: 120px;
+  }
+}
+
 @media (max-width:1400px) and (min-width:1024px) {
   .richard { width: 75px; }
   .luke { width: 62px; }
