@@ -371,8 +371,15 @@ ul {
   display: flex;
 }
 
+.content__menu-close:hover::after{
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 .content__menu-close::after{
   content: '';
+  -webkit-transition: all 300ms 0s ease-in-out;
+  transition: all 300ms 0s ease-in-out;
   display: block;
   position: absolute;
   right: 0;
