@@ -408,6 +408,11 @@ ul {
   display: flex;
 }
 
+.content__menu-close{
+  opacity: 0;
+  animation: fadein 0.5s 0.3s ease-in-out forwards;
+}
+
 .content__menu-close:hover::after{
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
@@ -436,10 +441,6 @@ ul {
 
 .content__menu-item:hover, .content__menu-close:hover{
   border-bottom: none;
-}
-
-.content__menu-item{
-  /*transition: all 300ms ease;*/
 }
 
 
@@ -547,6 +548,11 @@ ul {
 }
 
 .content__page.no-transform .content__menu {
+  animation: none;
+  opacity: 1;
+}
+
+.content__page.no-transform .content__menu-close{
   animation: none;
   opacity: 1;
 }
@@ -852,6 +858,9 @@ ul {
     display: none;
   }
 
+  .content__page{
+    margin: 70px auto 0 auto;
+  }
 
   .speaker__image {
     width: 3.5em;
@@ -875,7 +884,7 @@ ul {
   }
 
   .content__menu-close {
-    margin-right: 6px;
+    margin-right: 17px;
   }
 
   .who, .contact, .what, .why {
@@ -956,6 +965,7 @@ ul {
   .content__menu-wrapper {
     left: 20px;
     width: 93%;
+    top: -40px;
   }
 
   #ticket_btn{
