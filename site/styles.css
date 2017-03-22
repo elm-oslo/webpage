@@ -571,7 +571,7 @@ ul {
 .speaker {
   display: flex;
   flex-direction: row;
-  padding-top: 2em;
+  padding-top: 3em;
 }
 
 .speaker:first-of-type {
