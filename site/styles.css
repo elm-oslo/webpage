@@ -20,7 +20,6 @@ body {
 main {
   display: flex;
   flex-wrap: wrap;
-  /*padding-top: 2rem;*/
   min-height: 100vh;
   position: relative;
 }
@@ -65,6 +64,7 @@ li{
 .backdrop-wrapper {
   width: 100vw;
   height: 50vh;
+  margin-top: 6%;
 }
 
 a {
@@ -86,11 +86,6 @@ a:hover{
   border-bottom: 1px solid currentColor;
 }
 
-h1, h2 {
-  /*-webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;*/
-}
-
 p {
   margin: 0;
   line-height: 1.44444444444em;
@@ -102,25 +97,11 @@ ul {
   margin: 0;
 }
 
-/*.header, .nav {
-  padding: 2rem 4rem 1rem;
-}*/
-
 .header{
   width: 100vw;
   height: 10vh;
+  z-index: 3;
 }
-
-/*.header {
-  width: auto;
-  display: flex;
-  flex-grow: 10;
-  justify-content: flex-end;
-  align-items: top;
-  padding-right: 0;
-  font-size: 18px;
-  font-weight: normal;
-}*/
 
 #logo {
   width: 150px;
@@ -155,7 +136,7 @@ ul {
 
 #ticket_btn{
   width: 220px;
-  background-color:#fff;
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   margin-left: auto;
@@ -477,7 +458,6 @@ ul {
   height: 600px;
   top: 0px;
   left: 0px;
-  /*z-index: -1;*/
 }
 
 .content__page.open {
@@ -519,13 +499,10 @@ ul {
     from {
       opacity: 0;
       left: calc(50% - 20.25em);
-      /*transform: translate(-50%, 2.5%);*/
     }
-
     to {
       opacity: 1;
       left: calc(50% - 20.25em);
-      /*transform: translate(-50%, 0);*/
     }
   }
 }
@@ -624,15 +601,7 @@ ul {
 
 .sponsors a, .about a, .speakers a {
   color: #fff;
-  /*border-bottom: 1px solid #fff;
-  transition: all .2s ease-in-out;
-  line-height: .8;
-  text-decoration: none;*/
 }
-
-/*.sponsors a:hover, .about a:hover, .speakers a:hover {
-  opacity: 0.7;
-}*/
 
 .sponsor__list a {
   border: none;
@@ -693,6 +662,17 @@ ul {
 /* Responsive */
 /**/
 
+@media (min-width:1900px) {
+  .backdrop-wrapper {
+    margin-top: 2%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .information h3{
+    margin-top: 0px !important;
+  }
+}
 
 @media (max-width:1400px) and (min-width:1024px) {
   .richard { width: 75px; }
@@ -739,6 +719,10 @@ ul {
   .speaker__image {
     width: 3.5em;
     margin-right: 1.222222em;
+  }
+
+  .backdrop-wrapper {
+    margin-top: 0%;
   }
 
   .content__box {
