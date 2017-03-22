@@ -769,6 +769,7 @@ ul {
   }
   .content__menu-close::after{
     right: -9px !important;
+    top: 2px;
   }
   .content__menu-close{
     margin-right: 12px;
