@@ -662,9 +662,42 @@ ul {
 /* Responsive */
 /**/
 
-@media (min-width:1900px) {
+@media (min-width:1850px) {
   .backdrop-wrapper {
     margin-top: 2%;
+  }
+  body {
+    font-size: 22px;
+  }
+  .ticket_btn_a{
+    font-size: 18px !important;
+  }
+  #logo{
+    width: 190px !important;
+  }
+  .menu-item-active:nth-child(1)::before{
+    left: 36% !important;
+  }
+  .content__menu-item:nth-child(1)::after{
+    left: 36% !important;
+  }
+  .menu-item-active:nth-child(2)::before{
+    left: 32% !important;
+  }
+  .menu-item-active:nth-child(2)::after{
+    left: 32% !important;
+  }
+  .content__menu-item:nth-child(2)::after{
+    left: 32% !important;
+  }
+  .content__menu-close::after{
+    right: -9px !important;
+  }
+  .content__menu-close{
+    margin-right: 12px;
+  }
+  .content__menu-item:nth-child(2){
+    margin-left: 0.8em;
   }
 }
 
