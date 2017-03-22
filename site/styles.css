@@ -54,6 +54,7 @@ li{
 .content-open {
   position: fixed;
   overflow: hidden;
+  width: 100%;
 }
 
 #backdrop {
