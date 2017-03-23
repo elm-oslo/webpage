@@ -1,44 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 12.1 12.1" enable-background="new 0 0 12.1 12.1" xml:space="preserve">
-<g>
-	<g>
-		<rect x="5" y="-1.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -2.5036 6.0441)" fill="#333333" width="2" height="15.1"/>
-	</g>
-	<g>
-		
-			<rect x="-1.5" y="5.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -2.5083 6.0556)" fill="#333333" width="15.1" height="2"/>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+	 viewBox="0 0 12 12" style="enable-background:new 0 0 12 12;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#333333;}
+</style>
+<polygon class="st0" points="12,1.4 10.6,0 6,4.6 1.4,0 0,1.4 4.6,6 0.1,10.6 1.5,12 6,7.4 10.5,12 11.9,10.6 7.4,6 "/>
 </svg>

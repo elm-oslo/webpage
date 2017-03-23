@@ -20,7 +20,6 @@ body {
 main {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 2rem;
   min-height: 100vh;
   position: relative;
 }
@@ -54,6 +53,7 @@ li{
 .content-open {
   position: fixed;
   overflow: hidden;
+  width: 100%;
 }
 
 #backdrop {
@@ -64,6 +64,7 @@ li{
 .backdrop-wrapper {
   width: 100vw;
   height: 50vh;
+  margin-top: 6%;
 }
 
 a {
@@ -85,11 +86,6 @@ a:hover{
   border-bottom: 1px solid currentColor;
 }
 
-h1, h2 {
-  /*-webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;*/
-}
-
 p {
   margin: 0;
   line-height: 1.44444444444em;
@@ -101,19 +97,10 @@ ul {
   margin: 0;
 }
 
-.header, .nav {
-  padding: 2rem 4rem 1rem;
-}
-
-.header {
-  width: auto;
-  display: flex;
-  flex-grow: 10;
-  justify-content: flex-end;
-  align-items: top;
-  padding-right: 0;
-  font-size: 18px;
-  font-weight: normal;
+.header{
+  width: 100vw;
+  height: 10vh;
+  z-index: 3;
 }
 
 #logo {
@@ -138,7 +125,76 @@ ul {
   font-size: 2em;
   line-height: 32px;
   position: relative;
-  top: 9px;
+  top: 77px;
+  padding-right: 390px;
+  text-align: right;
+}
+
+.mobile_ticket_btn{
+  display: none;
+}
+
+#ticket_btn{
+  width: 220px;
+  background-color: transparent;
+  display: block;
+  float: right;
+  margin-left: auto;
+  overflow: hidden;
+  transform: translate3d(0,0,0);
+  opacity: 1;
+  -webkit-animation: fadein 2s;
+     -moz-animation: fadein 2s;
+      -ms-animation: fadein 2s;
+       -o-animation: fadein 2s;
+          animation: fadein 2s;
+}
+
+.ticket_btn_a{
+  font-family: 'AvenirLTPro-Medium', sans-serif;
+  text-decoration: none;
+  border: none;
+  color: white !important;
+  position: absolute;
+  top: 40px;
+  left: 34px;
+  padding: 12px 15px;
+}
+.ticket_btn_a:hover{
+  border: none;
+}
+
+.about_btn{
+  border: 2px solid #E4E4E4;
+  border-radius: 3px;
+  width: 90px;
+  height: 42px;
+  display: block;
+  float: right;
+  margin-right: 63px;
+  margin-top: 36px;
+  -webkit-animation: fadein 2s;
+     -moz-animation: fadein 2s;
+      -ms-animation: fadein 2s;
+       -o-animation: fadein 2s;
+          animation: fadein 2s;
+  -webkit-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+   -moz-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+     -o-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+        transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+}
+
+.about_btn:hover{
+  /*border: 2px solid #919191;*/
+  border: 2px solid #DFDFDF;
+  background-color: #DFDFDF;
+}
+
+.about_btn a{
+  font-family: 'AvenirLTPro-Medium', sans-serif;
+  font-size: 18px !important;
+  border: none;
+  padding: 14px 18px;
 }
 
 .nav {
@@ -226,7 +282,7 @@ ul {
 
 .information__block h3 {
   margin-bottom: 0.5em;
-  margin-top: 3em;
+  margin-top: 2.7em;
   font-family: 'AvenirLTPro-Medium', sans-serif;
   font-weight: normal;
   font-size: 1.0em;
@@ -352,8 +408,22 @@ ul {
   display: flex;
 }
 
+.content__menu-close{
+  opacity: 0;
+  animation: fadein 0.5s 0.3s ease-in-out forwards;
+}
+
+.content__menu-close:hover::after{
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 .content__menu-close::after{
   content: '';
+  -webkit-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+   -moz-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+     -o-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+        transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
   display: block;
   position: absolute;
   right: 0;
@@ -371,10 +441,6 @@ ul {
 
 .content__menu-item:hover, .content__menu-close:hover{
   border-bottom: none;
-}
-
-.content__menu-item{
-  transition: all 300ms ease;
 }
 
 
@@ -401,34 +467,51 @@ ul {
 }
 
 .content__menu-item:nth-child(1)::after{
-  transition: all 300ms ease;
+  -webkit-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+   -moz-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+     -o-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+        transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
   content: '';
   display: block;
   width: 6px;
   height: 6px;
   background: #333;
   position: absolute;
-  top: 135%;
+  top: 190%;
   left: 30%;
   opacity: 0;
 }
 
 .content__menu-item:nth-child(2)::after{
-  transition: all 300ms ease;
+  -webkit-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+   -moz-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+     -o-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+        transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
   content: '';
   display: block;
   width: 6px;
   height: 6px;
   background: #333;
   position: absolute;
-  top: 135%;
+  top: 190%;
   left: 26%;
   opacity: 0;
 }
 
 .content__menu-item:hover::after{
-  transition: all 300ms ease;
+  -webkit-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+   -moz-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+     -o-transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
+        transition: all 300ms cubic-bezier(0.720, 0.025, 0.260, 0.985);
   opacity: 0.4;
+  top: 135%;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.menu-item-active:hover::after{
+  transition: all 0ms ease;
+  opacity: 0;
 }
 
 
@@ -439,7 +522,6 @@ ul {
   height: 600px;
   top: 0px;
   left: 0px;
-  /*z-index: -1;*/
 }
 
 .content__page.open {
@@ -470,6 +552,11 @@ ul {
   opacity: 1;
 }
 
+.content__page.no-transform .content__menu-close{
+  animation: none;
+  opacity: 1;
+}
+
 @media (max-width:740px) {
   .content__page{
     left: 0px !important;
@@ -481,13 +568,10 @@ ul {
     from {
       opacity: 0;
       left: calc(50% - 20.25em);
-      /*transform: translate(-50%, 2.5%);*/
     }
-
     to {
       opacity: 1;
       left: calc(50% - 20.25em);
-      /*transform: translate(-50%, 0);*/
     }
   }
 }
@@ -556,7 +640,7 @@ ul {
 .speaker {
   display: flex;
   flex-direction: row;
-  padding-top: 2em;
+  padding-top: 3em;
 }
 
 .speaker:first-of-type {
@@ -586,20 +670,20 @@ ul {
 
 .sponsors a, .about a, .speakers a {
   color: #fff;
-  /*border-bottom: 1px solid #fff;
-  transition: all .2s ease-in-out;
-  line-height: .8;
-  text-decoration: none;*/
 }
-
-/*.sponsors a:hover, .about a:hover, .speakers a:hover {
-  opacity: 0.7;
-}*/
 
 .sponsor__list a {
   border: none;
   margin-right: 20px;
   margin-bottom: 40px;
+}
+
+.about blockquote{
+  margin: 1.1em;
+}
+
+.about h3:first-of-type{
+  margin-top: 2.5em;
 }
 
 
@@ -655,6 +739,69 @@ ul {
 /* Responsive */
 /**/
 
+@media (min-width:1850px) {
+  .backdrop-wrapper {
+    margin-top: 2%;
+  }
+  body {
+    font-size: 22px;
+  }
+  .ticket_btn_a{
+    font-size: 18px !important;
+  }
+  #logo{
+    width: 190px !important;
+  }
+  .menu-item-active:nth-child(1)::before{
+    left: 36% !important;
+  }
+  .content__menu-item:nth-child(1)::after{
+    left: 36% !important;
+  }
+  .menu-item-active:nth-child(2)::before{
+    left: 32% !important;
+  }
+  .menu-item-active:nth-child(2)::after{
+    left: 32% !important;
+  }
+  .content__menu-item:nth-child(2)::after{
+    left: 32% !important;
+  }
+  .content__menu-close::after{
+    right: -9px !important;
+    top: 2px;
+  }
+  .content__menu-close{
+    margin-right: 12px;
+  }
+  .content__menu-item:nth-child(2){
+    margin-left: 0.8em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .information h3{
+    margin-top: 0px !important;
+  }
+}
+
+@media (max-width:1480px) and (min-width:1024px) {
+  #logo{
+    top: 30px;
+  }
+  .header__date{
+    top: 56px;
+  }
+  #ticket_btn{
+    margin-top: -1em;
+  }
+  .about_btn{
+    margin-top: 1em;
+  }
+  .summary{
+    top: 120px;
+  }
+}
 
 @media (max-width:1400px) and (min-width:1024px) {
   .richard { width: 75px; }
@@ -680,6 +827,16 @@ ul {
 }
 
 @media (max-width:1024px) and (min-width:740px) {
+  .header__date{
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 32px;
+    position: relative;
+    top: 130px;
+    padding-right: 364px;
+    text-align: right;
+  }
+
   .sponsors-platinum, .sponsors-gold, .sponsors-silver, .sponsors-about {
     width: 50%;
   }
@@ -698,9 +855,21 @@ ul {
 }
 
 @media (max-width:740px) and (min-width:320px) {
+  .about_btn{
+    display: none;
+  }
+
+  .content__page{
+    margin: 70px auto 0 auto;
+  }
+
   .speaker__image {
     width: 3.5em;
     margin-right: 1.222222em;
+  }
+
+  .backdrop-wrapper {
+    margin-top: 0%;
   }
 
   .content__box {
@@ -716,7 +885,7 @@ ul {
   }
 
   .content__menu-close {
-    margin-right: 6px;
+    margin-right: 17px;
   }
 
   .who, .contact, .what, .why {
@@ -783,19 +952,6 @@ ul {
     padding-top: 15px;
   }
 
-  .header__date {
-    font-size: 1.44444444em;
-    margin-top: 60px;
-  }
-
-  #logo {
-    width: 100%;
-    height: 165px;
-    position: relative;
-    top:0;
-    left: 0;
-  }
-
   .sponsor__list {
     display: flex;
     align-items: center;
@@ -810,7 +966,35 @@ ul {
   .content__menu-wrapper {
     left: 20px;
     width: 93%;
+    top: -40px;
   }
+
+  #ticket_btn{
+    display: none;
+  }
+  .mobile_ticket_btn{
+    display: block;
+    font-family: 'AvenirLTPro-Medium', sans-serif;
+    z-index: 3;
+  }
+  .header{
+    height: 330px;
+  }
+  #logo{
+    top: 60px;
+    z-index: 3;
+    width: 100%;
+    height: 165px;
+    position: relative;
+    left: 0;
+  }
+  .header__date{
+    font-size: 1.44444444em;
+    text-align: center;
+    padding: 0;
+    margin-top: 40px;
+  }
+
 }
 
 @media (max-width:525px) and (min-width:320px) {
