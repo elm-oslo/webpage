@@ -22,6 +22,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:url"         content="https://www.osloelmday.no" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Oslo Elm Day – The Elm Conference With A Nordic Twist" />
+    <meta property="og:description" content="A one-day conference about the Elm programming language and practical use of Elm in Norway and the Nordics." />
+    <meta property="og:image"       content="https://osloelmday.no/images/oslo-elm-day-og.png" />
     <!--
     /**
      * @license
@@ -60,6 +66,7 @@
       ga('create', 'UA-93929987-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <link rel="stylesheet" type="text/css" href="MyFontsWebfontsKit.css"/>
   </head>
   <body>
     <main>
@@ -100,7 +107,7 @@
       </nav>
 
 
-      <div class="backdrop-wrapper animate animate--backdrop">
+      <div id="elm-host" class="backdrop-wrapper animate animate--backdrop">
         <svg id="backdrop" viewBox="0 0 1000 500">
           <defs></defs>
         </svg>
@@ -422,6 +429,7 @@
       </div>
     </section>
 
+    <script src="elm.js" type="text/javascript"></script>
     <script src="script.js" charset="utf-8"></script>
     <script src="bodymovin.js" charset="utf-8"></script>
     <script type="text/javascript">
