@@ -64,7 +64,7 @@ li{
 .backdrop-wrapper {
   width: 100vw;
   height: 50vh;
-  margin-top: 6%;
+  margin-bottom: 6%;
 }
 
 a {
@@ -742,7 +742,7 @@ ul {
 
 @media (min-width:1850px) {
   .backdrop-wrapper {
-    margin-top: 2%;
+    margin-bottom: 2%;
   }
   body {
     font-size: 22px;
