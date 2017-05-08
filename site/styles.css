@@ -682,6 +682,10 @@ ul {
   width: auto;
 }
 
+.monokkel {
+  width: 90px;
+}
+
 .about blockquote{
   margin: 1.1em;
 }
