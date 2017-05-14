@@ -663,6 +663,7 @@ ul {
 .speaker__image {
   border-radius: 50%;
   width: 4.2em;
+  height: 4.2em;
   margin-right: 1.8em;
   align-self: flex-start;
 }

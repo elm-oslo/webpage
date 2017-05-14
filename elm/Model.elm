@@ -137,8 +137,8 @@ brian : Speaker
 brian =
     { id = "brian"
     , name = "Brian Hicks"
-    , bio = ""
-    , imageUrl = "images/brianhicks.jpg"
+    , bio = "Brian Hicks is the CTO of Asteris, a devops consultancy based in St. Louis, MO. He organizes elm-conf US, blogs about Elm (and other things) at brianthicks.com and runs the St. Louis Tech Slack. He enjoys biking around St. Louis, hanging out with his wife, and tweeting about his cat."
+    , imageUrl = "images/brianhicks.png"
     }
 
 
@@ -146,8 +146,8 @@ felix : Speaker
 felix =
     { id = "felix"
     , name = "Felix Lamoroux"
-    , bio = ""
-    , imageUrl = "images/felix.jpg"
+    , bio = "Founder of iosphere GmbH a small mobile development agency based in Cologne Germany working on native mobile and mobile web and desktop applications."
+    , imageUrl = "images/felix2.png"
     }
 
 
@@ -155,7 +155,7 @@ david : Speaker
 david =
     { id = "david"
     , name = "David Ed Mellum"
-    , bio = ""
+    , bio = "David is a software developer at Frende Forsikring with a love for simple and obvious problem solving. He's also a speaker at meetups and conferences and helps organize the Booster Conference and Elm user group Bergen."
     , imageUrl = "images/davidmellum.jpg"
     }
 
@@ -164,8 +164,8 @@ nils : Speaker
 nils =
     { id = "nils"
     , name = "Nils Eriksson"
-    , bio = ""
-    , imageUrl = "images/nilserikson.jpg"
+    , bio = "Nils Eriksson was part of a startup in Sweden that at the time built the worlds second largest Elm application."
+    , imageUrl = "images/nilseriksson.jpg"
     }
 
 
@@ -174,7 +174,9 @@ erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
     , bio = ""
-    , imageUrl = "images/erlendhamberg.jpg"
+    , imageUrl = "images/erlend2.png"
+
+    -- , imageUrl = "images/erlendhamberg.jpg"
     }
 
 

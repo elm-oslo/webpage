@@ -185,18 +185,7 @@ viewSquare square =
         , Svg.Attributes.height <| toString square.size
         , fill <| "url(#gradient" ++ toString square.gradientIndex ++ ")"
         , class "shape"
-        , Svg.Attributes.style
-            ("transform: translateX("
-                ++ toString square.transformX
-                ++ "px) rotate("
-                ++ toString square.rotation
-                ++ "deg);"
-                ++ " transform-origin: "
-                ++ toString (square.x + (square.size / 2))
-                ++ "px "
-                ++ toString (square.y + (square.size / 2))
-                ++ "px 0px;"
-            )
+        , Svg.Attributes.style ("transform: translateX(" ++ toString square.transformX ++ "px) rotate(" ++ toString square.rotation ++ "deg);")
         , Svg.Attributes.rx "3"
         , Svg.Attributes.ry "3"
         ]
