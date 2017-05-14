@@ -175,9 +175,9 @@ erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
     , bio = ""
-    , imageUrl = "images/erlend2.png"
-
-    -- , imageUrl = "images/erlendhamberg.jpg"
+    , imageUrl =
+        "images/erlend2.png"
+        -- , imageUrl = "images/erlendhamberg.jpg"
     }
 
 
@@ -211,7 +211,7 @@ talks =
       , speaker = brian
       }
     , { title = "Rewriting a Production SPA in Elm"
-      , abstract = "You may have wondered: \" is rewriting my app to Elm worth it ? \". This talk will answer your question by following the story of how Frende ported an existing SPA to Elm. We'll look at how it was decided to go for Elm, how Elm fits into existing architecture, how it integrates with our tooling infrastructure, how our app was incrementally ported and deployed, how we got a whole team up and going Elm in no time, and much more."
+      , abstract = "You may have wondered: \"is rewriting my app to Elm worth it ?\". This talk will answer your question by following the story of how Frende ported an existing SPA to Elm. We'll look at how it was decided to go for Elm, how Elm fits into existing architecture, how it integrates with our tooling infrastructure, how our app was incrementally ported and deployed, how we got a whole team up and going Elm in no time, and much more."
       , speaker = david
       }
     , { title = "Elm Editor Support - Perspectives From an Editor Hacker"
