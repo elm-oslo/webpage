@@ -188,7 +188,7 @@ footer_ hidden =
             ]
 
 
-information : Html a
+information : Html Msg
 information =
     div [ class "information" ]
         [ section [ class "information__block animate--medium seq-2 animate what" ]
@@ -220,7 +220,12 @@ information =
                         [ img [ alt "Richard Feldman", src "images/richard.jpg" ]
                             []
                         ]
-                    , a [ class "richard", href "#speakers", attribute "onClick" "showSpeaker(0);triggerAnim()" ]
+                    , a
+                        [ class "richard"
+                        , href "#speakers"
+                        , onClick (GoToSpeaker "richard")
+                        ]
+                        -- , attribute "onClick" "showSpeaker(0);triggerAnim()" ]
                         [ text "Richard Feldman" ]
                     ]
                 , li [ class "who__list-item" ]

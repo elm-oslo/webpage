@@ -1,14 +1,17 @@
 module Main exposing (..)
 
 import Animation
+import Dom.Scroll as Scroll
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Process
 import Model exposing (Model, Msg(..), Page(..))
 import Navigation exposing (Location)
 import Ports
 import Route exposing (Route)
 import Site
+import Task
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -75,6 +78,9 @@ update msg model =
                     Debug.log "MSG" msg
     in
         case msg of
+            NoOp ->
+                ( model, Cmd.none )
+
             AnimationMsg animationMsg ->
                 let
                     ( animModel, animMsg ) =
@@ -87,6 +93,19 @@ update msg model =
 
             NavigateTo route ->
                 ( model, Route.modifyUrl route )
+
+            GoToSpeaker speakerId ->
+                ( model
+                  -- TODO: Fix this scrolling
+                , Task.sequence
+                    [ Task.succeed (NavigateTo Route.Speakers)
+                    , Process.sleep 1000
+                        |> Task.map (always NoOp)
+                    , Scroll.toBottom speakerId
+                        |> Task.map (always NoOp)
+                    ]
+                    |> Task.attempt (\err -> Debug.log "err" err |> always NoOp)
+                )
 
 
 view : Model -> Html.Html Msg

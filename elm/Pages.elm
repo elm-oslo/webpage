@@ -192,7 +192,7 @@ viewSpeaker speaker =
         [ img [ class "speaker__image", src speaker.imageUrl ]
             []
         , div [ class "speaker__content" ]
-            [ h3 [ class "speaker__name" ]
+            [ h3 [ class "speaker__name", id speaker.id ]
                 [ text speaker.name ]
             , p []
                 [ text speaker.bio ]

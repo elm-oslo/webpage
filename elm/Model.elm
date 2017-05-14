@@ -11,6 +11,7 @@ module Model
         , speakers
         )
 
+import Dom
 import Animation
 import Route exposing (Route)
 
@@ -25,6 +26,8 @@ type Msg
     = AnimationMsg Animation.Msg
     | SetRoute (Maybe Route)
     | NavigateTo Route
+    | GoToSpeaker Dom.Id
+    | NoOp
 
 
 type alias Model =
@@ -48,7 +51,8 @@ type alias Sponsor =
 
 
 type alias Speaker =
-    { name : String
+    { id : String
+    , name : String
     , bio : String
     , imageUrl : String
     }
@@ -103,15 +107,18 @@ sponsors =
 
 speakers : List Speaker
 speakers =
-    [ { name = "Richard Feldman"
+    [ { id = "richard"
+      , name = "Richard Feldman"
       , bio = "Richard is the author of “Elm in Action” from Manning Publications, and the instructor for the Frontend Masters two-Day Elm Workshop. When he’s not writing about Elm, teaching Elm, speaking about Elm, or co-hosting the San Francisco Elm meetup, he likes to take a break from his job at NoRedInk (where front-end programmers spend almost almost all their coding time writing production Elm code) by kicking back and working on some of his open-source Elm projects. Some have said he’s “into Elm,” but he’s not sure where they got that wild idea."
       , imageUrl = "images/richard.jpg"
       }
-    , { name = "Noah Hall"
+    , { id = "noah"
+      , name = "Noah Hall"
       , bio = "Noah Hall has been active in the Elm community for over three years, having used Elm in production since version 0.15. He has been a contributor to Elm both in code, ideas, and feedback, and now runs the Elm community Github group as well as the Elm Slack team. He used to work as a researcher focusing on the influence of functional programming on modern web development at university, before he joined NoRedInk as the first hire motivated to join because of Elm. At NRI he focused on tooling, ops, and frontend development. Now he works at Fusetools, but remains very active in the Elm community."
       , imageUrl = "images/noah.jpg"
       }
-    , { name = "Luke Westby"
+    , { id = "luke"
+      , name = "Luke Westby"
       , bio = "Luke Westby is a cofounder and partner at HumbleSpark in Chicago, IL, USA. He is the creator of the browser-based Elm editor Ellie and an active member of the Elm community. He loves contributing to the Elm community by speaking about the language, answering questions in Slack, writing blog posts, and organizing the Chicago Elm Meetup."
       , imageUrl = "images/luke.jpg"
       }
