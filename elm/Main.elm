@@ -71,44 +71,35 @@ setRoute mbRoute model =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        _ =
-            case msg of
-                AnimationMsg _ ->
-                    msg
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
 
-                _ ->
-                    Debug.log "MSG" msg
-    in
-        case msg of
-            NoOp ->
-                ( model, Cmd.none )
+        AnimationMsg animationMsg ->
+            let
+                ( animModel, animMsg ) =
+                    Animation.update animationMsg model.anim
+            in
+                ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
 
-            AnimationMsg animationMsg ->
-                let
-                    ( animModel, animMsg ) =
-                        Animation.update animationMsg model.anim
-                in
-                    ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
+        SetRoute mbRoute ->
+            setRoute mbRoute model
 
-            SetRoute mbRoute ->
-                setRoute mbRoute model
+        NavigateTo route ->
+            ( model, Route.modifyUrl route )
 
-            NavigateTo route ->
-                ( model, Route.modifyUrl route )
-
-            GoToSpeaker speakerId ->
-                ( model
-                  -- TODO: Fix this scrolling
-                , Task.sequence
-                    [ Task.succeed (NavigateTo Route.Speakers)
-                    , Process.sleep 1000
-                        |> Task.map (always NoOp)
-                    , Scroll.toBottom speakerId
-                        |> Task.map (always NoOp)
-                    ]
-                    |> Task.attempt (\err -> Debug.log "err" err |> always NoOp)
-                )
+        GoToSpeaker speakerId ->
+            ( model
+              -- TODO: Fix this scrolling
+            , Task.sequence
+                [ Task.succeed (NavigateTo Route.Speakers)
+                , Process.sleep 1000
+                    |> Task.map (always NoOp)
+                , Scroll.toBottom speakerId
+                    |> Task.map (always NoOp)
+                ]
+                |> Task.attempt (always NoOp)
+            )
 
 
 view : Model -> Html.Html Msg
