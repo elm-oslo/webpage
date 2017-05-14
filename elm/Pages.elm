@@ -41,8 +41,8 @@ viewAbout =
         , p []
             [ text "The conference will be hosted at the beautiful "
             , em []
-                [ text "Gamle Museet" ]
-            , text "(The Old Museum) in downtown Oslo."
+                [ text "Gamle Museet (The Old Museum)" ]
+            , text " in downtown Oslo."
             ]
         , h3 []
             [ text "Pre-Conference Workshop" ]
@@ -202,11 +202,11 @@ viewSpeaker speaker =
 
 viewSchedule : Html a
 viewSchedule =
-    div [ class "schedule" ]
+    div []
         ([ h2 []
             [ text "Schedule" ]
          , p []
-            [ text "The conference will have one track, with all talks taking place in the same room. Our speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
+            [ text "Oslo Elm Day is a single-track conference, with a speaker lineup consisting of both world-renowned Elm experts and local Elm users, experienced with using Elm in production." ]
          ]
             ++ (List.map viewTalk talks)
         )
@@ -215,10 +215,10 @@ viewSchedule =
 viewTalk : Talk -> Html a
 viewTalk talk =
     article [ class "speaker" ]
-        [ img [ class "speaker__image", src "images/richard.jpg" ]
+        [ img [ class "speaker__image", src talk.speaker.imageUrl ]
             []
         , div [ class "speaker__content" ]
-            [ h3 [ class "speaker__name", id "noah" ]
+            [ h3 [ class "speaker__name", id talk.speaker.id ]
                 [ text talk.title ]
             , p []
                 [ text talk.abstract ]

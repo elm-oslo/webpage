@@ -127,7 +127,7 @@ header_ =
                 [ li [ class "animate animate--small seq-1" ]
                     [ text "1 day" ]
                 , li [ class "animate animate--small seq-2" ]
-                    [ text "6–8 talks" ]
+                    [ text "9 talks" ]
                 , li [ class "animate animate--small seq-3" ]
                     [ text "150 seats" ]
                 ]
