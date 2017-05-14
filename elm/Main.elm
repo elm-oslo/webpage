@@ -123,7 +123,9 @@ view model =
             [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
                 [ Site.header_
                 , Site.nav_
-                , Html.map AnimationMsg <| Animation.view model.anim
+                , div [ class "backdrop-wrapper animate" ]
+                    [ Html.map AnimationMsg <| Animation.view model.anim
+                    ]
                 , Site.information
                 ]
             , Site.footer_ pageOpen
