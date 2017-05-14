@@ -29,27 +29,28 @@ init loc =
         )
 
 
+routeToPage : Route -> Maybe Page
+routeToPage route =
+    case route of
+        Route.Home ->
+            Nothing
+
+        Route.About ->
+            Just About
+
+        Route.Speakers ->
+            Just Speakers
+
+        Route.CodeOfConduct ->
+            Just CodeOfConduct
+
+
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
 setRoute mbRoute model =
     let
         newRoute =
-            case mbRoute of
-                Nothing ->
-                    Nothing
-
-                Just route ->
-                    case route of
-                        Route.Home ->
-                            Nothing
-
-                        Route.About ->
-                            Just About
-
-                        Route.Speakers ->
-                            Just Speakers
-
-                        Route.CodeOfConduct ->
-                            Just CodeOfConduct
+            mbRoute
+                |> Maybe.andThen routeToPage
     in
         if model.page /= newRoute then
             ( { model | page = newRoute }
