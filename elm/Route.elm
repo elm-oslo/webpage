@@ -55,7 +55,7 @@ href route =
 
 modifyUrl : Route -> Cmd msg
 modifyUrl =
-    routeToString >> (Debug.log "ROUTE") >> Navigation.modifyUrl
+    routeToString >> Navigation.modifyUrl
 
 
 fromLocation : Location -> Maybe Route

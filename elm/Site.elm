@@ -219,7 +219,7 @@ information =
                     [ text "Gamle Museet, Oslo" ]
                 , text "."
                 ]
-            , a [ href "#about", attribute "onClick" "triggerAnim()" ]
+            , a [ href "#about" ]
                 [ text "Read more" ]
             ]
         , section [ class "information__block animate--medium seq-3 animate who" ]
