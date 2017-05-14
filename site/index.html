@@ -86,7 +86,11 @@
         ticket_btn_anim = bodymovin.loadAnimation(ticket_btn_f);
       });
 
+      var anim;
       app.ports.triggerAnim.subscribe(function() {
+        if (anim) {
+          anim.destroy();
+        }
         setTimeout(function() {
           anim = bodymovin.loadAnimation({
             wrapper: document.getElementById('shapes'),
