@@ -236,7 +236,6 @@ information =
                         , href "#speakers"
                         , onClick (GoToSpeaker "richard")
                         ]
-                        -- , attribute "onClick" "showSpeaker(0);triggerAnim()" ]
                         [ text "Richard Feldman" ]
                     ]
                 , li [ class "who__list-item" ]
@@ -257,7 +256,7 @@ information =
                     ]
                 ]
             , a [ href "#speakers", attribute "onClick" "triggerAnim()" ]
-                [ text "…and you?" ]
+                [ text "…among others!" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h3 []
@@ -280,10 +279,6 @@ information =
                 ]
             , ul []
                 [ li []
-                    [ a [ href "#speakers", attribute "onClick" "triggerAnim()" ]
-                        [ text "Call for Speakers" ]
-                    ]
-                , li []
                     [ a [ href "#codeofconduct", attribute "onClick" "triggerAnim()" ]
                         [ text "Code of Conduct" ]
                     ]

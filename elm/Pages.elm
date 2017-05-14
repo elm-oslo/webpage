@@ -172,14 +172,6 @@ viewSpeakers =
          , p []
             [ text "There might also be a panel debate or open-space session, in order to provide an arena for discussion or Q&A within the community.          " ]
          , p []
-            [ span []
-                [ text "Would you like to present something? Our "
-                , a [ href "https://goo.gl/forms/kpQH4DFxdzBXa1oE3", target "_blank" ]
-                    [ text "call for speakers" ]
-                , text " is open until April 21."
-                ]
-            ]
-         , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
          ]
             ++ (List.map viewSpeaker speakers)
