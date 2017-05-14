@@ -211,7 +211,7 @@ viewTalk talk =
             []
         , div [ class "speaker__content" ]
             [ h3 [ class "speaker__name", id talk.speaker.id ]
-                [ text talk.title ]
+                [ text (talk.speaker.name ++ " – " ++ talk.title) ]
             , p []
                 [ text talk.abstract ]
             ]
