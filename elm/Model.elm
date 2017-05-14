@@ -225,7 +225,7 @@ talks =
       , speaker = david
       }
     , { title = "Elm Editor Support - Perspectives From an Editor Hacker"
-      , abstract = "something something editors! something something editors? something something editors! something something editors? something something editors! something something editors? something something editors! something something editors? something something editors! something something editors? something something editors! something something editors? something something editors! something something editors? "
+      , abstract = "Magnus started playing with Elm about a year and a half ago, and has since created elm-bootstrap in addition to the Elm plugin for the Light Table editor. In this talk, Magnus will give you an overview of where the editor/IDE support for Elm is currently at. He'll also share some reflections on what he believes is in the pipeline going forward."
       , speaker = magnus
       }
     , { title = "Localization for Elm as a pre-build phase"
