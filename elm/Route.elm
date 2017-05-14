@@ -10,6 +10,7 @@ type Route
     = Home
     | About
     | Speakers
+    | Schedule
     | CodeOfConduct
 
 
@@ -19,6 +20,7 @@ route =
         [ Url.map Home (Url.s "")
         , Url.map About (Url.s "about")
         , Url.map Speakers (Url.s "speakers")
+        , Url.map Schedule (Url.s "schedule")
         , Url.map CodeOfConduct (Url.s "codeofconduct")
         ]
 
@@ -36,6 +38,9 @@ routeToString r =
 
                 Speakers ->
                     "speakers"
+
+                Schedule ->
+                    "schedule"
 
                 CodeOfConduct ->
                     "codeofconduct"

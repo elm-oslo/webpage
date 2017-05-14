@@ -44,6 +44,9 @@ routeToPage route =
         Route.Speakers ->
             Just Speakers
 
+        Route.Schedule ->
+            Just Schedule
+
         Route.CodeOfConduct ->
             Just CodeOfConduct
 

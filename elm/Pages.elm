@@ -1,8 +1,8 @@
-module Pages exposing (viewAbout, viewSpeakers, viewCodeOfConduct)
+module Pages exposing (viewAbout, viewSpeakers, viewSchedule, viewCodeOfConduct)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (Speaker, speakers)
+import Model exposing (Speaker, Talk, speakers, talks)
 
 
 viewAbout : Html a
@@ -196,5 +196,31 @@ viewSpeaker speaker =
                 [ text speaker.name ]
             , p []
                 [ text speaker.bio ]
+            ]
+        ]
+
+
+viewSchedule : Html a
+viewSchedule =
+    div [ class "schedule" ]
+        ([ h2 []
+            [ text "Schedule" ]
+         , p []
+            [ text "The conference will have one track, with all talks taking place in the same room. Our speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
+         ]
+            ++ (List.map viewTalk talks)
+        )
+
+
+viewTalk : Talk -> Html a
+viewTalk talk =
+    article [ class "speaker" ]
+        [ img [ class "speaker__image", src "images/richard.jpg" ]
+            []
+        , div [ class "speaker__content" ]
+            [ h3 [ class "speaker__name", id "noah" ]
+                [ text talk.title ]
+            , p []
+                [ text talk.abstract ]
             ]
         ]
