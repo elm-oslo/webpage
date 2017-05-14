@@ -175,9 +175,7 @@ erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
     , bio = "Erlend Hamberg started a on computer engineering degree to learn about systems programming and hardware, but veered slightly off course and ended up with a degree in computer science with a specialization in artificial intelligence. He briefly returned to his former passion of low-level programming, working on GPU drivers, but was never able to let go of the power and elegance of functional programming and ended up climbing back up the abstraction ladder. When he is not in front of a computer you can find him in the Oslofjord, kayaking."
-    , imageUrl =
-        "images/erlend2.png"
-        -- , imageUrl = "images/erlendhamberg.jpg"
+    , imageUrl = "images/erlend2.png"
     }
 
 

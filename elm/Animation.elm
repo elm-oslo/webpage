@@ -224,11 +224,6 @@ viewTriangle triangle =
                 ++ "px) rotate("
                 ++ toString triangle.rotation
                 ++ "deg);"
-                ++ " transform-origin: "
-                ++ toString (triangle.x + (triangle.size / 2))
-                ++ "px "
-                ++ toString (triangle.y + (triangle.size / 2))
-                ++ "px 0px;"
             )
         ]
         []
