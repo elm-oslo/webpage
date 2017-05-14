@@ -2,11 +2,7 @@ module Pages exposing (viewAbout, viewSpeakers, viewCodeOfConduct)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-
-
--- import Model exposing (Page(..))
--- import Svg exposing (defs, g, path, svg)
--- import Svg.Attributes exposing (d, fill, viewBox)
+import Model exposing (Speaker, speakers)
 
 
 viewAbout : Html a
@@ -141,78 +137,64 @@ viewCodeOfConduct : Html a
 viewCodeOfConduct =
     div []
         [ h2 []
-            [ text "Code of Conduct        " ]
-        , text "All delegates, speakers, sponsors and volunteers are required to agree with the following code of conduct. Organizers will enforce this code throughout the event.          "
+            [ text "Code of Conduct" ]
+        , text "All delegates, speakers, sponsors and volunteers are required to agree with the following code of conduct. Organizers will enforce this code throughout the event."
         , h3 []
-            [ text "The Quick Version          " ]
+            [ text "The Quick Version" ]
         , p []
-            [ text "Our conference is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of conference participants in any form. Sexual language and imagery is not appropriate for any conference venue, including talks, workshops, parties, Twitter and other online media. Conference participants violating these rules may be sanctioned or expelled from the conference without a refund at the discretion of the conference organisers.          " ]
+            [ text "Our conference is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of conference participants in any form. Sexual language and imagery is not appropriate for any conference venue, including talks, workshops, parties, Twitter and other online media. Conference participants violating these rules may be sanctioned or expelled from the conference without a refund at the discretion of the conference organisers." ]
         , h3 []
-            [ text "The Less Quick Version          " ]
+            [ text "The Less Quick Version" ]
         , p []
-            [ text "Harassment includes offensive verbal comments related to gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion, technology choices, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention.          " ]
+            [ text "Harassment includes offensive verbal comments related to gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion, technology choices, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention." ]
         , p []
-            [ text "Participants asked to stop any harassing behavior are expected to comply immediately.          " ]
+            [ text "Participants asked to stop any harassing behavior are expected to comply immediately." ]
         , p []
-            [ text "Sponsors are also subject to the anti-harassment policy. In particular, sponsors should not use sexualized images, activities, or other material. Booth staff (including volunteers) should not use sexualized clothing/uniforms/costumes, or otherwise create a sexualized environment.          " ]
+            [ text "Sponsors are also subject to the anti-harassment policy. In particular, sponsors should not use sexualized images, activities, or other material. Booth staff (including volunteers) should not use sexualized clothing/uniforms/costumes, or otherwise create a sexualized environment." ]
         , p []
-            [ text "If a participant engages in harassing behavior, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.          " ]
+            [ text "If a participant engages in harassing behavior, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund." ]
         , p []
-            [ text "If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of conference staff immediately. Conference staff can be identified by a clearly marked \"STAFF\" shirt.          " ]
+            [ text "If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of conference staff immediately. Conference staff can be identified by a clearly marked \"STAFF\" shirt." ]
         , p []
-            [ text "Conference staff will be happy to help participants contact hotel/venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the conference. We value your attendance.          " ]
+            [ text "Conference staff will be happy to help participants contact hotel/venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the conference. We value your attendance." ]
         , p []
-            [ text "We expect participants to follow these rules at all conference venues and conference-related social events.          " ]
+            [ text "We expect participants to follow these rules at all conference venues and conference-related social events." ]
         ]
 
 
 viewSpeakers : Html a
 viewSpeakers =
     div []
-        [ h2 []
+        ([ h2 []
             [ text "Speakers" ]
-        , p []
+         , p []
             [ text "The conference will have one track, with all talks taking place in the same room. We already have three Elm-heroes booked, but there’s room for a lot more! Depending on the amount and duration of talk submissions, we’re aiming for a normal full-length conference day of presentations.          " ]
-        , p []
+         , p []
             [ text "There might also be a panel debate or open-space session, in order to provide an arena for discussion or Q&A within the community.          " ]
-        , p []
-            [ text "Would you like to present something?          Our "
-            , a [ href "https://goo.gl/forms/kpQH4DFxdzBXa1oE3", target "_blank" ]
-                [ text "call for speakers" ]
-            , text "is open until April 21.          "
-            ]
-        , p []
-            [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production.          " ]
-        , article [ class "speaker" ]
-            [ img [ class "speaker__image", src "images/richard.jpg" ]
-                []
-            , div [ class "speaker__content" ]
-                [ h3 [ class "speaker__name" ]
-                    [ text "Richard Feldman" ]
-                , p []
-                    [ text "Richard is the author of “Elm in Action” from Manning Publications, and the instructor for the Frontend Masters two-Day Elm Workshop. When he’s not writing about Elm, teaching Elm, speaking about Elm, or co-hosting the San Francisco Elm meetup, he likes to take a break from his job at NoRedInk (where front-end programmers spend almost almost all their coding time writing production Elm code) by kicking back and working on some of his open-source Elm projects.              " ]
-                , p []
-                    [ text "Some have said he’s “into Elm,” but he’s not sure where they got that wild idea.              " ]
+         , p []
+            [ span []
+                [ text "Would you like to present something? Our "
+                , a [ href "https://goo.gl/forms/kpQH4DFxdzBXa1oE3", target "_blank" ]
+                    [ text "call for speakers" ]
+                , text " is open until April 21."
                 ]
             ]
-        , article [ class "speaker" ]
-            [ img [ class "speaker__image", src "images/noah.jpg" ]
-                []
-            , div [ class "speaker__content" ]
-                [ h3 [ class "speaker__name" ]
-                    [ text "Noah Hall" ]
-                , p []
-                    [ text "Noah Hall has been active in the Elm community for over three years, having used Elm in production since version 0.15. He has been a contributor to Elm both in code, ideas, and feedback, and now runs the Elm community Github group as well as the Elm Slack team. He used to work as a researcher focusing on the influence of functional programming on modern web development at university, before he joined NoRedInk as the first hire motivated to join because of Elm. At NRI he focused on tooling, ops, and frontend development. Now he works at Fusetools, but remains very active in the Elm community.              " ]
-                ]
-            ]
-        , article [ class "speaker" ]
-            [ img [ class "speaker__image", src "images/luke.jpg" ]
-                []
-            , div [ class "speaker__content" ]
-                [ h3 [ class "speaker__name" ]
-                    [ text "Luke Westby" ]
-                , p []
-                    [ text "Luke Westby is a cofounder and partner at HumbleSpark in Chicago, IL, USA. He is the creator of the browser-based Elm editor Ellie and an active member of the Elm community. He loves contributing to the Elm community by speaking about the language, answering questions in Slack, writing blog posts, and organizing the Chicago Elm Meetup.              " ]
-                ]
+         , p []
+            [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
+         ]
+            ++ (List.map viewSpeaker speakers)
+        )
+
+
+viewSpeaker : Speaker -> Html a
+viewSpeaker speaker =
+    article [ class "speaker" ]
+        [ img [ class "speaker__image", src speaker.imageUrl ]
+            []
+        , div [ class "speaker__content" ]
+            [ h3 [ class "speaker__name" ]
+                [ text speaker.name ]
+            , p []
+                [ text speaker.bio ]
             ]
         ]

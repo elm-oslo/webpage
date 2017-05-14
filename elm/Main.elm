@@ -64,19 +64,28 @@ setRoute mbRoute model =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        AnimationMsg animationMsg ->
-            let
-                ( animModel, animMsg ) =
-                    Animation.update animationMsg model.anim
-            in
-                ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
+    let
+        _ =
+            case msg of
+                AnimationMsg _ ->
+                    msg
 
-        SetRoute mbRoute ->
-            setRoute mbRoute model
+                _ ->
+                    Debug.log "MSG" msg
+    in
+        case msg of
+            AnimationMsg animationMsg ->
+                let
+                    ( animModel, animMsg ) =
+                        Animation.update animationMsg model.anim
+                in
+                    ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
 
-        NavigateTo route ->
-            ( model, Route.modifyUrl route )
+            SetRoute mbRoute ->
+                setRoute mbRoute model
+
+            NavigateTo route ->
+                ( model, Route.modifyUrl route )
 
 
 view : Model -> Html.Html Msg
@@ -103,7 +112,7 @@ view model =
                     [ ( "overlay", True )
                     , ( "open", pageOpen )
                     ]
-                , onClick (SetRoute <| Just Route.Home)
+                , onClick (NavigateTo Route.Home)
                 ]
                 []
             , case model.page of
