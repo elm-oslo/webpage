@@ -175,9 +175,7 @@ erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
     , bio = ""
-    , imageUrl =
-        "images/erlend2.png"
-        -- , imageUrl = "images/erlendhamberg.jpg"
+    , imageUrl = "images/erlend2.png"
     }
 
 

@@ -243,7 +243,10 @@ information =
                         [ img [ alt "Noah Hall", src "images/noah.jpg" ]
                             []
                         ]
-                    , a [ href "#speakers", attribute "onClick" "showSpeaker(1);triggerAnim()" ]
+                    , a
+                        [ class "noah"
+                        , href "#speakers"
+                        ]
                         [ text "Noah Hall" ]
                     ]
                 , li [ class "who__list-item" ]
@@ -251,11 +254,14 @@ information =
                         [ img [ alt "Luke Westby", src "images/luke.jpg" ]
                             []
                         ]
-                    , a [ class "luke", href "#speakers", attribute "onClick" "showSpeaker(2);triggerAnim()" ]
+                    , a
+                        [ class "luke"
+                        , href "#speakers"
+                        ]
                         [ text "Luke Westby" ]
                     ]
                 ]
-            , a [ href "#speakers", attribute "onClick" "triggerAnim()" ]
+            , a [ href "#speakers" ]
                 [ text "…among others!" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
