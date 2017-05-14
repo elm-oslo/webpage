@@ -212,7 +212,7 @@ viewTalk talk =
         , div [ class "speaker__content" ]
             [ h3 [ class "speaker__name", id talk.speaker.id ]
                 [ text (talk.speaker.name ++ " – " ++ talk.title) ]
-            , p []
+            , p [ style [ ( "font-style", "italic" ) ] ]
                 [ text talk.abstract ]
             ]
         ]
