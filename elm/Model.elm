@@ -174,7 +174,7 @@ erlend : Speaker
 erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
-    , bio = ""
+    , bio = "Erlend Hamberg started a on computer engineering degree to learn about systems programming and hardware, but veered slightly off course and ended up with a degree in computer science with a specialization in artificial intelligence. He briefly returned to his former passion of low-level programming, working on GPU drivers, but was never able to let go of the power and elegance of functional programming and ended up climbing back up the abstraction ladder. When he is not in front of a computer you can find him in the Oslofjord, kayaking."
     , imageUrl =
         "images/erlend2.png"
         -- , imageUrl = "images/erlendhamberg.jpg"
@@ -185,7 +185,7 @@ magnus : Speaker
 magnus =
     { id = "magnus"
     , name = "Magnus Rundberget"
-    , bio = ""
+    , bio = "Magnus works as a consultant for Kodemaker. He started looking at Elm 1.5 years ago and decided to learn it by writing an Elm plugin for the Light Table Editor. He's spent countless evenings and nights writing editor stuff in ClojureScript/JavaScript and Elm in an attempt to provide decent IDE-like support for Elm. Magnus has also created the Elm Bootstrap library and is fond of blogging when time permits. When he started looking at Elm, he felt a bit like a lone werdo her in Norway. Now he's super stoked about the fact that we have a vibrant and rapidly growing Elm Community and our very own conference."
     , imageUrl = "images/magnusrundberget.jpg"
     }
 
