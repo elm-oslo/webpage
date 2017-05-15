@@ -193,7 +193,7 @@ austin =
     { id = "austin"
     , name = "Austin Bingham"
     , bio = "Austin is a founding director of Sixty North, a software consulting, training, and application development company. A native of Texas, in 2008 Austin moved to Stavanger, Norway where he helped develop industry-leading oil reservoir modeling software. Prior to that he worked at National Instruments, at Applied Research Labs developing sonar systems, and at several telecommunications companies. He is an experienced presenter, teacher, and author, and is an active member of the open source community. He’s the founder of Stavanger Software Developers, a social software group in Stavanger. Austin holds a MSc in Computer Engineering from the University of Texas at Austin."
-    , imageUrl = "images/austin.png"
+    , imageUrl = "images/austin3.png"
     }
 
 
