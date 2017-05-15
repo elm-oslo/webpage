@@ -188,6 +188,15 @@ magnus =
     }
 
 
+austin : Speaker
+austin =
+    { id = "austin"
+    , name = "Austin Bingham"
+    , bio = "Austin is a founding director of Sixty North, a software consulting, training, and application development company. A native of Texas, in 2008 Austin moved to Stavanger, Norway where he helped develop industry-leading oil reservoir modeling software. Prior to that he worked at National Instruments, at Applied Research Labs developing sonar systems, and at several telecommunications companies. He is an experienced presenter, teacher, and author, and is an active member of the open source community. He’s the founder of Stavanger Software Developers, a social software group in Stavanger. Austin holds a MSc in Computer Engineering from the University of Texas at Austin."
+    , imageUrl = "images/austin.png"
+    }
+
+
 speakers : List Speaker
 speakers =
     [ richard
@@ -199,6 +208,7 @@ speakers =
     , nils
     , erlend
     , magnus
+    , austin
     ]
 
 
@@ -239,5 +249,9 @@ talks =
     , { title = "Elm i Blank"
       , abstract = ""
       , speaker = erlend
+      }
+    , { title = "An Elm Kernel for Jupyter"
+      , abstract = "I'll introduce the Elm kernel for Jupyter notebooks. Jupyter (a.k.a. IPython) notebooks are a way to interleave text and executable code, and this new kernel allows you to embed Elm code in them. We'll look at how the kernel is implemented, I'll demonstrate how to use it, and hopefully participants will be inspired to use it or even contribute to the project. You can get the code for the project at github.com/abingham/jupyter-elm-kernel"
+      , speaker = austin
       }
     ]
