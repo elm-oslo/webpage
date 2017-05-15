@@ -3,7 +3,7 @@ module Site exposing (header_, nav_, information, footer_, viewPage)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
-import Model exposing (Msg(..), Page(..), SponsorTier(..))
+import Model exposing (Msg(..), Page(..), SponsorTier(..), Sponsor)
 import Pages
 import Route
 import Svg exposing (defs, g, path, svg)
@@ -163,15 +163,6 @@ footer_ hidden =
         platinum =
             Model.sponsors
                 |> List.filter (\s -> s.tier == Platinum)
-
-        viewSponsor s =
-            a [ href s.url, target "_blank" ]
-                [ img
-                    [ class <| "sponsor__logo " ++ s.name
-                    , src s.imageUrl
-                    ]
-                    []
-                ]
     in
         footer [ classList [ ( "hidden", hidden ) ] ]
             [ div [ class "information-sponsors" ]
@@ -205,6 +196,17 @@ footer_ hidden =
             ]
 
 
+viewSponsor : Sponsor -> Html a
+viewSponsor s =
+    a [ href s.url, target "_blank" ]
+        [ img
+            [ class <| "sponsor__logo " ++ s.name
+            , src s.imageUrl
+            ]
+            []
+        ]
+
+
 information : Html Msg
 information =
     div [ class "information" ]
@@ -225,7 +227,7 @@ information =
                     [ text "Gamle Museet, Oslo" ]
                 , text "."
                 ]
-            , a [ href "#about" ]
+            , a [ Route.href Route.About ]
                 [ text "Read more" ]
             ]
         , section [ class "information__block animate--medium seq-3 animate who" ]
@@ -239,8 +241,7 @@ information =
                         ]
                     , a
                         [ class "richard"
-                        , href "#speakers"
-                        , onClick (GoToSpeaker "richard")
+                        , Route.href <| Route.Speaker "richard"
                         ]
                         [ text "Richard Feldman" ]
                     ]
@@ -251,7 +252,7 @@ information =
                         ]
                     , a
                         [ class "noah"
-                        , href "#speakers"
+                        , Route.href <| Route.Speaker "noah"
                         ]
                         [ text "Noah Hall" ]
                     ]
@@ -262,12 +263,12 @@ information =
                         ]
                     , a
                         [ class "luke"
-                        , href "#speakers"
+                        , Route.href <| Route.Speaker "luke"
                         ]
                         [ text "Luke Westby" ]
                     ]
                 ]
-            , a [ href "#schedule" ]
+            , a [ Route.href Route.Schedule ]
                 [ text "See full program" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
@@ -291,7 +292,7 @@ information =
                 ]
             , ul []
                 [ li []
-                    [ a [ href "#codeofconduct" ]
+                    [ a [ Route.href Route.CodeOfConduct ]
                         [ text "Code of Conduct" ]
                     ]
                 ]

@@ -2,7 +2,7 @@ module Route exposing (..)
 
 import Html exposing (Attribute)
 import Html.Attributes as Attr
-import UrlParser as Url
+import UrlParser as Url exposing ((</>))
 import Navigation exposing (Location)
 
 
@@ -10,6 +10,7 @@ type Route
     = Home
     | About
     | Speakers
+    | Speaker String
     | Schedule
     | CodeOfConduct
 
@@ -20,6 +21,7 @@ route =
         [ Url.map Home (Url.s "")
         , Url.map About (Url.s "about")
         , Url.map Speakers (Url.s "speakers")
+        , Url.map Speaker (Url.s "speakers" </> Url.string)
         , Url.map Schedule (Url.s "schedule")
         , Url.map CodeOfConduct (Url.s "codeofconduct")
         ]
@@ -27,35 +29,39 @@ route =
 
 routeToString : Route -> String
 routeToString r =
-    let
-        url =
-            case r of
-                Home ->
-                    ""
+    case r of
+        Home ->
+            ""
 
-                About ->
-                    "about"
+        About ->
+            "about"
 
-                Speakers ->
-                    "speakers"
+        Speakers ->
+            "speakers"
 
-                Schedule ->
-                    "schedule"
+        Speaker s ->
+            "speakers/" ++ s
 
-                CodeOfConduct ->
-                    "codeofconduct"
-    in
-        "#/" ++ url
+        Schedule ->
+            "schedule"
+
+        CodeOfConduct ->
+            "codeofconduct"
+
+
+routeToUrl : Route -> String
+routeToUrl r =
+    "#/" ++ (routeToString r)
 
 
 href : Route -> Attribute msg
 href route =
-    Attr.href (routeToString route)
+    Attr.href (routeToUrl route)
 
 
 modifyUrl : Route -> Cmd msg
 modifyUrl =
-    routeToString >> Navigation.modifyUrl
+    routeToUrl >> Navigation.modifyUrl
 
 
 fromLocation : Location -> Maybe Route

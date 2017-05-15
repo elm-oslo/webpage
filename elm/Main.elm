@@ -1,17 +1,14 @@
 module Main exposing (..)
 
 import Animation
-import Dom.Scroll as Scroll
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Process
 import Model exposing (Model, Msg(..), Page(..))
 import Navigation exposing (Location)
 import Ports
 import Route exposing (Route)
 import Site
-import Task
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -44,6 +41,9 @@ routeToPage route =
         Route.Speakers ->
             Just Speakers
 
+        Route.Speaker s ->
+            Just Speakers
+
         Route.Schedule ->
             Just Schedule
 
@@ -54,19 +54,30 @@ routeToPage route =
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
 setRoute mbRoute model =
     let
-        newRoute =
+        scrollCmd =
+            case mbRoute of
+                Just (Route.Speaker s) ->
+                    (Ports.scrollToId s)
+
+                _ ->
+                    Cmd.none
+
+        newPage =
             mbRoute
                 |> Maybe.andThen routeToPage
-    in
-        if model.page /= newRoute then
-            ( { model | page = newRoute }
-            , if newRoute /= Nothing then
+
+        animCmd =
+            if newPage /= Nothing then
                 Ports.triggerAnim ()
-              else
+            else
                 Cmd.none
-            )
-        else
-            ( model, Cmd.none )
+    in
+        ( { model | page = newPage }
+        , Cmd.batch
+            [ scrollCmd
+            , animCmd
+            ]
+        )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -87,19 +98,6 @@ update msg model =
 
         NavigateTo route ->
             ( model, Route.modifyUrl route )
-
-        GoToSpeaker speakerId ->
-            ( model
-              -- TODO: Fix this scrolling
-            , Task.sequence
-                [ Task.succeed (NavigateTo Route.Speakers)
-                , Process.sleep 1000
-                    |> Task.map (always NoOp)
-                , Scroll.toBottom speakerId
-                    |> Task.map (always NoOp)
-                ]
-                |> Task.attempt (always NoOp)
-            )
 
         TicketButtonMouseEnter ->
             ( model, Ports.startBuyTicketAnim () )

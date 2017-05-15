@@ -12,7 +12,6 @@ module Model
         , talks
         )
 
-import Dom
 import Animation
 import Route exposing (Route)
 
@@ -28,7 +27,6 @@ type Msg
     = AnimationMsg Animation.Msg
     | SetRoute (Maybe Route)
     | NavigateTo Route
-    | GoToSpeaker Dom.Id
     | TicketButtonMouseEnter
     | TicketButtonMouseLeave
     | NoOp

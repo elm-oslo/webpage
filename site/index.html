@@ -72,45 +72,6 @@
     <div id="app"></div>
     <script src="bodymovin.js" charset="utf-8"></script>
     <script src="elm.js" type="text/javascript"></script>
-    <script>
-      var app = Elm.Main.embed(document.querySelector("#app"));
-
-      app.ports.init.subscribe(function() {
-        ticket_btn_f = {
-          wrapper: document.getElementById('ticket_btn'),
-          animType: 'svg',
-          autoplay: false,
-          loop: false,
-          path: 'ticket.json'
-        };
-        ticket_btn_anim = bodymovin.loadAnimation(ticket_btn_f);
-      });
-
-      var anim;
-      app.ports.triggerAnim.subscribe(function() {
-        if (anim) {
-          anim.destroy();
-        }
-        setTimeout(function() {
-          if (document.getElementById('shapes')) {
-            anim = bodymovin.loadAnimation({
-              wrapper: document.getElementById('shapes'),
-              animType: 'svg',
-              autoplay: true,
-              loop: false,
-              path: 'animation.json'
-            });
-          }
-        }, 10);
-      });
-
-      app.ports.startBuyTicketAnim.subscribe(function() {
-        ticket_btn_anim.play();
-      });
-      app.ports.stopBuyTicketAnim.subscribe(function() {
-        ticket_btn_anim.goToAndStop(1, true);
-      });
-    </script>
     <script src="script.js" charset="utf-8"></script>
   </body>
 </html>
