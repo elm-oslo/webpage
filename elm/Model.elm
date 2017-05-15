@@ -247,7 +247,7 @@ talks =
       , speaker = nils
       }
     , { title = "Bootstrapping a project with Elm"
-      , abstract = "Blank is a small company in Oslo doing consultancy work and various in-house projects. We recently did a greenfield project that we knew would be frontend-heavy and whose a design and API would probably change many times, as we learned more. As if that wan't enough changes, the team would also see some rotation throughout the project.\nI will talk about why we thought Elm would be a good choice given the nature of the project, but most of all about our actual experience of using Elm with a team that, with one exception, had not used Elm before."
+      , abstract = "At Blank we recently did a greenfield project that we knew would be frontend-heavy and whose a design and API would probably change many times, as we learned more. As if that wan't enough changes, the team would also see some rotation throughout the project.\nI will talk about why we thought Elm would be a good choice given the nature of the project, but most of all about our actual experience of using Elm with a team that, with one exception, had not used Elm before."
       , speaker = erlend
       }
     , { title = "An Elm Kernel for Jupyter"
