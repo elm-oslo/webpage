@@ -92,13 +92,15 @@
           anim.destroy();
         }
         setTimeout(function() {
-          anim = bodymovin.loadAnimation({
-            wrapper: document.getElementById('shapes'),
-            animType: 'svg',
-            autoplay: true,
-            loop: false,
-            path: 'animation.json'
-          });
+          if (document.getElementById('shapes') {
+            anim = bodymovin.loadAnimation({
+              wrapper: document.getElementById('shapes'),
+              animType: 'svg',
+              autoplay: true,
+              loop: false,
+              path: 'animation.json'
+            });
+          }
         }, 10);
       });
 
