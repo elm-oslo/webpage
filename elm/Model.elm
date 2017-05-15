@@ -29,6 +29,8 @@ type Msg
     | SetRoute (Maybe Route)
     | NavigateTo Route
     | GoToSpeaker Dom.Id
+    | TicketButtonMouseEnter
+    | TicketButtonMouseLeave
     | NoOp
 
 

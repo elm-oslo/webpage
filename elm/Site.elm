@@ -2,8 +2,8 @@ module Site exposing (header_, nav_, information, footer_, viewPage)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick)
-import Model exposing (Page(..), Msg(..), SponsorTier(..))
+import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
+import Model exposing (Msg(..), Page(..), SponsorTier(..))
 import Pages
 import Route
 import Svg exposing (defs, g, path, svg)
@@ -104,7 +104,7 @@ logo =
         ]
 
 
-header_ : Html a
+header_ : Html Msg
 header_ =
     header [ class "header" ]
         [ h1 [ class "sr-only" ]
@@ -117,7 +117,13 @@ header_ =
                 [ text "About" ]
             ]
         , div [ id "ticket_btn" ]
-            [ a [ class "ticket_btn_a", href "https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195", attribute "onmouseenter" "ticket_btn_anim.play()", attribute "onmouseleave" "ticket_btn_anim.goToAndStop(1, true)", target "_blank" ]
+            [ a
+                [ class "ticket_btn_a"
+                , href "https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195"
+                , onMouseEnter TicketButtonMouseEnter
+                , onMouseLeave TicketButtonMouseLeave
+                , target "_blank"
+                ]
                 [ text "Get your ticket" ]
             ]
         , section [ class "summary" ]
@@ -261,7 +267,7 @@ information =
                         [ text "Luke Westby" ]
                     ]
                 ]
-            , a [ href "#schedule", attribute "onClick" "triggerAnim()" ]
+            , a [ href "#schedule" ]
                 [ text "See full program" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
@@ -285,7 +291,7 @@ information =
                 ]
             , ul []
                 [ li []
-                    [ a [ href "#codeofconduct", attribute "onClick" "triggerAnim()" ]
+                    [ a [ href "#codeofconduct" ]
                         [ text "Code of Conduct" ]
                     ]
                 ]

@@ -101,6 +101,12 @@ update msg model =
                 |> Task.attempt (always NoOp)
             )
 
+        TicketButtonMouseEnter ->
+            ( model, Ports.startBuyTicketAnim () )
+
+        TicketButtonMouseLeave ->
+            ( model, Ports.stopBuyTicketAnim () )
+
 
 view : Model -> Html.Html Msg
 view model =

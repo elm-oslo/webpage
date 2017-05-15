@@ -101,6 +101,13 @@
           });
         }, 10);
       });
+
+      app.ports.startBuyTicketAnim.subscribe(function() {
+        ticket_btn_anim.play();
+      });
+      app.ports.stopBuyTicketAnim.subscribe(function() {
+        ticket_btn_anim.goToAndStop(1, true);
+      });
     </script>
     <script src="script.js" charset="utf-8"></script>
   </body>
