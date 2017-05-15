@@ -174,7 +174,7 @@ erlend : Speaker
 erlend =
     { id = "erlend"
     , name = "Erlend Hamberg"
-    , bio = "Erlend Hamberg started a on computer engineering degree to learn about systems programming and hardware, but veered slightly off course and ended up with a degree in computer science with a specialization in artificial intelligence. He briefly returned to his former passion of low-level programming, working on GPU drivers, but was never able to let go of the power and elegance of functional programming and ended up climbing back up the abstraction ladder. When he is not in front of a computer you can find him in the Oslofjord, kayaking."
+    , bio = "Erlend started a on computer engineering degree to learn about systems programming and hardware, but veered slightly off course and ended up with a degree in computer science with a specialization in artificial intelligence. His background is mostly Erlang and Haskell, but the last year he has also made some forays into frontend programming, trying various languages and stacks, with Elm ending up as his favourite."
     , imageUrl = "images/erlend2.png"
     }
 
@@ -246,8 +246,8 @@ talks =
       , abstract = "Are you concidering using Elm at your new fancy startup ? I did just this a year ago and now I'm coming to Oslo\nto talk about this \"crazy\" (read: great) decision and how it turned out. Was it a good experience ? Would I do the same again ? And – is Elm as good as they say ? Get the answer to these questions and many more in this talk."
       , speaker = nils
       }
-    , { title = "Elm i Blank"
-      , abstract = ""
+    , { title = "Bootstrapping a project with Elm"
+      , abstract = "Blank is a small company in Oslo doing consultancy work and various in-house projects. We recently did a greenfield project that we knew would be frontend-heavy and whose a design and API would probably change many times, as we learned more. As if that wan't enough changes, the team would also see some rotation throughout the project.\nI will talk about why we thought Elm would be a good choice given the nature of the project, but most of all about our actual experience of using Elm with a team that, with one exception, had not used Elm before."
       , speaker = erlend
       }
     , { title = "An Elm Kernel for Jupyter"
