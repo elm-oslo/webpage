@@ -94,6 +94,11 @@ sponsors =
       , imageUrl = "images/knowit.svg"
       , tier = Gold
       }
+    , { name = "eggs"
+      , url = "https://eggsdesign.no"
+      , imageUrl = "images/eggs_logo.svg"
+      , tier = Gold
+      }
     , { name = "arktekk"
       , url = "https://www.arktekk.no"
       , imageUrl = "images/arktekk.svg"
