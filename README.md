@@ -1,5 +1,13 @@
 # osloelmday.no
 
+## Development
+
+Run the site using [elm-live](https://github.com/tomekwi/elm-live)
+
+```shell
+$ elm-live elm/Main.elm --output=./site/elm.js --dir=./site
+```
+
 ## Prerequisites
 
 Before you get started:
