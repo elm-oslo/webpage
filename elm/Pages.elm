@@ -1,8 +1,18 @@
-module Pages exposing (viewAbout, viewSpeakers, viewSchedule, viewCodeOfConduct)
+module Pages
+    exposing
+        ( viewAbout
+        , viewSpeakers
+        , viewSchedule
+        , viewCodeOfConduct
+        , viewStories
+        )
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (Speaker, Talk, speakers, talks)
+import Model exposing (Speaker, Talk, Story)
+import Static.Stories
+import Static.Speakers
+import Static.Talks
 
 
 viewAbout : Html a
@@ -174,7 +184,7 @@ viewSpeakers =
          , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
          ]
-            ++ (List.map viewSpeaker speakers)
+            ++ (List.map viewSpeaker Static.Speakers.all)
         )
 
 
@@ -200,7 +210,7 @@ viewSchedule =
          , p []
             [ text "Oslo Elm Day is a single-track conference, with a speaker lineup consisting of both world-renowned Elm experts and local Elm users, experienced with using Elm in production." ]
          ]
-            ++ (List.map viewTalk talks)
+            ++ (List.map viewTalk Static.Talks.all)
         )
 
 
@@ -214,5 +224,29 @@ viewTalk talk =
                 [ text (talk.speaker.name ++ " – " ++ talk.title) ]
             , p [ style [ ( "font-style", "italic" ) ] ]
                 [ text talk.abstract ]
+            ]
+        ]
+
+
+viewStories : Html a
+viewStories =
+    div []
+        ([ h2 []
+            [ text "Elm stories" ]
+         , p []
+            [ text "Our sponsors are pretty kewl. Hear what they have to say." ]
+         ]
+            ++ (List.map viewStory Static.Stories.all)
+        )
+
+
+viewStory : Story -> Html a
+viewStory story =
+    article [ class "story" ]
+        [ div [ class "story__content" ]
+            [ h3 [ class "story__sponsor" ]
+                [ text story.sponsor.name ]
+            , p []
+                [ text story.text ]
             ]
         ]

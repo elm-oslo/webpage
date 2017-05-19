@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
 import Model exposing (Msg(..), Page(..), SponsorTier(..), Model, Sponsor, Speaker)
+import Static.Sponsors
 import Pages
 import Route
 import Svg exposing (defs, g, path, svg)
@@ -26,6 +27,9 @@ viewPage page =
 
                 CodeOfConduct ->
                     ( "codeofconduct", Pages.viewCodeOfConduct )
+
+                Stories ->
+                    ( "stories", Pages.viewStories )
     in
         section [ class <| "content__page open " ++ className ]
             [ svg [ id "shapes" ]
@@ -153,15 +157,15 @@ footer_ : Bool -> Html a
 footer_ hidden =
     let
         silver =
-            Model.sponsors
+            Static.Sponsors.all
                 |> List.filter (\s -> s.tier == Silver)
 
         gold =
-            Model.sponsors
+            Static.Sponsors.all
                 |> List.filter (\s -> s.tier == Gold)
 
         platinum =
-            Model.sponsors
+            Static.Sponsors.all
                 |> List.filter (\s -> s.tier == Platinum)
     in
         footer [ classList [ ( "hidden", hidden ) ] ]
@@ -200,7 +204,7 @@ viewSponsor : Sponsor -> Html a
 viewSponsor s =
     a [ href s.url, target "_blank" ]
         [ img
-            [ class <| "sponsor__logo " ++ s.name
+            [ class <| "sponsor__logo " ++ s.id
             , src s.imageUrl
             ]
             []
@@ -260,6 +264,10 @@ information model =
                 [ li []
                     [ a [ Route.href Route.CodeOfConduct ]
                         [ text "Code of Conduct" ]
+                    ]
+                , li []
+                    [ a [ Route.href Route.Stories ]
+                        [ text "Stories" ]
                     ]
                 ]
             ]

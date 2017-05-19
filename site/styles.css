@@ -727,6 +727,10 @@ ul {
   margin-top: 2.5em;
 }
 
+.stories {
+  background-color: #5a6378;
+  color: #fff;
+}
 
 /**/
 /* Animations */

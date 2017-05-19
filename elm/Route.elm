@@ -13,6 +13,7 @@ type Route
     | Speaker String
     | Schedule
     | CodeOfConduct
+    | Stories
 
 
 route : Url.Parser (Route -> a) a
@@ -24,6 +25,7 @@ route =
         , Url.map Speaker (Url.s "speakers" </> Url.string)
         , Url.map Schedule (Url.s "schedule")
         , Url.map CodeOfConduct (Url.s "codeofconduct")
+        , Url.map Stories (Url.s "stories")
         ]
 
 
@@ -47,6 +49,9 @@ routeToString r =
 
         CodeOfConduct ->
             "codeofconduct"
+
+        Stories ->
+            "stories"
 
 
 routeToUrl : Route -> String

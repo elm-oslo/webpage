@@ -12,6 +12,7 @@ import Random
 import Random.List
 import Route exposing (Route)
 import Site
+import Static.Speakers
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -32,7 +33,7 @@ init loc =
             [ Cmd.map AnimationMsg animCmd
             , cmd
             , Ports.init ()
-            , Model.speakers
+            , Static.Speakers.all
                 |> Random.List.shuffle
                 |> Random.map (List.take 3)
                 |> Random.generate HighlightedSpeakersGenerated
@@ -60,6 +61,9 @@ routeToPage route =
 
         Route.CodeOfConduct ->
             Just CodeOfConduct
+
+        Route.Stories ->
+            Just Stories
 
 
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
