@@ -29,12 +29,14 @@ type Msg
     | NavigateTo Route
     | TicketButtonMouseEnter
     | TicketButtonMouseLeave
+    | HighlightedSpeakersGenerated (List Speaker)
     | NoOp
 
 
 type alias Model =
     { anim : Animation.Model
     , page : Maybe Page
+    , highlightedSpeakers : List Speaker
     }
 
 

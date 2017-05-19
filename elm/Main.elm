@@ -4,9 +4,12 @@ import Animation
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Html.Lazy
 import Model exposing (Model, Msg(..), Page(..))
 import Navigation exposing (Location)
 import Ports
+import Random
+import Random.List
 import Route exposing (Route)
 import Site
 
@@ -18,13 +21,21 @@ init loc =
             Animation.init
 
         ( model, cmd ) =
-            setRoute (Route.fromLocation loc) { anim = animModel, page = Nothing }
+            setRoute (Route.fromLocation loc)
+                { anim = animModel
+                , page = Nothing
+                , highlightedSpeakers = []
+                }
     in
         ( model
         , Cmd.batch
             [ Cmd.map AnimationMsg animCmd
             , cmd
             , Ports.init ()
+            , Model.speakers
+                |> Random.List.shuffle
+                |> Random.map (List.take 3)
+                |> Random.generate HighlightedSpeakersGenerated
             ]
         )
 
@@ -105,6 +116,9 @@ update msg model =
         TicketButtonMouseLeave ->
             ( model, Ports.stopBuyTicketAnim () )
 
+        HighlightedSpeakersGenerated speakers ->
+            ( { model | highlightedSpeakers = speakers }, Cmd.none )
+
 
 view : Model -> Html.Html Msg
 view model =
@@ -116,31 +130,38 @@ view model =
 
                 Nothing ->
                     False
+
+        staticView v =
+            Html.Lazy.lazy (always v) model.page
     in
         Html.div []
             [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
-                [ Site.header_
-                , Site.nav_
+                [ staticView Site.header_
+                , staticView Site.nav_
                 , div [ class "backdrop-wrapper animate" ]
                     [ Html.map AnimationMsg <| Animation.view model.anim
                     ]
-                , Site.information
+                , Html.Lazy.lazy Site.information model
                 ]
-            , Site.footer_ pageOpen
-            , div
-                [ classList
-                    [ ( "overlay", True )
-                    , ( "open", pageOpen )
+            , Html.Lazy.lazy Site.footer_ pageOpen
+            , staticView
+                (div
+                    [ classList
+                        [ ( "overlay", True )
+                        , ( "open", pageOpen )
+                        ]
+                    , onClick (NavigateTo Route.Home)
                     ]
-                , onClick (NavigateTo Route.Home)
-                ]
-                []
-            , case model.page of
-                Just page ->
-                    Site.viewPage page
+                    []
+                )
+            , staticView
+                (case model.page of
+                    Just page ->
+                        Site.viewPage page
 
-                Nothing ->
-                    text ""
+                    Nothing ->
+                        text ""
+                )
             ]
 
 

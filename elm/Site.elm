@@ -3,7 +3,7 @@ module Site exposing (header_, nav_, information, footer_, viewPage)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
-import Model exposing (Msg(..), Page(..), SponsorTier(..), Sponsor)
+import Model exposing (Msg(..), Page(..), SponsorTier(..), Model, Sponsor, Speaker)
 import Pages
 import Route
 import Svg exposing (defs, g, path, svg)
@@ -207,8 +207,8 @@ viewSponsor s =
         ]
 
 
-information : Html Msg
-information =
+information : Model -> Html Msg
+information model =
     div [ class "information" ]
         [ section [ class "information__block animate--medium seq-2 animate what" ]
             [ h3 []
@@ -233,41 +233,7 @@ information =
         , section [ class "information__block animate--medium seq-3 animate who" ]
             [ h3 []
                 [ text "Who?" ]
-            , ul [ class "who__list" ]
-                [ li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Richard Feldman", src "images/richard.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ class "richard"
-                        , Route.href <| Route.Speaker "richard"
-                        ]
-                        [ text "Richard Feldman" ]
-                    ]
-                , li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Noah Hall", src "images/noah.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ class "noah"
-                        , Route.href <| Route.Speaker "noah"
-                        ]
-                        [ text "Noah Hall" ]
-                    ]
-                , li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Luke Westby", src "images/luke.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ class "luke"
-                        , Route.href <| Route.Speaker "luke"
-                        ]
-                        [ text "Luke Westby" ]
-                    ]
-                ]
+            , highlightedSpeakers model
             , a [ Route.href Route.Schedule ]
                 [ text "See full program" ]
             ]
@@ -297,4 +263,25 @@ information =
                     ]
                 ]
             ]
+        ]
+
+
+highlightedSpeakers : Model -> Html Msg
+highlightedSpeakers model =
+    ul [ class "who__list" ]
+        (List.map highlightedSpeaker model.highlightedSpeakers)
+
+
+highlightedSpeaker : Speaker -> Html Msg
+highlightedSpeaker speaker =
+    li [ class "who__list-item" ]
+        [ div [ class "who__avatar" ]
+            [ img [ alt speaker.name, src speaker.imageUrl ]
+                []
+            ]
+        , a
+            [ class "luke"
+            , Route.href <| Route.Speaker speaker.id
+            ]
+            [ text speaker.name ]
         ]
