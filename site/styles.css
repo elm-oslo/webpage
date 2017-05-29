@@ -719,6 +719,11 @@ ul {
   width: 90px;
 }
 
+.webstep {
+  width: 60px;
+  min-height: 18px;
+}
+
 .about blockquote{
   margin: 1.1em;
 }

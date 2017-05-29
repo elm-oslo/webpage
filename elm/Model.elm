@@ -109,6 +109,11 @@ sponsors =
       , imageUrl = "images/monokkel.svg"
       , tier = Silver
       }
+    , { name = "webstep"
+      , url = "https://www.webstep.no"
+      , imageUrl = "images/webstep.svg"
+      , tier = Silver
+      }
     ]
 
 
