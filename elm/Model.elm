@@ -114,6 +114,11 @@ sponsors =
       , imageUrl = "images/webstep.svg"
       , tier = Silver
       }
+    , { name = "sixtynorth"
+      , url = "https://www.sixty-north.com"
+      , imageUrl = "images/sixtynorth.svg"
+      , tier = Silver
+      }
     ]
 
 
