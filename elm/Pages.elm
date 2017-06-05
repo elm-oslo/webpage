@@ -47,7 +47,11 @@ viewAbout =
         , h3 []
             [ text "Pre-Conference Workshop" ]
         , p []
-            [ text "TBA" ]
+            [ text "A pre-conference workshop will be held at Teknologihuset (Pilestredet 56, Oslo) at 18:00-20:30 on Friday, June 9. For more information and registration, go to our page on "
+            , a [ href "https://www.meetup.com/oslo-elm-meetup/events/240215989/" ]
+                [ text " meetup.com" ]
+            , text "."
+            ]
         , h3 []
             [ text "Tickets" ]
         , p []
