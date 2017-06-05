@@ -2,7 +2,7 @@ module Pages exposing (viewAbout, viewSpeakers, viewSchedule, viewCodeOfConduct)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (Speaker, Talk, speakers, talks)
+import Model exposing (Speaker, ScheduleEntry(..), speakers, scheduleEntries)
 
 
 viewAbout : Html a
@@ -200,19 +200,43 @@ viewSchedule =
          , p []
             [ text "Oslo Elm Day is a single-track conference, with a speaker lineup consisting of both world-renowned Elm experts and local Elm users, experienced with using Elm in production." ]
          ]
-            ++ (List.map viewTalk talks)
+            ++ (List.map viewScheduleEntry scheduleEntries)
         )
 
 
-viewTalk : Talk -> Html a
-viewTalk talk =
-    article [ class "speaker" ]
-        [ img [ class "speaker__image", src talk.speaker.imageUrl ]
-            []
-        , div [ class "speaker__content" ]
-            [ h3 [ class "speaker__name", id talk.speaker.id ]
-                [ text (talk.speaker.name ++ " – " ++ talk.title) ]
-            , p [ style [ ( "font-style", "italic" ) ] ]
-                [ text talk.abstract ]
-            ]
-        ]
+viewScheduleEntry : ScheduleEntry -> Html a
+viewScheduleEntry scheduleEntry =
+    case scheduleEntry of
+        TalkEntry talk ->
+            article [ class "speaker" ]
+                [ div [ class "speaker__timeslot" ]
+                    [ text <| Tuple.first talk.time ]
+                , div [ class "speaker__content" ]
+                    [ h3 [ class "speaker__name", id talk.speaker.id ]
+                        [ text (talk.speaker.name ++ " – " ++ talk.title) ]
+                    , p [ style [ ( "font-style", "italic" ) ] ]
+                        [ text talk.abstract ]
+                    ]
+                ]
+
+        NonTalk title ( start, end ) ->
+            article [ class "speaker" ]
+                [ div [ class "speaker__timeslot" ]
+                    [ text start ]
+                , div [ class "speaker__content" ]
+                    [ h3 [ class "speaker__name" ]
+                        [ text title ]
+                    ]
+                ]
+
+        NonTalkWithDesc title desc ( start, end ) ->
+            article [ class "speaker" ]
+                [ div [ class "speaker__timeslot" ]
+                    [ text start ]
+                , div [ class "speaker__content" ]
+                    [ h3 [ class "speaker__name" ]
+                        [ text title ]
+                    , p [ style [ ( "font-style", "italic" ) ] ]
+                        [ text desc ]
+                    ]
+                ]

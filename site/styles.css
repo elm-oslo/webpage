@@ -687,12 +687,15 @@ ul {
   margin-top: 0em !important;
 }
 
+.speaker__image, .speaker__timeslot {
+  margin-right: 1.8em;
+  align-self: flex-start;
+}
+
 .speaker__image {
   border-radius: 50%;
   width: 4.2em;
   height: 4.2em;
-  margin-right: 1.8em;
-  align-self: flex-start;
 }
 
 .sponsor__logo {
@@ -922,7 +925,7 @@ ul {
     margin: 70px auto 0 auto;
   }
 
-  .speaker__image {
+  .speaker__image, .speaker__timeslot {
     width: 3.5em;
     height: 3.5em;
     margin-right: 1.222222em;
