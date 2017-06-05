@@ -240,7 +240,8 @@ speakers =
 
 scheduleEntries : List ScheduleEntry
 scheduleEntries =
-    [ TalkEntry
+    [ NonTalk "Welcome and information from the organizers" ( "10:00", "10:10" )
+    , TalkEntry
         { title = "The State of Elm 2017, Extended Edition"
         , abstract = "The State of Elm 2017 Survey is over and the results have been collected. Let’s look at them together! Where are new people in the community coming from? Where are they going? What’s great about Elm, and what could use improvement? In this talk, we’ll discuss these questions and what they mean for the Elm community at large."
         , speaker = brian
