@@ -692,6 +692,10 @@ ul {
   align-self: flex-start;
 }
 
+.speaker__name a {
+  color: white;
+}
+
 .speaker__image {
   border-radius: 50%;
   width: 4.2em;

@@ -3,6 +3,7 @@ module Pages exposing (viewAbout, viewSpeakers, viewSchedule, viewCodeOfConduct)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Model exposing (Speaker, ScheduleEntry(..), speakers, scheduleEntries)
+import Route
 
 
 viewAbout : Html a
@@ -217,7 +218,7 @@ viewScheduleEntry scheduleEntry =
                     [ text <| Tuple.first talk.time ]
                 , div [ class "speaker__content" ]
                     [ h3 [ class "speaker__name", id talk.speaker.id ]
-                        [ text (talk.speaker.name ++ " – " ++ talk.title) ]
+                        [ a [ Route.href <| Route.Speaker talk.speaker.id ] [ text talk.speaker.name ], span [] [ text (" – " ++ talk.title) ] ]
                     , p [ style [ ( "font-style", "italic" ) ] ]
                         [ text talk.abstract ]
                     ]
