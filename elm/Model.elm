@@ -269,7 +269,7 @@ scheduleEntries =
     , NonTalk "Break" ( "12:00", "12:20" )
     , TalkEntry
         { title = "Localization for Elm as a pre-build phase"
-        , abstract = "Localization is usually down by providing a global dictionary function and passing the language to each view and keeping the current language in the app's model. This makes it difficult to add a second language to an existing code base and adds boiler plate code when 90% of the user's will only care for one of the supported languages. Our concept is to have a small pre-build-phase to generate multiple single-language elm apps from the same code base. "
+        , abstract = "Localization is usually done by providing a global dictionary function, passing the language to each view and keeping the current language in the app's model. This makes it difficult to add a second language to an existing code base and adds boiler plate code when 90% of the users will only care for one of the supported languages. Our concept is to have a small pre-build-phase to generate multiple single-language elm apps from the same code base."
         , speaker = felix
         , time = ( "12:20", "12:40" )
         }
