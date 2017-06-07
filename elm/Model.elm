@@ -172,7 +172,7 @@ brian =
 felix : Speaker
 felix =
     { id = "felix"
-    , name = "Felix Lamoroux"
+    , name = "Felix Lamouroux"
     , bio = "Founder of iosphere GmbH a small mobile development agency based in Cologne Germany working on native mobile and mobile web and desktop applications."
     , imageUrl = "images/felix2.png"
     }
