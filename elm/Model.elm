@@ -258,28 +258,28 @@ scheduleEntries =
         { title = "Elm Editor Support - Perspectives From an Editor Hacker"
         , abstract = "Magnus started playing with Elm about a year and a half ago, and has since created elm-bootstrap in addition to the Elm plugin for the Light Table editor. In this talk, Magnus will give you an overview of where the editor/IDE support for Elm is currently at. He'll also share some reflections on what he believes is in the pipeline going forward."
         , speaker = magnus
-        , time = ( "11:20", "10:40" )
+        , time = ( "11:30", "10:50" )
         }
     , TalkEntry
         { title = "Everything in Elm"
         , abstract = "During my time at my own company, at NoRedInk, and in the open source community, I like to think I proved that anything that could be written in Javascript could also be written in Elm. This led to projects like take-home, the only full stack Elm application.\n\nIn this talk, we'll examine some of the things I've heard are \"impossible\" in Elm, such as: animation, inline-styles, writing CLI tools, writing a debugger, writing a server. We'll also discuss why some of these ideas are better off as unpublished packages, and the general problem-solving approach I take to making the unsolvable solved."
         , speaker = noah
-        , time = ( "11:40", "12:00" )
+        , time = ( "11:55", "12:15" )
         }
-    , NonTalk "Break" ( "12:00", "12:20" )
+    , NonTalk "Break" ( "12:15", "12:35" )
     , TalkEntry
         { title = "Localization for Elm as a pre-build phase"
         , abstract = "Localization is usually done by providing a global dictionary function, passing the language to each view and keeping the current language in the app's model. This makes it difficult to add a second language to an existing code base and adds boiler plate code when 90% of the users will only care for one of the supported languages. Our concept is to have a small pre-build-phase to generate multiple single-language elm apps from the same code base."
         , speaker = felix
-        , time = ( "12:20", "12:40" )
+        , time = ( "12:35", "12:55" )
         }
     , TalkEntry
         { title = "An Elm Kernel for Jupyter"
         , abstract = "I'll introduce the Elm kernel for Jupyter notebooks. Jupyter (a.k.a. IPython) notebooks are a way to interleave text and executable code, and this new kernel allows you to embed Elm code in them. We'll look at how the kernel is implemented, I'll demonstrate how to use it, and hopefully participants will be inspired to use it or even contribute to the project. You can get the code for the project at github.com/abingham/jupyter-elm-kernel"
         , speaker = austin
-        , time = ( "12:40", "13:00" )
+        , time = ( "12:55", "13:15" )
         }
-    , NonTalk "Lunch" ( "13:00", "14:00" )
+    , NonTalk "Lunch" ( "13:15", "14:00" )
     , TalkEntry
         { title = "Putting the Elm Platform in the Browser"
         , abstract = "I wanted it to be easier for folks to try the Elm platform and share it with each other, so I made Ellie and put it in the browser! Since its release in January of this year people have shared about 5000 revisions, but this is only the beginning. I want you all to share in my appreciation for this community and my desire for it to grow, so in this talk I'm going to share the life story of Ellie. You'll feel like you were there on the day it was first released, and share my own excitement about where it's heading now and what comes next."
