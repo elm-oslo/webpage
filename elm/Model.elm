@@ -271,15 +271,15 @@ scheduleEntries =
         { title = "Localization for Elm as a pre-build phase"
         , abstract = "Localization is usually done by providing a global dictionary function, passing the language to each view and keeping the current language in the app's model. This makes it difficult to add a second language to an existing code base and adds boiler plate code when 90% of the users will only care for one of the supported languages. Our concept is to have a small pre-build-phase to generate multiple single-language elm apps from the same code base."
         , speaker = felix
-        , time = ( "12:40", "13:00" )
+        , time = ( "12:45", "13:05" )
         }
     , TalkEntry
         { title = "An Elm Kernel for Jupyter"
         , abstract = "I'll introduce the Elm kernel for Jupyter notebooks. Jupyter (a.k.a. IPython) notebooks are a way to interleave text and executable code, and this new kernel allows you to embed Elm code in them. We'll look at how the kernel is implemented, I'll demonstrate how to use it, and hopefully participants will be inspired to use it or even contribute to the project. You can get the code for the project at github.com/abingham/jupyter-elm-kernel"
         , speaker = austin
-        , time = ( "13:00", "13:20" )
+        , time = ( "13:05", "13:25" )
         }
-    , NonTalk "Lunch" ( "13:20", "14:10" )
+    , NonTalk "Lunch" ( "13:25", "14:10" )
     , TalkEntry
         { title = "Putting the Elm Platform in the Browser"
         , abstract = "I wanted it to be easier for folks to try the Elm platform and share it with each other, so I made Ellie and put it in the browser! Since its release in January of this year people have shared about 5000 revisions, but this is only the beginning. I want you all to share in my appreciation for this community and my desire for it to grow, so in this talk I'm going to share the life story of Ellie. You'll feel like you were there on the day it was first released, and share my own excitement about where it's heading now and what comes next."
