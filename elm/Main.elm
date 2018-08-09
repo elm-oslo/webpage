@@ -1,83 +1,21 @@
 module Main exposing (..)
 
-import Animation
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Model exposing (Model, Msg(..), Page(..))
-import Navigation exposing (Location)
-import Ports
-import Route exposing (Route)
-import Site
 
 
-init : Location -> ( Model, Cmd Msg )
-init loc =
-    let
-        ( animModel, animCmd ) =
-            Animation.init
-
-        ( model, cmd ) =
-            setRoute (Route.fromLocation loc) { anim = animModel, page = Nothing }
-    in
-        ( model
-        , Cmd.batch
-            [ Cmd.map AnimationMsg animCmd
-            , cmd
-            , Ports.init ()
-            ]
-        )
+type alias Model =
+    {}
 
 
-routeToPage : Route -> Maybe Page
-routeToPage route =
-    case route of
-        Route.Home ->
-            Nothing
-
-        Route.About ->
-            Just About
-
-        Route.Speakers ->
-            Just Speakers
-
-        Route.Speaker s ->
-            Just Speakers
-
-        Route.Schedule ->
-            Just Schedule
-
-        Route.CodeOfConduct ->
-            Just CodeOfConduct
+type Msg
+    = NoOp
 
 
-setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
-setRoute mbRoute model =
-    let
-        scrollCmd =
-            case mbRoute of
-                Just (Route.Speaker s) ->
-                    (Ports.scrollToId s)
-
-                _ ->
-                    Cmd.none
-
-        newPage =
-            mbRoute
-                |> Maybe.andThen routeToPage
-
-        animCmd =
-            if newPage /= Nothing then
-                Ports.triggerAnim ()
-            else
-                Cmd.none
-    in
-        ( { model | page = newPage }
-        , Cmd.batch
-            [ scrollCmd
-            , animCmd
-            ]
-        )
+init : ( Model, Cmd Msg )
+init =
+    ( {}, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -86,72 +24,40 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        AnimationMsg animationMsg ->
-            let
-                ( animModel, animMsg ) =
-                    Animation.update animationMsg model.anim
-            in
-                ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
-
-        SetRoute mbRoute ->
-            setRoute mbRoute model
-
-        NavigateTo route ->
-            ( model, Route.modifyUrl route )
-
-        TicketButtonMouseEnter ->
-            ( model, Ports.startBuyTicketAnim () )
-
-        TicketButtonMouseLeave ->
-            ( model, Ports.stopBuyTicketAnim () )
-
 
 view : Model -> Html.Html Msg
 view model =
-    let
-        pageOpen =
-            case model.page of
-                Just _ ->
-                    True
-
-                Nothing ->
-                    False
-    in
-        Html.div []
-            [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
-                [ Site.header_
-                , Site.nav_
-                , div [ class "backdrop-wrapper animate" ]
-                    [ Html.map AnimationMsg <| Animation.view model.anim
+    div []
+        [ main_ []
+            [ div [ class "container" ]
+                [ h1 [] [ text "Oslo Elm Day 2019" ]
+                , p [] [ text "Stay tuned" ]
+                , p [] [ text "Subscribe stuff....." ]
+                , p [ class "privacy-policy" ]
+                    [ span []
+                        [ text "We will occasionally send you updates with information related to the next installment of Oslo Elm Day. " ]
+                    , span
+                        []
+                        [ text "We only store your email address and nothing else. " ]
+                    , span
+                        []
+                        [ text "If you want to be taken off the mailing list, please send an email to " ]
+                    , a [ href "mailto:hello@osloelmday.com?subject=Unsubscribe" ] [ text "hello@osloelmday.com" ]
+                    , span [] [ text " from the email address you registered with." ]
                     ]
-                , Site.information
                 ]
-            , Site.footer_ pageOpen
-            , div
-                [ classList
-                    [ ( "overlay", True )
-                    , ( "open", pageOpen )
-                    ]
-                , onClick (NavigateTo Route.Home)
-                ]
-                []
-            , case model.page of
-                Just page ->
-                    Site.viewPage page
-
-                Nothing ->
-                    text ""
             ]
+        ]
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.map AnimationMsg (Animation.subscriptions model.anim)
+    Sub.none
 
 
 main : Program Never Model Msg
 main =
-    Navigation.program (Route.fromLocation >> SetRoute)
+    Html.program
         { init = init
         , update = update
         , view = view
