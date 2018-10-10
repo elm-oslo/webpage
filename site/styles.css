@@ -10,8 +10,8 @@ body {
 
 body {
     font-size: 18px;
-    background-color: rgb(144, 18, 239);
-    color: #f2f2f2;
+    background-color: white;
+    color: #333;
     font-family: 'AvenirLTPro-Book', sans-serif;
     margin: 0;
     padding: 0;
@@ -28,13 +28,6 @@ main {
     position: relative;
 }
 
-footer {
-    background: #f2f2f2;
-    width: 100%;
-    padding-top: 3.05555555556em;
-    padding-bottom: 1.2222222222em;
-}
-
 .container {
     width: 60%;
     display: flex;
@@ -43,17 +36,9 @@ footer {
     align-items: center;
 }
 
-.container p {
-    margin-bottom: 1rem;
-}
-
-.privacy-policy {
-    font-size: 0.6em;
-}
-
 a {
     text-decoration: none;
-    color: #bbb;
+    color: #333;
     position: relative;
     border: 0;
     border-bottom: 1px solid #333;
@@ -76,10 +61,57 @@ p {
     line-height: 1.44444444444em;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.email-subscribe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email-subscribe__intro {
+    margin-bottom: 1rem;
+}
+
+.email-subscribe__form {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.email-subscribe__input {
+    flex-grow: 1;
+    border: 2px solid #E4E4E4;
+    border-radius: 3px;
+    background: white;
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+    margin-right: 0.5rem;
+    height: 2.375rem;
+}
+
+.email-subscribe__input--invalid {
+    box-shadow: 0px 0px 3px 2px #FF4136;
+}
+
+.email-subscribe__error-message {
+    font-style: italic;
+    margin-top: 0.5rem;
+    color: #FF4136;
+    font-size: 0.9rem;
+    position: absolute;
+}
+
+.email-subscribe__submit {
+    font-size: 1.125rem;
+    background-color: rgb(142, 17, 255);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    height: 2.375rem;
+}
+
+.email-subscribe__privacy-policy {
+    font-size: 0.6em;
 }
 
 @media (min-width: 1850px) {
