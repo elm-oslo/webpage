@@ -12,7 +12,14 @@ import Task exposing (Task)
 type alias Model =
     { email : String
     , error : Maybe ServerError
+    , emailSubmitStatus : SubmitStatus
     }
+
+
+type SubmitStatus
+    = Requested
+    | Completed
+    | NotStarted
 
 
 type ServerError
@@ -28,7 +35,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( { email = "", error = Nothing }, Cmd.none )
+    ( { email = "", error = Nothing, emailSubmitStatus = NotStarted }, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -38,10 +45,10 @@ update msg model =
             ( { model | email = email, error = Nothing }, Cmd.none )
 
         SubmitRequested ->
-            ( model, Http.send SubmitCompleted (postEmail model.email) )
+            ( {model | emailSubmitStatus = Requested}, Http.send SubmitCompleted (postEmail model.email) )
 
         SubmitCompleted (Ok _) ->
-            ( { model | email = "", error = Nothing }, Cmd.none )
+            ( { model | email = "", error = Nothing,  emailSubmitStatus = Completed }, Cmd.none )
 
         SubmitCompleted (Err error) ->
             let
@@ -56,25 +63,7 @@ update msg model =
                         _ ->
                             UnknownError
             in
-            ( { model | error = Just errorType }, Cmd.none )
-
-
-emailInput : Model -> Html.Html Msg
-emailInput model =
-    let
-        isInvalid =
-            model.error == Just InvalidEmail
-
-        classes =
-            [ ( "email-subscribe__input", True )
-            , ( "email-subscribe__input--invalid", isInvalid )
-            ]
-    in
-    div []
-        -- TODO send SubmitRequested on enter
-        [ input [ type_ "text", classList classes, placeholder "Email", value model.email, onInput Email ] []
-        , errorMessage model
-        ]
+            ( { model | error = Just errorType, emailSubmitStatus = Completed }, Cmd.none )
 
 
 view : Model -> Html.Html Msg
@@ -91,12 +80,7 @@ view model =
                         [ emailInput model
 
                         -- TODO spinner on button when submitting (or other way to indicate submit in progress)
-                        , button
-                            [ class "email-subscribe__submit"
-                            , type_ "button"
-                            , onClick SubmitRequested
-                            ]
-                            [ text "Sign me up!" ]
+                        , submitButton model
                         ]
                     , p [ class "email-subscribe__privacy-policy" ]
                         [ span []
@@ -115,6 +99,44 @@ view model =
             ]
         ]
 
+emailInput : Model -> Html.Html Msg
+emailInput model =
+    let
+        isInvalid =
+            model.error == Just InvalidEmail
+
+        classes =
+            [ ( "email-subscribe__input", True )
+            , ( "email-subscribe__input--invalid", isInvalid )
+            ]
+    in
+    div []
+        -- TODO send SubmitRequested on enter
+        [ input [ type_ "text", classList classes, placeholder "Email", value model.email, onInput Email ] []
+        , errorMessage model
+        ]
+
+submitButton : Model -> Html.Html Msg
+submitButton model =
+    let
+        isLoading =
+            model.emailSubmitStatus == Requested
+        classes =
+            [( "email-subscribe__submit", True)
+            , ( "email-subscribe__submit--loading", isLoading)
+            ]
+        spinnerClasses = [
+            ( "spinner", isLoading)
+        ]
+    in
+    button
+        [ classList classes
+        , type_ "button"
+        , onClick SubmitRequested
+        ]
+        [ text "Sign me up!"
+        ,  span [ classList spinnerClasses ] []
+        ]
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
