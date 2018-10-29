@@ -1,0 +1,39 @@
+language: node_js
+node_js: node
+env:
+- ELM_VERSION=0.18.0 ELM_TEST=0.18.12
+cache:
+  directories:
+  - elm-stuff/build-artifacts
+  - elm-stuff/packages
+  - sysconfcpus
+  - "$HOME/.npm"
+before_install:
+- |
+  if [ ! -d sysconfcpus/bin ];
+  then
+    git clone https://github.com/obmarg/libsysconfcpus.git;
+    cd libsysconfcpus;
+    ./configure --prefix=$TRAVIS_BUILD_DIR/sysconfcpus;
+    make && make install;
+    cd ..;
+  fi
+install:
+- npm install -g elm@$ELM_VERSION elm-test@$ELM_TEST
+- mv $(npm config get prefix)/bin/elm-make $(npm config get prefix)/bin/elm-make-old
+- printf "#\041/bin/bash\n\necho \"Running elm-make with sysconfcpus -n 2\"\n\n$TRAVIS_BUILD_DIR/sysconfcpus/bin/sysconfcpus
+  -n 2 elm-make-old \"\$@\"" > $(npm config get prefix)/bin/elm-make
+- chmod +x $(npm config get prefix)/bin/elm-make
+- travis_retry elm-package install --yes
+- travis_retry elm-make elm/Main.elm --output site/elm.js
+script:
+- "echo \"skipping tests, yolo \U0001F60E\""
+deploy:
+  provider: s3
+  access_key_id: AKIAJQGMY27R4BJSR2FQ
+  secret_access_key:
+    secure: EFtrtQkTlZZyDWjBYJG3GH6Q/ZnWiKH9n8OxqUt68fIwz3xlJ9Yax2TcDoqoIp2Ico5tiv+ZxmfMfIKsG4N4u4upiqmSQ1EdMkCa6nnLtNSCfC4nWRCB6L8umf47HYPz802rpjUnbct0+laCzixoemQpm8/zWGF72LmLsJ/ryNpOt6g5sGhlZwFGY666ee4vVT2SNVYagPip28E6FoY6Nu43isja9a8s9Rus9lLFMZBPDOKhhhKR+45oketf65OqeQoesf0kWY8+XHGk1jD8wYkfmR+K0lxKZmqnZ7hWw+OpZXrpTKiKgv023EiYk05fcU/0ejKI6+WYXqOLqWUpRBlnvchaaSoxbJ7ZqlBEJpQX3ODUwXsU3UT6B+K0PhihhUOwcnrz/d6d9f1MTvSEvL5lQosM/Hlza/lhIMDvOFyQWqCx3kU1uA95GVaPBTeLEYx3C+lRIBfaqMjAgAMQcmgqRAZGL9iNpe/WGXtF2D5psJ3ipgVwg8DixkOQ2S3rTktLcS0XXGXyrzj48loTXlaV0OQU9+QXu2kgouwC0Vx8yubpMalbwI8XLOz/xt3j7+AfpiUY0akk/RbAxu5F/1h7fjm975mQibvXFUdnls5XvZ39ObObo7VNgpvRLIhZYxJWTH6A5P9+C0rHPwrRdgdbMfcOoRB/zwArsnk+kio=
+  bucket: elm-oslo-webpage-test
+  local-dir: site
+  skip_cleanup: true
+  region: eu-central-1
