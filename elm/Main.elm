@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), ServerError(..), SubmitStatus(..), emailInput, emailSubscribeForm, init, main, postEmail, submitButton, subscriptions, update, view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -45,10 +45,10 @@ update msg model =
             ( { model | email = email, error = Nothing }, Cmd.none )
 
         SubmitRequested ->
-            ( {model | emailSubmitStatus = Requested}, Http.send SubmitCompleted (postEmail model.email) )
+            ( { model | emailSubmitStatus = Requested }, Http.send SubmitCompleted (postEmail model.email) )
 
         SubmitCompleted (Ok _) ->
-            ( { model | email = "", error = Nothing,  emailSubmitStatus = Completed }, Cmd.none )
+            ( { model | email = "", error = Nothing, emailSubmitStatus = Completed }, Cmd.none )
 
         SubmitCompleted (Err error) ->
             let
@@ -57,6 +57,7 @@ update msg model =
                         Http.BadStatus { status } ->
                             if status.code == 400 then
                                 InvalidEmail
+
                             else
                                 UnknownError
 
@@ -72,16 +73,9 @@ view model =
         [ main_ []
             [ div [ class "container" ]
                 [ h1 [] [ text "Oslo Elm Day 2019" ]
-                , article [ class "email-subscribe" ]
+                , article []
                     [ p [ class "email-subscribe__intro" ] [ text "We're hard at work planning the next Oslo Elm Day. Want to know what's happening? Sign up for our email updates!" ]
-
-                    -- TODO replace email subscribe form with confirmation on success ???
-                    , section [ class "email-subscribe__form" ]
-                        [ emailInput model
-
-                        -- TODO spinner on button when submitting (or other way to indicate submit in progress)
-                        , submitButton model
-                        ]
+                    , emailSubscribeForm model
                     , p [ class "email-subscribe__privacy-policy" ]
                         [ span []
                             [ text "We will occasionally send you updates with information related to the next installment of Oslo Elm Day. " ]
@@ -99,44 +93,84 @@ view model =
             ]
         ]
 
+
+
+-- TODO replace email subscribe form with confirmation on success ???
+-- TODO spinner on button when submitting (or other way to indicate submit in progress)
+
+
+emailSubscribeForm : Model -> Html.Html Msg
+emailSubscribeForm model =
+    let
+        submitSuccessfull =
+            model.error == Nothing && model.emailSubmitStatus == Completed
+
+        classes =
+            [ ( "email-subscribe__form", True )
+            , ( "email-subscribe__form--success", submitSuccessfull )
+            ]
+    in
+    section [ classList classes ]
+        [ emailInput model
+        , submitButton model
+        , formFeedbackMessage model
+        ]
+
+
 emailInput : Model -> Html.Html Msg
 emailInput model =
     let
         isInvalid =
             model.error == Just InvalidEmail
 
+        submitSuccessfull =
+            model.error == Nothing && model.emailSubmitStatus == Completed
+
         classes =
             [ ( "email-subscribe__input", True )
             , ( "email-subscribe__input--invalid", isInvalid )
             ]
     in
-    div []
-        -- TODO send SubmitRequested on enter
-        [ input [ type_ "text", classList classes, placeholder "Email", value model.email, onInput Email ] []
-        , errorMessage model
+    -- TODO send SubmitRequested on enter
+    input
+        [ classList classes
+        , type_ "text"
+        , disabled submitSuccessfull
+        , placeholder "Email"
+        , value model.email
+        , onInput Email
         ]
+        []
+
 
 submitButton : Model -> Html.Html Msg
 submitButton model =
     let
         isLoading =
             model.emailSubmitStatus == Requested
+
+        submitSuccessfull =
+            model.error == Nothing && model.emailSubmitStatus == Completed
+
         classes =
-            [( "email-subscribe__submit", True)
-            , ( "email-subscribe__submit--loading", isLoading)
+            [ ( "email-subscribe__submit", True )
+            , ( "email-subscribe__submit--loading", isLoading )
             ]
-        spinnerClasses = [
-            ( "spinner", isLoading)
-        ]
+
+        spinnerClasses =
+            [ ( "spinner", isLoading )
+            ]
     in
     button
         [ classList classes
+        , disabled submitSuccessfull
         , type_ "button"
         , onClick SubmitRequested
         ]
         [ text "Sign me up!"
-        ,  span [ classList spinnerClasses ] []
+        , span [ classList spinnerClasses ] []
         ]
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -153,19 +187,23 @@ main =
         }
 
 
-errorMessage : Model -> Html msg
-errorMessage model =
-    div [ class "email-subscribe__error-message" ]
-        (case model.error of
-            Just InvalidEmail ->
+formFeedbackMessage : Model -> Html msg
+formFeedbackMessage model =
+    case ( model.error, model.emailSubmitStatus ) of
+        ( Just InvalidEmail, _ ) ->
+            div [ class "email-subscribe__message email-subscribe__message--error" ]
                 [ text "The email is invalid" ]
 
-            Just UnknownError ->
+        ( Just UnknownError, _ ) ->
+            div [ class "email-subscribe__message email-subscribe__message--error" ]
                 [ text "Something went wrong, please try again later" ]
 
-            Nothing ->
-                []
-        )
+        ( _, Completed ) ->
+            div [ class "email-subscribemessage" ]
+                [ text "Yay! You have been subscribed successfully 🎉" ]
+
+        ( _, _ ) ->
+            div [] []
 
 
 postEmail : String -> Http.Request ()
