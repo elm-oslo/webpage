@@ -11,15 +11,15 @@ import Task exposing (Task)
 
 type alias Model =
     { email : String
-    , error : Maybe ServerError
     , emailSubmitStatus : SubmitStatus
     }
 
 
 type SubmitStatus
     = Requested
-    | Completed
     | NotStarted
+    | Completed
+    | Failed ServerError
 
 
 type ServerError
@@ -35,20 +35,27 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( { email = "", error = Nothing, emailSubmitStatus = NotStarted }, Cmd.none )
+    ( { email = "", emailSubmitStatus = NotStarted }, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Email email ->
-            ( { model | email = email, error = Nothing }, Cmd.none )
+            ( { model | email = email }, Cmd.none )
 
         SubmitRequested ->
-            ( { model | emailSubmitStatus = Requested }, Http.send SubmitCompleted (postEmail model.email) )
+            ( { model | emailSubmitStatus = Requested }
+            , Http.send SubmitCompleted (postEmail model.email)
+            )
 
         SubmitCompleted (Ok _) ->
-            ( { model | email = "", error = Nothing, emailSubmitStatus = Completed }, Cmd.none )
+            ( { model
+                | email = ""
+                , emailSubmitStatus = Completed
+              }
+            , Cmd.none
+            )
 
         SubmitCompleted (Err error) ->
             let
@@ -64,7 +71,11 @@ update msg model =
                         _ ->
                             UnknownError
             in
-            ( { model | error = Just errorType, emailSubmitStatus = Completed }, Cmd.none )
+            ( { model
+                | emailSubmitStatus = Failed errorType
+              }
+            , Cmd.none
+            )
 
 
 view : Model -> Html.Html Msg
@@ -103,7 +114,7 @@ emailSubscribeForm : Model -> Html.Html Msg
 emailSubscribeForm model =
     let
         submitSuccessfull =
-            model.error == Nothing && model.emailSubmitStatus == Completed
+            model.emailSubmitStatus == Completed
 
         classes =
             [ ( "email-subscribe__form", True )
@@ -121,10 +132,10 @@ emailInput : Model -> Html.Html Msg
 emailInput model =
     let
         isInvalid =
-            model.error == Just InvalidEmail
+            model.emailSubmitStatus == Failed InvalidEmail
 
         submitSuccessfull =
-            model.error == Nothing && model.emailSubmitStatus == Completed
+            model.emailSubmitStatus == Completed
 
         classes =
             [ ( "email-subscribe__input", True )
@@ -150,7 +161,7 @@ submitButton model =
             model.emailSubmitStatus == Requested
 
         submitSuccessfull =
-            model.error == Nothing && model.emailSubmitStatus == Completed
+            model.emailSubmitStatus == Completed
 
         classes =
             [ ( "email-subscribe__submit", True )
@@ -189,20 +200,20 @@ main =
 
 formFeedbackMessage : Model -> Html msg
 formFeedbackMessage model =
-    case ( model.error, model.emailSubmitStatus ) of
-        ( Just InvalidEmail, _ ) ->
+    case model.emailSubmitStatus of
+        Failed InvalidEmail ->
             div [ class "email-subscribe__message email-subscribe__message--error" ]
                 [ text "The email is invalid" ]
 
-        ( Just UnknownError, _ ) ->
+        Failed UnknownError ->
             div [ class "email-subscribe__message email-subscribe__message--error" ]
                 [ text "Something went wrong, please try again later" ]
 
-        ( _, Completed ) ->
+        Completed ->
             div [ class "email-subscribemessage" ]
                 [ text "Yay! You have been subscribed successfully 🎉" ]
 
-        ( _, _ ) ->
+        _ ->
             div [] []
 
 
