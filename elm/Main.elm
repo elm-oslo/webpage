@@ -210,7 +210,7 @@ formFeedbackMessage model =
                 [ text "Something went wrong, please try again later" ]
 
         Completed ->
-            div [ class "email-subscribemessage" ]
+            div [ class "email-subscribe__message" ]
                 [ text "Yay! You have been subscribed successfully 🎉" ]
 
         _ ->
