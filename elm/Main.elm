@@ -1,4 +1,4 @@
-module Main exposing (Model, Msg(..), ServerError(..), SubmitStatus(..), emailInput, emailSubscribeForm, init, main, postEmail, submitButton, subscriptions, update, view)
+module Main exposing (main)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -83,24 +83,19 @@ view model =
     div []
         [ main_ []
             [ div [ class "container" ]
-                [ h1 [] [ text "Oslo Elm Day 2019" ]
+                [ div [ class "logo" ]
+                    [ img [ src "images/elm_logo_2019.svg" ] []
+                    ]
                 , article []
-                    [ p [ class "email-subscribe__intro" ] [ text "We're hard at work planning the next Oslo Elm Day. Want to know what's happening? Sign up for our email updates!" ]
-                    , emailSubscribeForm model
-                    , p [ class "email-subscribe__privacy-policy" ]
-                        [ span []
-                            [ text "We will occasionally send you updates with information related to the next installment of Oslo Elm Day. " ]
-                        , span
-                            []
-                            [ text "We only store your email address and nothing else. " ]
-                        , span
-                            []
-                            [ text "If you want to be taken off the mailing list, please send an email to " ]
-                        , a [ href "mailto:hello@osloelmday.com?subject=Unsubscribe" ] [ text "hello@osloelmday.com" ]
-                        , span [] [ text " from the email address you registered with." ]
+                    [ p [ class "email-subscribe__intro" ]
+                        [ text "We're hard at work planning Oslo Elm Day 2019. Want to know what's happening?"
+                        , br [] []
+                        , text "Sign up for our email updates!"
                         ]
+                    , emailSubscribeForm model
                     ]
                 ]
+            , viewPrivacyPolicy
             ]
         ]
 
@@ -178,7 +173,7 @@ submitButton model =
         , type_ "button"
         , onClick SubmitRequested
         ]
-        [ text "Sign me up!"
+        [ text "Sign up!"
         , span [ classList spinnerClasses ] []
         ]
 
@@ -233,3 +228,21 @@ postEmail email =
             Decode.succeed ()
     in
     Http.post url body decoder
+
+
+viewPrivacyPolicy : Html a
+viewPrivacyPolicy =
+    div [ class "privacy-policy" ]
+        [ p [ class "email-subscribe__privacy-policy" ]
+            [ span []
+                [ text "We will occasionally send you updates with information related to the next installment of Oslo Elm Day. " ]
+            , span
+                []
+                [ text "We only store your email address and nothing else. " ]
+            , span
+                []
+                [ text "If you want to be taken off the mailing list, please send an email to " ]
+            , a [ href "mailto:hello@osloelmday.com?subject=Unsubscribe" ] [ text "hello@osloelmday.com" ]
+            , span [] [ text " from the email address you registered with." ]
+            ]
+        ]
