@@ -9,9 +9,9 @@ body {
 }
 
 body {
-    font-size: 18px;
-    background-color: white;
-    color: #333;
+    font-size: 20px;
+    background-color: #0a0338;
+    color: #c5e6ff;
     font-family: 'AvenirLTPro-Book', sans-serif;
     margin: 0;
     padding: 0;
@@ -28,20 +28,41 @@ main {
     position: relative;
 }
 
+article {
+    text-align: center;
+}
+
+#sketch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .container {
-    width: 60%;
+    max-width: 580px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    border-radius: 5px;
+    background-color: #252ede;
+    padding: 5rem 3rem;
+}
+
+.logo {
+    margin-bottom: 40px;
 }
 
 a {
     text-decoration: none;
-    color: #333;
+    color: #c5e6ff;
     position: relative;
     border: 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #c5e6ff;
     display: inline-block;
     line-height: 0.8;
     transition: border-bottom-color 0.3s;
@@ -62,14 +83,15 @@ p {
 }
 
 .email-subscribe__intro {
-    margin-bottom: 1rem;
+    margin-bottom: 35px;
+    max-width: 380px;
 }
 
 .email-subscribe__form {
-	display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-	margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .email-subscribe__form :disabled {
@@ -78,36 +100,33 @@ p {
 }
 
 .email-subscribe__input {
-    border: 2px solid #E4E4E4;
+    border: none;
     border-radius: 3px;
     background: white;
-    font-size: 1.125rem;
+    font-size: 17px;
     padding: 0 0.5rem;
-    margin-right: 0.5rem;
+    margin-bottom: 16px;
     height: 2.375rem;
+    max-width: 300px;
+    width: 100%;
 }
 
 .email-subscribe__input--invalid {
-    box-shadow: 0px 0px 3px 2px #FF4136;
-    border-color: #FF4136;
-}
-
-.email-subscribe__message {
-    grid-column-start: 1;
-    grid-column-end: end;
-    grid-row: last;
+    box-shadow: 0px 0px 3px 2px #f9a8b2;
+    border-color: #f9a8b2;
 }
 
 .email-subscribe__message--error {
+    margin-top: 16px;
     font-style: italic;
-    color: #FF4136;
+    color: #f9a8b2;
     font-size: 1rem;
 }
 
 .email-subscribe__submit {
     font-size: 1.125rem;
-    background-color: rgb(142, 17, 255);
-    color: white;
+    background-color: #ffca6a;
+    color: #4e3c1b;
     border: none;
     border-radius: 3px;
     padding: 0.5rem 1rem;
@@ -120,7 +139,21 @@ p {
     background-color: #999;
     padding-right: 2rem;
     width: 10rem;
-    transition: 3ms cubic-bezier(0.175, 0.885, 0.320, 1.275) all
+    transition: 3ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+}
+
+.spinner {
+    background: transparent;
+    height: 1rem;
+    width: 1rem;
+    border: white 2px solid;
+    border-radius: 0.5rem;
+    border-bottom: transparent;
+    border-right: transparent;
+    animation: rotation 1s linear infinite;
+    -webkit-animation: rotation 2s linear infinite;
+    position: absolute;
+    margin: 0.2rem 0.5rem;
 }
 
 @-webkit-keyframes rotation {
@@ -140,42 +173,29 @@ p {
     }
 }
 
-.spinner {
-    background: transparent;
-    height: 1rem;
-    width: 1rem;
-    border: white 2px solid;
-    border-radius: 0.5rem;
-    border-bottom: transparent;
-    border-right: transparent;
-    animation: roatation 2s infinite linear;
-    -webkit-animation: roatation 2s infinite linear;
-    position: absolute;
-    margin: 0.2rem 0.5rem;
-}
-
 .email-subscribe__privacy-policy {
     font-size: 0.6em;
+    color: #847db1;
 }
 
-@media (min-width: 1850px) {
-    body {
-        font-size: 22px;
-    }
+.privacy-policy {
+    position: absolute;
+    bottom: 15px;
+    max-width: 900px;
+    padding: 0 20px;
 }
 
 @media (max-width: 740px) {
-    .container {
-        width: 90%;
+    #sketch {
+        display: none;
     }
-    .email-subscribe__form {
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 0.5rem;
+    body {
+        background-color: #252ede;
     }
-
-    .email-subscribe__message {
-        grid-column-start: 1;
-        grid-column-end: 1;
-        grid-row: 3;
+    .privacy-policy {
+        position: relative;
+    }
+    .email-subscribe__privacy-policy {
+        color: #c5e6ff;
     }
 }
