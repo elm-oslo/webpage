@@ -1,9 +1,10 @@
-module Route exposing (..)
+module Route exposing (Route(..), fromUrl, href, modifyUrl, route, routeToString)
 
+import Browser.Navigation as Nav
 import Html exposing (Attribute)
 import Html.Attributes as Attr
-import UrlParser as Url exposing ((</>))
-import Navigation exposing (Location)
+import Url exposing (Url)
+import Url.Parser as Url exposing ((</>))
 
 
 type Route
@@ -29,44 +30,50 @@ route =
 
 routeToString : Route -> String
 routeToString r =
-    case r of
-        Home ->
-            ""
+    "#/"
+        ++ (case r of
+                Home ->
+                    ""
 
-        About ->
-            "about"
+                About ->
+                    "about"
 
-        Speakers ->
-            "speakers"
+                Speakers ->
+                    "speakers"
 
-        Speaker s ->
-            "speakers/" ++ s
+                Speaker s ->
+                    "speakers/" ++ s
 
-        Schedule ->
-            "schedule"
+                Schedule ->
+                    "schedule"
 
-        CodeOfConduct ->
-            "codeofconduct"
-
-
-routeToUrl : Route -> String
-routeToUrl r =
-    "#/" ++ (routeToString r)
+                CodeOfConduct ->
+                    "codeofconduct"
+           )
 
 
 href : Route -> Attribute msg
-href route =
-    Attr.href (routeToUrl route)
+href r =
+    Attr.href (routeToString r)
 
 
-modifyUrl : Route -> Cmd msg
-modifyUrl =
-    routeToUrl >> Navigation.modifyUrl
+modifyUrl : Nav.Key -> Route -> Cmd msg
+modifyUrl key =
+    routeToString >> Nav.replaceUrl key
 
 
-fromLocation : Location -> Maybe Route
-fromLocation location =
-    if String.isEmpty location.hash then
+{-| Lifted from: <https://github.com/rtfeldman/elm-spa-example/blob/master/src/Route.elm#L59-L65>
+-}
+parseUrlFragmentAsPath : Url.Url -> Maybe Route
+parseUrlFragmentAsPath url =
+    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+        |> Url.parse route
+
+
+fromUrl : Url -> Maybe Route
+fromUrl url =
+    if url.fragment |> Maybe.withDefault "" |> String.isEmpty then
         Just Home
+
     else
-        Url.parseHash route location
+        parseUrlFragmentAsPath url

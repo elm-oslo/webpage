@@ -1,5 +1,6 @@
 module Main exposing (main)
 
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -33,8 +34,8 @@ type Msg
     | SubmitCompleted (Result Error ())
 
 
-init : ( Model, Cmd Msg )
-init =
+init : () -> ( Model, Cmd Msg )
+init () =
     ( { email = "", emailSubmitStatus = NotStarted }, Cmd.none )
 
 
@@ -183,9 +184,9 @@ subscriptions model =
     Sub.none
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
+    Browser.element
         { init = init
         , update = update
         , view = view

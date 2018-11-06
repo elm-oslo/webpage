@@ -1,9 +1,9 @@
-module Site exposing (header_, nav_, information, footer_, viewPage)
+module Site exposing (footer_, header_, information, nav_, viewPage)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
-import Model exposing (Msg(..), Page(..), SponsorTier(..), Sponsor)
+import Model exposing (Msg(..), Page(..), Sponsor, SponsorTier(..))
 import Pages
 import Route
 import Svg exposing (defs, g, path, svg)
@@ -27,44 +27,44 @@ viewPage page =
                 CodeOfConduct ->
                     ( "codeofconduct", Pages.viewCodeOfConduct )
     in
-        section [ class <| "content__page open " ++ className ]
-            [ svg [ id "shapes" ]
-                []
-            , nav [ class "content__menu-wrapper" ]
-                [ div [ class "content__menu" ]
-                    [ a
-                        [ classList
-                            [ ( "content__menu-item", True )
-                            , ( "menu-item-active", page == About )
-                            ]
-                        , Route.href Route.About
+    section [ class <| "content__page open " ++ className ]
+        [ svg [ id "shapes" ]
+            []
+        , nav [ class "content__menu-wrapper" ]
+            [ div [ class "content__menu" ]
+                [ a
+                    [ classList
+                        [ ( "content__menu-item", True )
+                        , ( "menu-item-active", page == About )
                         ]
-                        [ text "What?" ]
-                    , a
-                        [ classList
-                            [ ( "content__menu-item", True )
-                            , ( "menu-item-active", page == Speakers )
-                            ]
-                        , Route.href Route.Speakers
-                        ]
-                        [ text "Who?" ]
-                    , a
-                        [ classList
-                            [ ( "content__menu-item", True )
-                            , ( "menu-item-active", page == Schedule )
-                            ]
-                        , Route.href Route.Schedule
-                        ]
-                        [ text "Schedule" ]
+                    , Route.href Route.About
                     ]
-                , a [ class "content__menu-close", Route.href Route.Home ]
-                    [ text "Close" ]
+                    [ text "What?" ]
+                , a
+                    [ classList
+                        [ ( "content__menu-item", True )
+                        , ( "menu-item-active", page == Speakers )
+                        ]
+                    , Route.href Route.Speakers
+                    ]
+                    [ text "Who?" ]
+                , a
+                    [ classList
+                        [ ( "content__menu-item", True )
+                        , ( "menu-item-active", page == Schedule )
+                        ]
+                    , Route.href Route.Schedule
+                    ]
+                    [ text "Schedule" ]
                 ]
-            , div [ class "content__box" ]
-                [ article [ class "information__block" ]
-                    [ content ]
-                ]
+            , a [ class "content__menu-close", Route.href Route.Home ]
+                [ text "Close" ]
             ]
+        , div [ class "content__box" ]
+            [ article [ class "information__block" ]
+                [ content ]
+            ]
+        ]
 
 
 main__ : Html Msg
@@ -164,36 +164,36 @@ footer_ hidden =
             Model.sponsors
                 |> List.filter (\s -> s.tier == Platinum)
     in
-        footer [ classList [ ( "hidden", hidden ) ] ]
-            [ div [ class "information-sponsors" ]
-                [ section [ class "information__block sponsors-platinum" ]
-                    [ h3 [ class "platinum" ]
-                        [ text "Platinum Sponsor" ]
-                    , p [ class "sponsor-forsale sponsor__list" ]
-                        (List.map viewSponsor platinum)
-                    ]
-                , section [ class "information__block sponsors-gold" ]
-                    [ h3 []
-                        [ text "Gold Sponsors" ]
-                    , p [ class "sponsor__list" ]
-                        (List.map viewSponsor gold)
-                    ]
-                , section [ class "information__block sponsors-silver" ]
-                    [ h3 []
-                        [ text "Silver Sponsors" ]
-                    , p [ class "sponsor-forsale sponsor__list" ]
-                        (List.map viewSponsor silver)
-                    ]
-                , section [ class "information__block sponsors-about" ]
-                    [ h3 []
-                        [ text "We 💛 our sponsors" ]
-                    , p []
-                        [ a [ href "https://drive.google.com/file/d/0B3Lh4pXvCufldDBoNC1zdXZLeVU/view", target "_blank" ]
-                            [ text "Sponsor our event?" ]
-                        ]
+    footer [ classList [ ( "hidden", hidden ) ] ]
+        [ div [ class "information-sponsors" ]
+            [ section [ class "information__block sponsors-platinum" ]
+                [ h3 [ class "platinum" ]
+                    [ text "Platinum Sponsor" ]
+                , p [ class "sponsor-forsale sponsor__list" ]
+                    (List.map viewSponsor platinum)
+                ]
+            , section [ class "information__block sponsors-gold" ]
+                [ h3 []
+                    [ text "Gold Sponsors" ]
+                , p [ class "sponsor__list" ]
+                    (List.map viewSponsor gold)
+                ]
+            , section [ class "information__block sponsors-silver" ]
+                [ h3 []
+                    [ text "Silver Sponsors" ]
+                , p [ class "sponsor-forsale sponsor__list" ]
+                    (List.map viewSponsor silver)
+                ]
+            , section [ class "information__block sponsors-about" ]
+                [ h3 []
+                    [ text "We 💛 our sponsors" ]
+                , p []
+                    [ a [ href "https://drive.google.com/file/d/0B3Lh4pXvCufldDBoNC1zdXZLeVU/view", target "_blank" ]
+                        [ text "Sponsor our event?" ]
                     ]
                 ]
             ]
+        ]
 
 
 viewSponsor : Sponsor -> Html a

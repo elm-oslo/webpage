@@ -109,6 +109,7 @@ p {
     height: 2.375rem;
     max-width: 300px;
     width: 100%;
+    text-align: center;
 }
 
 .email-subscribe__input--invalid {

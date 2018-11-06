@@ -1,11 +1,10 @@
-port module Ports
-    exposing
-        ( triggerAnim
-        , init
-        , startBuyTicketAnim
-        , stopBuyTicketAnim
-        , scrollToId
-        )
+port module Ports exposing
+    ( init
+    , scrollToId
+    , startBuyTicketAnim
+    , stopBuyTicketAnim
+    , triggerAnim
+    )
 
 
 port init : () -> Cmd msg
