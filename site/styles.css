@@ -156,6 +156,12 @@ p {
     margin: 0.2rem 0.5rem;
 }
 
+.cfp-link {
+  color: #c5e6ff;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
 @-webkit-keyframes rotation {
     from {
         -webkit-transform: rotate(0deg);

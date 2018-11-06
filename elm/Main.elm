@@ -65,18 +65,17 @@ update msg model =
                         Http.BadStatus { status } ->
                             if status.code == 400 then
                                 InvalidEmail
-
                             else
                                 UnknownError
 
                         _ ->
                             UnknownError
             in
-            ( { model
-                | emailSubmitStatus = Failed errorType
-              }
-            , Cmd.none
-            )
+                ( { model
+                    | emailSubmitStatus = Failed errorType
+                  }
+                , Cmd.none
+                )
 
 
 view : Model -> Html.Html Msg
@@ -89,13 +88,15 @@ view model =
                     ]
                 , article []
                     [ p [ class "email-subscribe__intro" ]
-                        [ text "We’re ready again. Are you?"
+                        [ text "Ready, set, go!"
                         , br [] []
-                        , text "Save the date: February 16 2019."
+                        , text "February 16 2019."
                         , br [] []
-                        , text "Subscribe for our email updates."
+                        , text "Subscribe for email updates."
                         ]
                     , emailSubscribeForm model
+                    , p [ class "email-subscribe__privacy-policy" ]
+                        [ a [ href "https://goo.gl/TbMg6h", class "cfp-link" ] [ text "Speaker? Check out our CfP!" ] ]
                     ]
                 ]
             , viewPrivacyPolicy
@@ -119,11 +120,11 @@ emailSubscribeForm model =
             , ( "email-subscribe__form--success", submitSuccessfull )
             ]
     in
-    section [ classList classes ]
-        [ emailInput model
-        , submitButton model
-        , formFeedbackMessage model
-        ]
+        section [ classList classes ]
+            [ emailInput model
+            , submitButton model
+            , formFeedbackMessage model
+            ]
 
 
 emailInput : Model -> Html.Html Msg
@@ -140,16 +141,16 @@ emailInput model =
             , ( "email-subscribe__input--invalid", isInvalid )
             ]
     in
-    -- TODO send SubmitRequested on enter
-    input
-        [ classList classes
-        , type_ "text"
-        , disabled submitSuccessfull
-        , placeholder "Your email"
-        , value model.email
-        , onInput Email
-        ]
-        []
+        -- TODO send SubmitRequested on enter
+        input
+            [ classList classes
+            , type_ "text"
+            , disabled submitSuccessfull
+            , placeholder "Your email"
+            , value model.email
+            , onInput Email
+            ]
+            []
 
 
 submitButton : Model -> Html.Html Msg
@@ -170,15 +171,15 @@ submitButton model =
             [ ( "spinner", isLoading )
             ]
     in
-    button
-        [ classList classes
-        , disabled submitSuccessfull
-        , type_ "button"
-        , onClick SubmitRequested
-        ]
-        [ text "Subscribe"
-        , span [ classList spinnerClasses ] []
-        ]
+        button
+            [ classList classes
+            , disabled submitSuccessfull
+            , type_ "button"
+            , onClick SubmitRequested
+            ]
+            [ text "Subscribe"
+            , span [ classList spinnerClasses ] []
+            ]
 
 
 subscriptions : Model -> Sub Msg
@@ -209,7 +210,7 @@ formFeedbackMessage model =
 
         Completed ->
             div [ class "email-subscribe__message" ]
-                [ text "Yay! You have been subscribed successfully 🎉" ]
+                [ text "Done! 🎉" ]
 
         _ ->
             div [] []
@@ -230,7 +231,7 @@ postEmail email =
         decoder =
             Decode.succeed ()
     in
-    Http.post url body decoder
+        Http.post url body decoder
 
 
 viewPrivacyPolicy : Html a
@@ -244,8 +245,8 @@ viewPrivacyPolicy =
                 [ text "We only store your email address and nothing else. " ]
             , span
                 []
-                [ text "If you want to be taken off the mailing list, please send an email to " ]
+                [ text "Contact us at " ]
             , a [ href "mailto:hello@osloelmday.com?subject=Unsubscribe" ] [ text "hello@osloelmday.com" ]
-            , span [] [ text " from the email address you registered with." ]
+            , span [] [ text " if you want to be taken off the mailing list." ]
             ]
         ]
