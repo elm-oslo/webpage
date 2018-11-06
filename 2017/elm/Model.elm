@@ -1,19 +1,21 @@
-module Model
-    exposing
-        ( Model
-        , Msg(..)
-        , Page(..)
-        , Sponsor
-        , SponsorTier(..)
-        , Speaker
-        , ScheduleEntry(..)
-        , sponsors
-        , speakers
-        , scheduleEntries
-        )
+module Model exposing
+    ( Model
+    , Msg(..)
+    , Page(..)
+    , ScheduleEntry(..)
+    , Speaker
+    , Sponsor
+    , SponsorTier(..)
+    , scheduleEntries
+    , speakers
+    , sponsors
+    )
 
 import Animation
+import Browser
+import Browser.Navigation as Nav
 import Route exposing (Route)
+import Url
 
 
 type Page
@@ -25,15 +27,17 @@ type Page
 
 type Msg
     = AnimationMsg Animation.Msg
-    | SetRoute (Maybe Route)
-    | NavigateTo Route
     | TicketButtonMouseEnter
     | TicketButtonMouseLeave
+    | NavigateTo Route
+    | LinkClicked Browser.UrlRequest
+    | UrlChanged Url.Url
     | NoOp
 
 
 type alias Model =
     { anim : Animation.Model
+    , navKey : Nav.Key
     , page : Maybe Page
     }
 

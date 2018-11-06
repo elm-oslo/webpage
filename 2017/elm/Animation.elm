@@ -1,11 +1,12 @@
-module Animation exposing (..)
+module Animation exposing (GradientPair, Model, Msg(..), ShapeGenerator(..), Square, Triangle, evenOddShapes, gradientPairs, height, init, initialModel, initialTranslateX, moveR, moveX, randomGradientIndex, randomShapes, randomShapesFromSeed, randomSquare, randomStart, randomTriangle, sizes, spreadOverWidth, stepSquare, stepTriangle, subscriptions, trianglePoints, update, view, viewGradient, viewGradients, viewSquare, viewSvgParts, viewTriangle, width)
 
-import Random.Pcg as Random exposing (Generator, Seed)
+import Array exposing (Array)
+import Browser.Events
+import Html
+import Random exposing (Generator, Seed)
 import Svg exposing (Svg)
 import Svg.Attributes exposing (..)
-import Html
-import Array exposing (Array)
-import AnimationFrame
+import Time
 
 
 height : Float
@@ -33,7 +34,7 @@ randomGradientIndex pairs =
         numberOfPairs =
             Array.length pairs
     in
-        Random.int 0 numberOfPairs
+    Random.int 0 numberOfPairs
 
 
 randomStart : Float -> Float -> Generator ( Float, Float, ( Float, Float, Float ) )
@@ -61,13 +62,13 @@ randomStart modifier minWidth =
                     )
 
         randomY =
-            (Random.float minWidth (height - multipledMinWidth))
+            Random.float minWidth (height - multipledMinWidth)
     in
-        Random.map3
-            (,,)
-            randomY
-            randomSize
-            (Random.map3 (,,) randomVX randomVR randomRotation)
+    Random.map3
+        (\a b c -> ( a, b, c ))
+        randomY
+        randomSize
+        (Random.map3 (\a b c -> ( a, b, c )) randomVX randomVR randomRotation)
 
 
 sizes : Array Float
@@ -157,7 +158,7 @@ randomTriangle x =
 viewGradient : Int -> GradientPair -> Svg msg
 viewGradient idIndex ( start, end ) =
     Svg.radialGradient
-        [ Svg.Attributes.id ("gradient" ++ toString idIndex)
+        [ Svg.Attributes.id ("gradient" ++ String.fromInt idIndex)
         , Svg.Attributes.cx "50%"
         , Svg.Attributes.cy "50%"
         , Svg.Attributes.r "75%"
@@ -178,14 +179,14 @@ viewGradients =
 viewSquare : Square -> Svg msg
 viewSquare square =
     Svg.rect
-        [ x <| toString square.x
-        , y <| toString square.y
+        [ x <| String.fromFloat square.x
+        , y <| String.fromFloat square.y
         , stroke "none"
-        , Svg.Attributes.width <| toString square.size
-        , Svg.Attributes.height <| toString square.size
-        , fill <| "url(#gradient" ++ toString square.gradientIndex ++ ")"
+        , Svg.Attributes.width <| String.fromFloat square.size
+        , Svg.Attributes.height <| String.fromFloat square.size
+        , fill <| "url(#gradient" ++ String.fromInt square.gradientIndex ++ ")"
         , class "shape"
-        , Svg.Attributes.style ("transform: translateX(" ++ toString square.transformX ++ "px) rotate(" ++ toString square.rotation ++ "deg);")
+        , Svg.Attributes.style ("transform: translateX(" ++ String.fromFloat square.transformX ++ "px) rotate(" ++ String.fromFloat square.rotation ++ "deg);")
         , Svg.Attributes.rx "3"
         , Svg.Attributes.ry "3"
         ]
@@ -194,17 +195,17 @@ viewSquare square =
 
 trianglePoints : Triangle -> String
 trianglePoints triangle =
-    [ toString triangle.x
+    [ String.fromFloat triangle.x
     , ","
-    , toString triangle.y
+    , String.fromFloat triangle.y
     , " "
-    , toString (triangle.x + triangle.size)
+    , String.fromFloat (triangle.x + triangle.size)
     , ","
-    , toString (triangle.y + triangle.size)
+    , String.fromFloat (triangle.y + triangle.size)
     , " "
-    , toString triangle.x
+    , String.fromFloat triangle.x
     , ","
-    , toString (triangle.y + 2 * triangle.size)
+    , String.fromFloat (triangle.y + 2 * triangle.size)
     ]
         |> String.join ""
 
@@ -214,15 +215,15 @@ viewTriangle triangle =
     Svg.polygon
         [ points <| trianglePoints triangle
         , stroke "none"
-        , Svg.Attributes.width <| toString triangle.size
-        , Svg.Attributes.height <| toString triangle.size
-        , fill <| "url(#gradient" ++ toString triangle.gradientIndex ++ ")"
+        , Svg.Attributes.width <| String.fromFloat triangle.size
+        , Svg.Attributes.height <| String.fromFloat triangle.size
+        , fill <| "url(#gradient" ++ String.fromInt triangle.gradientIndex ++ ")"
         , class "shape"
         , Svg.Attributes.style
             ("transform: translateX("
-                ++ toString triangle.transformX
+                ++ String.fromFloat triangle.transformX
                 ++ "px) rotate("
-                ++ toString triangle.rotation
+                ++ String.fromFloat triangle.rotation
                 ++ "deg);"
             )
         ]
@@ -252,7 +253,7 @@ type alias Model =
 type Msg
     = NewSquares (List Square)
     | NewTriangles (List Triangle)
-    | MoveX Float
+    | MoveX Time.Posix
 
 
 moveX : { a | x : Float, transformX : Float, velocityX : Float, size : Float, initialRotation : Float } -> Float
@@ -261,13 +262,15 @@ moveX { x, transformX, velocityX, size, initialRotation } =
         newX =
             transformX + velocityX
     in
-        if x + newX > width * 1.5 then
-            if initialRotation > 0 then
-                -1.75 * width
-            else
-                0
+    if x + newX > width * 1.5 then
+        if initialRotation > 0 then
+            -1.75 * width
+
         else
-            newX
+            0
+
+    else
+        newX
 
 
 moveR : { a | rotation : Float, velocityR : Float } -> Float
@@ -276,10 +279,11 @@ moveR { rotation, velocityR } =
         newRotation =
             rotation + velocityR
     in
-        if newRotation > 360 then
-            newRotation - 360
-        else
-            newRotation
+    if newRotation > 360 then
+        newRotation - 360
+
+    else
+        newRotation
 
 
 stepSquare : Square -> Square
@@ -306,10 +310,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NewSquares squares ->
-            ( { model | squares = (model.squares ++ squares) }, Cmd.none )
+            ( { model | squares = model.squares ++ squares }, Cmd.none )
 
         NewTriangles triangles ->
-            ( { model | triangles = (model.triangles ++ triangles) }, Cmd.none )
+            ( { model | triangles = model.triangles ++ triangles }, Cmd.none )
 
         MoveX newDiff ->
             ( { model
@@ -324,11 +328,11 @@ spreadOverWidth : Int -> Float -> Float -> List Float
 spreadOverWidth n min max =
     let
         step =
-            (max - min) / (toFloat n)
+            (max - min) / toFloat n
     in
-        List.range 0 n
-            |> List.map toFloat
-            |> List.map (\index -> min + index * step)
+    List.range 0 n
+        |> List.map toFloat
+        |> List.map (\index -> min + index * step)
 
 
 type ShapeGenerator
@@ -341,8 +345,9 @@ evenOddShapes spread =
     spread
         |> List.indexedMap
             (\i size ->
-                if i % 2 == 0 then
+                if modBy 2 i == 0 then
                     SquareShape size
+
                 else
                     TriangleShape size
             )
@@ -366,21 +371,21 @@ randomShapesFromSeed : Model -> Model
 randomShapesFromSeed model =
     evenOddShapes (spreadOverWidth 8 -width width)
         |> List.foldl
-            (\shape model ->
+            (\shape updatedModel ->
                 case shape of
                     SquareShape size ->
                         let
                             ( newSquare, nextSeed ) =
-                                Random.step (randomSquare size) model.seed
+                                Random.step (randomSquare size) updatedModel.seed
                         in
-                            { model | seed = nextSeed, squares = newSquare :: model.squares }
+                        { updatedModel | seed = nextSeed, squares = newSquare :: updatedModel.squares }
 
                     TriangleShape size ->
                         let
                             ( newTriangle, nextSeed ) =
-                                Random.step (randomTriangle size) model.seed
+                                Random.step (randomTriangle size) updatedModel.seed
                         in
-                            { model | seed = nextSeed, triangles = newTriangle :: model.triangles }
+                        { updatedModel | seed = nextSeed, triangles = newTriangle :: updatedModel.triangles }
             )
             model
 
@@ -403,7 +408,7 @@ init =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ AnimationFrame.diffs (\seed -> MoveX seed) ]
+        [ Browser.Events.onAnimationFrame (\seed -> MoveX seed) ]
 
 
 
