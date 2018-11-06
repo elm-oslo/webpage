@@ -89,9 +89,11 @@ view model =
                     ]
                 , article []
                     [ p [ class "email-subscribe__intro" ]
-                        [ text "We're hard at work planning Oslo Elm Day 2019. Want to know what's happening?"
+                        [ text "We’re ready again. Are you?"
                         , br [] []
-                        , text "Sign up for our email updates!"
+                        , text "Save the date: February 16 2019."
+                        , br [] []
+                        , text "Subscribe for our email updates."
                         ]
                     , emailSubscribeForm model
                     ]
@@ -143,7 +145,7 @@ emailInput model =
         [ classList classes
         , type_ "text"
         , disabled submitSuccessfull
-        , placeholder "Email"
+        , placeholder "Your email"
         , value model.email
         , onInput Email
         ]
@@ -174,7 +176,7 @@ submitButton model =
         , type_ "button"
         , onClick SubmitRequested
         ]
-        [ text "Sign up!"
+        [ text "Subscribe"
         , span [ classList spinnerClasses ] []
         ]
 
