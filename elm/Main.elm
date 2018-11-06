@@ -88,15 +88,13 @@ view model =
                     ]
                 , article []
                     [ p [ class "email-subscribe__intro" ]
-                        [ text "Ready, set, go!"
-                        , br [] []
-                        , text "February 16 2019."
+                        [ text "February 16 2019."
                         , br [] []
                         , text "Subscribe for email updates."
                         ]
                     , emailSubscribeForm model
                     , p [ class "email-subscribe__privacy-policy" ]
-                        [ a [ href "https://goo.gl/TbMg6h", class "cfp-link" ] [ text "Speaker? Check out our CfP!" ] ]
+                        [ a [ href "https://goo.gl/TbMg6h", class "cfp-link" ] [ text "Speaker? See our CfP" ] ]
                     ]
                 ]
             , viewPrivacyPolicy
