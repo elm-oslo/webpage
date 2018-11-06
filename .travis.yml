@@ -25,7 +25,7 @@ deploy:
           all_branches: true
     - provider: s3
       access_key_id: AKIAJORVT7GGMLEJS2RA
-      ecret_access_key:
+      secret_access_key:
           secure: 'v9a+VJo1pwsTg89qXwsN8Owyx/lj+DBL5s8qug2uEM7kdHrPg3FH6g/LAa4RTdEpVC45XYpOmYFUlEDLaeaYxCgBm5bpIMHOf0trTjWkUtjvGZENqnPhb4l3rY5E1vV2MBdYXi861Pf5WH8CxlLj3/kSPu7qN4EW+7/H0krNlRm5JUvRhZ7v6ZBw80JcZHdR+yqDx2RZyrGKiuhpCzGmQmPKqffFzchqMVX1OVT6yFwQMr7UXxna1GcyISHUEJ2R/IqCrWNZx4LLwWi/SFcaqxpBh48pJ05JGVf0E7YvZDXopYJk5Cj4AMd1P23aOrd8IgucClvcFFLVw4P/Luc01WmDXg8XQU3aWI5EnJSyG43QR0oeX605Z1OiEqgzYQlNNS45xuIs4uVfOIZf90t5C5gMsKsNaWjhxnVDZWmJFhhJziPYBY2MpFkxMySGF818meTb4nByE9yqMWyYnBsUOluqvEbtpOwPSMHlC8Ho72aKsZ1jhMHLP138VO3xsvB0llMaIpDqX32UjJSeC0/os/xG83AX448cVMQCfaVUmFJcbfWWmcAILOlQ3zv2whHfiIV9j/rEj1rPl0TzVUolZNdX+lyGfl1On2ygwFadLzQIXSU115Fq9v63i/+ypNrFfnjFmafm/9o8amh3lDiYDClX4I6vniZ/h5zbAENK3QU='
       bucket: elm-oslo-webpage
       local-dir: site
