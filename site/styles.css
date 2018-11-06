@@ -176,14 +176,14 @@ p {
 }
 
 .email-subscribe__privacy-policy {
-    font-size: 0.6em;
+    font-size: 0.5em;
     color: #847db1;
 }
 
 .privacy-policy {
     position: absolute;
     bottom: 15px;
-    max-width: 900px;
+    max-width: 570px;
     padding: 0 20px;
     text-align: center;
 }
