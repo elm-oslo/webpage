@@ -1,32 +1,34 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Animation
+import Browser
+import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..), Page(..))
-import Navigation exposing (Location)
 import Ports
 import Route exposing (Route)
 import Site
+import Url exposing (Url)
 
 
-init : Location -> ( Model, Cmd Msg )
-init loc =
+init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url navKey =
     let
         ( animModel, animCmd ) =
             Animation.init
 
         ( model, cmd ) =
-            setRoute (Route.fromLocation loc) { anim = animModel, page = Nothing }
+            setRoute (Route.fromUrl url) { anim = animModel, page = Nothing, navKey = navKey }
     in
-        ( model
-        , Cmd.batch
-            [ Cmd.map AnimationMsg animCmd
-            , cmd
-            , Ports.init ()
-            ]
-        )
+    ( model
+    , Cmd.batch
+        [ Cmd.map AnimationMsg animCmd
+        , cmd
+        , Ports.init ()
+        ]
+    )
 
 
 routeToPage : Route -> Maybe Page
@@ -57,7 +59,7 @@ setRoute mbRoute model =
         scrollCmd =
             case mbRoute of
                 Just (Route.Speaker s) ->
-                    (Ports.scrollToId s)
+                    Ports.scrollToId s
 
                 _ ->
                     Cmd.none
@@ -69,15 +71,16 @@ setRoute mbRoute model =
         animCmd =
             if newPage /= Nothing then
                 Ports.triggerAnim ()
+
             else
                 Cmd.none
     in
-        ( { model | page = newPage }
-        , Cmd.batch
-            [ scrollCmd
-            , animCmd
-            ]
-        )
+    ( { model | page = newPage }
+    , Cmd.batch
+        [ scrollCmd
+        , animCmd
+        ]
+    )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -91,13 +94,25 @@ update msg model =
                 ( animModel, animMsg ) =
                     Animation.update animationMsg model.anim
             in
-                ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
+            ( { model | anim = animModel }, Cmd.map AnimationMsg animMsg )
 
-        SetRoute mbRoute ->
-            setRoute mbRoute model
+        LinkClicked urlRequest ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model
+                    , Nav.pushUrl model.navKey (Url.toString url)
+                    )
+
+                Browser.External href ->
+                    ( model
+                    , Nav.load href
+                    )
+
+        UrlChanged url ->
+            setRoute (Route.fromUrl url) model
 
         NavigateTo route ->
-            ( model, Route.modifyUrl route )
+            ( model, Route.modifyUrl model.navKey route )
 
         TicketButtonMouseEnter ->
             ( model, Ports.startBuyTicketAnim () )
@@ -106,7 +121,7 @@ update msg model =
             ( model, Ports.stopBuyTicketAnim () )
 
 
-view : Model -> Html.Html Msg
+view : Model -> Browser.Document Msg
 view model =
     let
         pageOpen =
@@ -117,31 +132,33 @@ view model =
                 Nothing ->
                     False
     in
-        Html.div []
-            [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
-                [ Site.header_
-                , Site.nav_
-                , div [ class "backdrop-wrapper animate" ]
-                    [ Html.map AnimationMsg <| Animation.view model.anim
-                    ]
-                , Site.information
+    { title = "Oslo Elm Day 2017"
+    , body =
+        [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
+            [ Site.header_
+            , Site.nav_
+            , div [ class "backdrop-wrapper animate" ]
+                [ Html.map AnimationMsg <| Animation.view model.anim
                 ]
-            , Site.footer_ pageOpen
-            , div
-                [ classList
-                    [ ( "overlay", True )
-                    , ( "open", pageOpen )
-                    ]
-                , onClick (NavigateTo Route.Home)
-                ]
-                []
-            , case model.page of
-                Just page ->
-                    Site.viewPage page
-
-                Nothing ->
-                    text ""
+            , Site.information
             ]
+        , Site.footer_ pageOpen
+        , div
+            [ classList
+                [ ( "overlay", True )
+                , ( "open", pageOpen )
+                ]
+            , onClick (NavigateTo Route.Home)
+            ]
+            []
+        , case model.page of
+            Just page ->
+                Site.viewPage page
+
+            Nothing ->
+                text ""
+        ]
+    }
 
 
 subscriptions : Model -> Sub Msg
@@ -149,11 +166,13 @@ subscriptions model =
     Sub.map AnimationMsg (Animation.subscriptions model.anim)
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Navigation.program (Route.fromLocation >> SetRoute)
+    Browser.application
         { init = init
         , update = update
         , view = view
         , subscriptions = subscriptions
+        , onUrlRequest = LinkClicked
+        , onUrlChange = UrlChanged
         }

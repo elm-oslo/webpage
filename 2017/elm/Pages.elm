@@ -1,8 +1,8 @@
-module Pages exposing (viewAbout, viewSpeakers, viewSchedule, viewCodeOfConduct)
+module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (Speaker, ScheduleEntry(..), speakers, scheduleEntries)
+import Model exposing (ScheduleEntry(..), Speaker, scheduleEntries, speakers)
 import Route
 
 
@@ -179,7 +179,7 @@ viewSpeakers =
          , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
          ]
-            ++ (List.map viewSpeaker speakers)
+            ++ List.map viewSpeaker speakers
         )
 
 
@@ -205,7 +205,7 @@ viewSchedule =
          , p []
             [ text "Oslo Elm Day is a single-track conference, with a speaker lineup consisting of both world-renowned Elm experts and local Elm users, experienced with using Elm in production." ]
          ]
-            ++ (List.map viewScheduleEntry scheduleEntries)
+            ++ List.map viewScheduleEntry scheduleEntries
         )
 
 
@@ -219,7 +219,7 @@ viewScheduleEntry scheduleEntry =
                 , div [ class "speaker__content" ]
                     [ h3 [ class "speaker__name", id talk.speaker.id ]
                         [ a [ Route.href <| Route.Speaker talk.speaker.id ] [ text talk.speaker.name ], span [] [ text (" – " ++ talk.title) ] ]
-                    , p [ style [ ( "font-style", "italic" ) ] ]
+                    , p [ style "font-style" "italic" ]
                         [ text talk.abstract ]
                     ]
                 ]
@@ -241,7 +241,7 @@ viewScheduleEntry scheduleEntry =
                 , div [ class "speaker__content" ]
                     [ h3 [ class "speaker__name" ]
                         [ text title ]
-                    , p [ style [ ( "font-style", "italic" ) ] ]
+                    , p [ style "font-style" "italic" ]
                         [ text desc ]
                     ]
                 ]

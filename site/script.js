@@ -8,4 +8,4 @@ function trackpage() {
     });
 }
 
-var app = Elm.Main.embed(document.querySelector('#app'));
+var app = Elm.Main.init({ node: document.querySelector('#app') });
