@@ -91,7 +91,11 @@ view model =
                     [ p [ class "email-subscribe__intro" ]
                         [ text "February 16 2019."
                         , br [] []
-                        , text "Subscribe for email updates."
+                        , if model.emailSubmitStatus == Completed then
+                            text ""
+
+                          else
+                            text "Subscribe for email updates."
                         ]
                     , emailSubscribeForm model
                     , p [ class "email-subscribe__privacy-policy" ]
@@ -120,10 +124,15 @@ emailSubscribeForm model =
             ]
     in
     section [ classList classes ]
-        [ emailInput model
-        , submitButton model
-        , formFeedbackMessage model
-        ]
+        (if model.emailSubmitStatus == Completed then
+            [ formFeedbackMessage model ]
+
+         else
+            [ emailInput model
+            , submitButton model
+            , formFeedbackMessage model
+            ]
+        )
 
 
 emailInput : Model -> Html.Html Msg
@@ -218,8 +227,11 @@ formFeedbackMessage model =
                 [ text "Something went wrong, please try again later" ]
 
         Completed ->
-            div [ class "email-subscribe__message" ]
-                [ text "Done! 🎉" ]
+            div [ class "email-subscribe__message email-subscribe__message--success" ]
+                [ text "Thanks for staying on the ball!"
+                , br [] []
+                , text "We’ll keep you updated 🎉"
+                ]
 
         _ ->
             div [] []
