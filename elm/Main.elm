@@ -267,7 +267,7 @@ viewPrivacyPolicy =
             , span
                 []
                 [ text "Contact us at " ]
-            , a [ href "mailto:hello@osloelmday.com?subject=Unsubscribe" ] [ text "hello@osloelmday.com" ]
+            , a [ href "mailto:hello@osloelmday.no?subject=Unsubscribe" ] [ text "hello@osloelmday.no" ]
             , span [] [ text " if you want to be taken off the mailing list." ]
             ]
         ]
