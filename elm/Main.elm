@@ -218,7 +218,7 @@ postEmail : String -> Http.Request ()
 postEmail email =
     let
         url =
-            "https://a9qtvb8mjc.execute-api.us-east-1.amazonaws.com/default/email-subscribe"
+            "https://apcq90j6pe.execute-api.us-east-1.amazonaws.com/default/email-subscribe"
 
         body =
             Http.jsonBody <|
