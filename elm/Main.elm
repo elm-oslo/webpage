@@ -65,17 +65,18 @@ update msg model =
                         Http.BadStatus { status } ->
                             if status.code == 400 then
                                 InvalidEmail
+
                             else
                                 UnknownError
 
                         _ ->
                             UnknownError
             in
-                ( { model
-                    | emailSubmitStatus = Failed errorType
-                  }
-                , Cmd.none
-                )
+            ( { model
+                | emailSubmitStatus = Failed errorType
+              }
+            , Cmd.none
+            )
 
 
 view : Model -> Html.Html Msg
@@ -118,11 +119,11 @@ emailSubscribeForm model =
             , ( "email-subscribe__form--success", submitSuccessfull )
             ]
     in
-        section [ classList classes ]
-            [ emailInput model
-            , submitButton model
-            , formFeedbackMessage model
-            ]
+    section [ classList classes ]
+        [ emailInput model
+        , submitButton model
+        , formFeedbackMessage model
+        ]
 
 
 emailInput : Model -> Html.Html Msg
@@ -139,16 +140,26 @@ emailInput model =
             , ( "email-subscribe__input--invalid", isInvalid )
             ]
     in
-        -- TODO send SubmitRequested on enter
-        input
-            [ classList classes
-            , type_ "text"
-            , disabled submitSuccessfull
-            , placeholder "Your email"
-            , value model.email
-            , onInput Email
-            ]
-            []
+    input
+        [ classList classes
+        , type_ "text"
+        , disabled submitSuccessfull
+        , placeholder "Your email"
+        , value model.email
+        , onInput Email
+        , Html.Events.on "keyup"
+            (Decode.field "key" Decode.string
+                |> Decode.andThen
+                    (\string ->
+                        if string == "Enter" then
+                            Decode.succeed SubmitRequested
+
+                        else
+                            Decode.fail "Foo"
+                    )
+            )
+        ]
+        []
 
 
 submitButton : Model -> Html.Html Msg
@@ -169,15 +180,15 @@ submitButton model =
             [ ( "spinner", isLoading )
             ]
     in
-        button
-            [ classList classes
-            , disabled submitSuccessfull
-            , type_ "button"
-            , onClick SubmitRequested
-            ]
-            [ text "Subscribe"
-            , span [ classList spinnerClasses ] []
-            ]
+    button
+        [ classList classes
+        , disabled submitSuccessfull
+        , type_ "button"
+        , onClick SubmitRequested
+        ]
+        [ text "Subscribe"
+        , span [ classList spinnerClasses ] []
+        ]
 
 
 subscriptions : Model -> Sub Msg
@@ -229,7 +240,7 @@ postEmail email =
         decoder =
             Decode.succeed ()
     in
-        Http.post url body decoder
+    Http.post url body decoder
 
 
 viewPrivacyPolicy : Html a
