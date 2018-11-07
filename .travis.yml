@@ -11,7 +11,7 @@ cache:
 install:
     - npm install -g elm@$ELM_VERSION
 script:
-    - travis_retry elm make elm/Main.elm --output site/elm.js --optimize
+    - travis_retry elm make elm/Main.elm --output site/elm2019.js --optimize
 deploy:
     - provider: s3
       access_key_id: AKIAJORVT7GGMLEJS2RA
