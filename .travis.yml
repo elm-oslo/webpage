@@ -1,7 +1,7 @@
 language: node_js
 node_js: node
 env:
-    - ELM_VERSION=0.19.0
+    - ELM_VERSION=0.19.0 OUTPUT_FILENAME=site/elm2019.js OUTPUT_MINIFIED=site/elm.min.js
 cache:
     directories:
         - elm-stuff/build-artifacts
@@ -9,9 +9,10 @@ cache:
         - sysconfcpus
         - '$HOME/.npm'
 install:
-    - npm install -g elm@$ELM_VERSION
+    - npm install -g elm@$ELM_VERSION uglify-js
 script:
-    - travis_retry elm make elm/Main.elm --output site/elm2019.js --optimize
+    - travis_retry elm make elm/Main.elm --output $OUTPUT_FILENAME --optimize
+    - travis_retry uglifyjs $OUTPUT_FILENAME --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=$OUTPUT_MINIFIED
 deploy:
     - provider: s3
       access_key_id: AKIAJORVT7GGMLEJS2RA
