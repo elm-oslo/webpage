@@ -6,7 +6,7 @@
 Run the site using [elm-live](https://github.com/tomekwi/elm-live)
 
 ```shell
-$ elm-live elm/Main.elm --dir=./site -- --output=./site/elm.js
+$ elm-live elm/Main.elm --dir=./site -- --output=./site/elm.min.js
 ```
 
 ## Deploy
