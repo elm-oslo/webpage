@@ -1,203 +1,157 @@
 module Main exposing (main)
 
 import Browser
+import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onInput)
-import Http exposing (Error)
-import Json.Decode as Decode
-import Json.Encode as Encode
-import Task exposing (Task)
+import Html.Events exposing (onClick)
+import Model exposing (Model, Msg(..), Page(..))
+import Ports
+import Route exposing (Route)
+import Site
+import Url exposing (Url)
 
 
-type alias Model =
-    { email : String
-    , emailSubmitStatus : SubmitStatus
-    }
+init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url navKey =
+    let
+        ( model, cmd ) =
+            setRoute (Route.fromUrl url) { page = Nothing, navKey = navKey }
+    in
+    ( model
+    , Cmd.batch
+        [ cmd
+        , Ports.init ()
+        ]
+    )
 
 
-type SubmitStatus
-    = Requested
-    | NotStarted
-    | Completed
-    | Failed ServerError
+routeToPage : Route -> Maybe Page
+routeToPage route =
+    case route of
+        Route.Home ->
+            Nothing
+
+        Route.About ->
+            Just About
+
+        Route.Speakers ->
+            Just Speakers
+
+        Route.Speaker s ->
+            Just Speakers
+
+        Route.Schedule ->
+            Just Schedule
+
+        Route.CodeOfConduct ->
+            Just CodeOfConduct
 
 
-type ServerError
-    = InvalidEmail
-    | UnknownError
+setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
+setRoute mbRoute model =
+    let
+        scrollCmd =
+            case mbRoute of
+                Just (Route.Speaker s) ->
+                    Ports.scrollToId s
 
+                _ ->
+                    Cmd.none
 
-type Msg
-    = Email String
-    | SubmitRequested
-    | SubmitCompleted (Result Error ())
+        newPage =
+            mbRoute
+                |> Maybe.andThen routeToPage
 
+        animCmd =
+            if newPage /= Nothing then
+                Ports.triggerAnim ()
 
-init : () -> ( Model, Cmd Msg )
-init () =
-    ( { email = "", emailSubmitStatus = NotStarted }, Cmd.none )
+            else
+                Cmd.none
+    in
+    ( { model | page = newPage }
+    , Cmd.batch
+        [ scrollCmd
+        , animCmd
+        ]
+    )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Email email ->
-            ( { model | email = email }, Cmd.none )
+        NoOp ->
+            ( model, Cmd.none )
 
-        SubmitRequested ->
-            ( { model | emailSubmitStatus = Requested }
-            , Http.send SubmitCompleted (postEmail model.email)
-            )
+        LinkClicked urlRequest ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model
+                    , Nav.pushUrl model.navKey (Url.toString url)
+                    )
 
-        SubmitCompleted (Ok _) ->
-            ( { model
-                | email = ""
-                , emailSubmitStatus = Completed
-              }
-            , Cmd.none
-            )
+                Browser.External href ->
+                    ( model
+                    , Nav.load href
+                    )
 
-        SubmitCompleted (Err error) ->
-            let
-                errorType =
-                    case error of
-                        Http.BadStatus { status } ->
-                            if status.code == 400 then
-                                InvalidEmail
+        UrlChanged url ->
+            setRoute (Route.fromUrl url) model
 
-                            else
-                                UnknownError
+        NavigateTo route ->
+            ( model, Route.modifyUrl model.navKey route )
 
-                        _ ->
-                            UnknownError
-            in
-            ( { model
-                | emailSubmitStatus = Failed errorType
-              }
-            , Cmd.none
-            )
+        TicketButtonMouseEnter ->
+            ( model, Ports.startBuyTicketAnim () )
+
+        TicketButtonMouseLeave ->
+            ( model, Ports.stopBuyTicketAnim () )
 
 
-view : Model -> Html.Html Msg
+view : Model -> Browser.Document Msg
 view model =
-    div []
-        [ main_ []
-            [ div [ class "container" ]
-                [ div [ class "logo" ]
-                    [ img [ src "images/elm_logo_2019.svg" ] []
-                    ]
-                , article []
-                    [ p [ class "email-subscribe__intro" ]
-                        [ text "February 16 2019."
-                        , br [] []
-                        , if model.emailSubmitStatus == Completed then
-                            text ""
+    let
+        pageOpen =
+            case model.page of
+                Just _ ->
+                    True
 
-                          else
-                            text "Subscribe for email updates."
-                        ]
-                    , emailSubscribeForm model
-                    , p [ class "email-subscribe__privacy-policy" ]
-                        [ a [ href "https://goo.gl/TbMg6h", class "cfp-link" ] [ text "Speaker? See our CfP" ] ]
+                Nothing ->
+                    False
+    in
+    { title = "Oslo Elm Day 2017"
+    , body =
+        [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
+            [ Site.header_
+            , Site.nav_
+            , div [ class "backdrop-wrapper animate" ]
+                [ div []
+                    [ canvas [ id "sketch" ]
+                        []
                     ]
                 ]
-            , viewPrivacyPolicy
+            , Site.information
             ]
+        , Site.footer_ pageOpen
+        , div
+            [ classList
+                [ ( "overlay", True )
+                , ( "open", pageOpen )
+                ]
+            , onClick (NavigateTo Route.Home)
+            ]
+            []
+        , case model.page of
+            Just page ->
+                Site.viewPage page
+
+            Nothing ->
+                text ""
+
+        -- , node "script" [ src "animation/three.min.js" ] []
         ]
-
-
-
--- TODO replace email subscribe form with confirmation on success ???
--- TODO spinner on button when submitting (or other way to indicate submit in progress)
-
-
-emailSubscribeForm : Model -> Html.Html Msg
-emailSubscribeForm model =
-    let
-        submitSuccessfull =
-            model.emailSubmitStatus == Completed
-
-        classes =
-            [ ( "email-subscribe__form", True )
-            , ( "email-subscribe__form--success", submitSuccessfull )
-            ]
-    in
-    section [ classList classes ]
-        (if model.emailSubmitStatus == Completed then
-            [ formFeedbackMessage model ]
-
-         else
-            [ emailInput model
-            , submitButton model
-            , formFeedbackMessage model
-            ]
-        )
-
-
-emailInput : Model -> Html.Html Msg
-emailInput model =
-    let
-        isInvalid =
-            model.emailSubmitStatus == Failed InvalidEmail
-
-        submitSuccessfull =
-            model.emailSubmitStatus == Completed
-
-        classes =
-            [ ( "email-subscribe__input", True )
-            , ( "email-subscribe__input--invalid", isInvalid )
-            ]
-    in
-    input
-        [ classList classes
-        , type_ "text"
-        , disabled submitSuccessfull
-        , placeholder "Your email"
-        , value model.email
-        , onInput Email
-        , Html.Events.on "keyup"
-            (Decode.field "key" Decode.string
-                |> Decode.andThen
-                    (\string ->
-                        if string == "Enter" then
-                            Decode.succeed SubmitRequested
-
-                        else
-                            Decode.fail "Foo"
-                    )
-            )
-        ]
-        []
-
-
-submitButton : Model -> Html.Html Msg
-submitButton model =
-    let
-        isLoading =
-            model.emailSubmitStatus == Requested
-
-        submitSuccessfull =
-            model.emailSubmitStatus == Completed
-
-        classes =
-            [ ( "email-subscribe__submit", True )
-            , ( "email-subscribe__submit--loading", isLoading )
-            ]
-
-        spinnerClasses =
-            [ ( "spinner", isLoading )
-            ]
-    in
-    button
-        [ classList classes
-        , disabled submitSuccessfull
-        , type_ "button"
-        , onClick SubmitRequested
-        ]
-        [ text "Subscribe"
-        , span [ classList spinnerClasses ] []
-        ]
+    }
 
 
 subscriptions : Model -> Sub Msg
@@ -207,67 +161,11 @@ subscriptions model =
 
 main : Program () Model Msg
 main =
-    Browser.element
+    Browser.application
         { init = init
         , update = update
         , view = view
         , subscriptions = subscriptions
+        , onUrlRequest = LinkClicked
+        , onUrlChange = UrlChanged
         }
-
-
-formFeedbackMessage : Model -> Html msg
-formFeedbackMessage model =
-    case model.emailSubmitStatus of
-        Failed InvalidEmail ->
-            div [ class "email-subscribe__message email-subscribe__message--error" ]
-                [ text "The email is invalid" ]
-
-        Failed UnknownError ->
-            div [ class "email-subscribe__message email-subscribe__message--error" ]
-                [ text "Something went wrong, please try again later" ]
-
-        Completed ->
-            div [ class "email-subscribe__message email-subscribe__message--success" ]
-                [ text "Thanks for staying on the ball!"
-                , br [] []
-                , text "We’ll keep you updated 🎉"
-                ]
-
-        _ ->
-            div [] []
-
-
-postEmail : String -> Http.Request ()
-postEmail email =
-    let
-        url =
-            "https://apcq90j6pe.execute-api.us-east-1.amazonaws.com/default/email-subscribe"
-
-        body =
-            Http.jsonBody <|
-                Encode.object
-                    [ ( "email", Encode.string email )
-                    ]
-
-        decoder =
-            Decode.succeed ()
-    in
-    Http.post url body decoder
-
-
-viewPrivacyPolicy : Html a
-viewPrivacyPolicy =
-    div [ class "privacy-policy" ]
-        [ p [ class "email-subscribe__privacy-policy" ]
-            [ span []
-                [ text "We will occasionally send you updates with information related to the next installment of Oslo Elm Day. " ]
-            , span
-                []
-                [ text "We only store your email address and nothing else. " ]
-            , span
-                []
-                [ text "Contact us at " ]
-            , a [ href "mailto:hello@osloelmday.no?subject=Unsubscribe" ] [ text "hello@osloelmday.no" ]
-            , span [] [ text " if you want to be taken off the mailing list." ]
-            ]
-        ]
