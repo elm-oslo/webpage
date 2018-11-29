@@ -10,7 +10,8 @@ body {
 
 body {
     font-size: 18px;
-    color: #333;
+    background-color: #0a0338;
+    color: rgb(197, 230, 255);
     font-family: 'AvenirLTPro-Book', sans-serif;
     margin: 0;
     padding: 0;
@@ -69,10 +70,10 @@ li {
 
 a {
     text-decoration: none;
-    color: #333;
+    color: currentColor;
     position: relative;
     border: 0;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid currentColor;
     display: inline-block;
     line-height: 0.8;
     transition: border-bottom-color 0.3s;
@@ -80,7 +81,7 @@ a {
 
 a:active,
 a:visited {
-    color: #333;
+    color: #c5e6ff;
 }
 
 a:hover {
@@ -127,6 +128,7 @@ ul {
 }
 
 .header__date {
+    color: white;
     font-weight: 500;
     font-size: 2em;
     line-height: 32px;
@@ -171,7 +173,8 @@ ul {
 }
 
 .about_btn {
-    border: 2px solid #e4e4e4;
+    border: 2px solid white;
+    color: white;
     border-radius: 3px;
     width: 90px;
     height: 42px;
@@ -264,15 +267,15 @@ ul {
     justify-content: space-between;
 }
 
-.what,
-.why {
-    width: 30%;
+.what {
+    width: 36%
+}
+.who{
+    width: 23%;
 }
 
-.who,
-.contact,
-.extras {
-    width: 15%;
+.why {
+    width: 31%;
 }
 
 .sponsors-platinum {
@@ -292,7 +295,30 @@ ul {
     font-size: 14px;
 }
 
+.information__block {
+    border-radius: 5px;
+    padding: 2rem;
+}
+
+.information__block.what {
+    background: rgb(37, 46, 222);
+}
+
+.information__block.who {
+    background: rgb(82, 163, 255);
+}
+
+.information__block.who a,
+.information__block.who h2 {
+    color: rgb(13, 0, 100);
+}
+
+.information__block.why {
+    background: rgb(21, 0, 156);
+}
+
 .information__block h2 {
+    color: white;
     margin-bottom: 0.5em;
     font-family: 'AvenirLTPro-Medium', sans-serif;
     font-weight: normal;
@@ -959,18 +985,18 @@ ul {
         width: 50%;
     }
 
-    .what,
+    .what {
+        width: 60%
+    }
     .why {
-        width: 60%;
+        width: 40%;
     }
 
-    .who,
-    .contact {
-        width: 30%;
+    .who{
+        width: 40%;
     }
 
-    .why,
-    .contact {
+    .why {
         margin-top: 2em;
     }
 }
