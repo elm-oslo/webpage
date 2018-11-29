@@ -237,7 +237,7 @@ information =
             , ul [ class "who__list" ]
                 [ li [ class "who__list-item" ]
                     [ div [ class "who__avatar" ]
-                        [ img [ alt "Richard Feldman", src "images/richard.jpg" ]
+                        [ img [ alt "Richard Feldman", src "images/richard-feldman.jpg" ]
                             []
                         ]
                     , a
@@ -246,18 +246,17 @@ information =
                         ]
                         [ text "Richard Feldman" ]
                     ]
+                , li [ class "who__list-item" ]
+                    [ div [ class "who__avatar" ]
+                        [ img [ alt "Kris Jenkins", src "images/kris-jenkins.jpg" ]
+                            []
+                        ]
+                    , a
+                        [ Route.href <| Route.Speaker "kris"
+                        ]
+                        [ text "Kris Jenkins" ]
+                    ]
 
-                -- , li [ class "who__list-item" ]
-                --     [ div [ class "who__avatar" ]
-                --         [ img [ alt "Noah Hall", src "images/noah.jpg" ]
-                --             []
-                --         ]
-                --     , a
-                --         [ class "noah"
-                --         , Route.href <| Route.Speaker "noah"
-                --         ]
-                --         [ text "Noah Hall" ]
-                --     ]
                 -- , li [ class "who__list-item" ]
                 --     [ div [ class "who__avatar" ]
                 --         [ img [ alt "Luke Westby", src "images/luke.jpg" ]
@@ -270,9 +269,8 @@ information =
                 --         [ text "Luke Westby" ]
                 --     ]
                 ]
-
-            -- , a [ Route.href Route.Schedule ]
-            --     [ text "See full program" ]
+            , a [ Route.href Route.Schedule ]
+                [ text "See full program" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h3 []
