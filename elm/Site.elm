@@ -266,35 +266,7 @@ information =
                         ]
                         [ text "Richard Feldman" ]
                     ]
-<<<<<<< Updated upstream
-                , li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Kris Jenkins", src "images/kris-jenkins.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ Route.href <| Route.Speaker "kris"
-                        ]
-                        [ text "Kris Jenkins" ]
-                    ]
-
-                -- , li [ class "who__list-item" ]
-                --     [ div [ class "who__avatar" ]
-                --         [ img [ alt "Luke Westby", src "images/luke.jpg" ]
-                --             []
-                --         ]
-                --     , a
-                --         [ class "luke"
-                --         , Route.href <| Route.Speaker "luke"
-                --         ]
-                --         [ text "Luke Westby" ]
-                --     ]
                 ]
-            , a [ Route.href Route.Schedule ]
-                [ text "See full program" ]
-=======
-                ]
->>>>>>> Stashed changes
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h2 []
