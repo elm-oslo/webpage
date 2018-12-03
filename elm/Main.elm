@@ -98,8 +98,6 @@ view model =
                             text "Subscribe for email updates."
                         ]
                     , emailSubscribeForm model
-                    , p [ class "email-subscribe__privacy-policy" ]
-                        [ a [ href "https://goo.gl/TbMg6h", class "cfp-link" ] [ text "Speaker? See our CfP" ] ]
                     ]
                 ]
             , viewPrivacyPolicy
