@@ -48,10 +48,7 @@ app.ports.init.subscribe(function() {
   }, 300);
 
   // Load the background animation
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'animation/main.js';
-  document.head.appendChild(script);
+  window.initAnimation();
 });
 
 app.ports.scrollToId.subscribe(function(id) {

@@ -127,7 +127,7 @@ view model =
             , Site.nav_
             , div [ class "backdrop-wrapper animate" ]
                 [ div []
-                    [ canvas [ id "sketch" ]
+                    [ canvas [ id "sketch", class "backdrop" ]
                         []
                     ]
                 ]
