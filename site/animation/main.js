@@ -4,13 +4,15 @@ function initAnimation() {
 
   var canvas = document.getElementById('sketch');
 
+  var width = canvas.clientWidth;
+  var height = canvas.clientHeight;
+
   // Renderer setup
   var renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
   });
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
   renderer.setClearColor(0x0a0338);
 
   // Stats
@@ -19,12 +21,7 @@ function initAnimation() {
   // document.body.appendChild(stats.dom);
 
   // Camera
-  var camera = new THREE.PerspectiveCamera(
-    35,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    3000
-  );
+  var camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 3000);
 
   // Scene
   var scene = new THREE.Scene();
@@ -119,9 +116,11 @@ function initAnimation() {
 
   // Update on resize
   function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    var width = canvas.clientWidth;
+    var height = canvas.clientHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
   }
   window.addEventListener('resize', onWindowResize, false);
 }
