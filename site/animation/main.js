@@ -4,8 +4,8 @@ function initAnimation() {
 
   var canvas = document.getElementById('sketch');
 
-  var width = canvas.clientWidth;
-  var height = canvas.clientHeight;
+  var width = window.innerWidth;
+  var height = window.innerHeight / 1.5;
 
   // Renderer setup
   var renderer = new THREE.WebGLRenderer({
@@ -47,21 +47,21 @@ function initAnimation() {
     0xffca6a
   ];
   var box_1_material = [];
-  var box_1_amount = 60;
+  var box_1_amount = 40;
   var box_1_rotationXSpeed = [];
   var box_1_rotationYSpeed = [];
   var box_1_zPos = [];
   var box_1_width = [];
-  var box_1_magicClippingNumbers = [-1200, 2400];
+  var box_1_magicClippingNumbers = [-1400, 2800];
   var box_1_group = new THREE.Group();
   var box_1_randomizeYPos = [];
   var box_1_randomizeXSpeed = [];
 
   for (var i = 0; i < box_1_amount; i++) {
-    box_1_rotationXSpeed[i] = THREE.Math.randFloat(0.002, 0.008);
-    box_1_rotationYSpeed[i] = THREE.Math.randFloat(0.002, 0.008);
+    box_1_rotationXSpeed[i] = THREE.Math.randFloat(0.001, 0.005);
+    box_1_rotationYSpeed[i] = THREE.Math.randFloat(0.001, 0.005);
     box_1_zPos[i] = THREE.Math.randFloat(-800, -1600);
-    box_1_width[i] = THREE.Math.randFloat(20, 60);
+    box_1_width[i] = THREE.Math.randFloat(40, 80);
     box_1_randomizeYPos[i] = getRandomInt(20, 150);
     box_1_randomizeXSpeed[i] = getRandomInt(1.01, 1.03);
 
@@ -93,7 +93,7 @@ function initAnimation() {
 
     for (var i = 0; i < box_1_group.children.length; i++) {
       var box_1_xSpeed =
-        (i * 40 + delta * box_1_randomizeXSpeed[i]) %
+        (i * 80 + delta * box_1_randomizeXSpeed[i]) %
         box_1_magicClippingNumbers[1];
       var box_1_ySpeed =
         Math.sin((i / 2) * 0.2 + delta * 0.001) * box_1_randomizeYPos[i];
@@ -116,8 +116,9 @@ function initAnimation() {
 
   // Update on resize
   function onWindowResize() {
-    var width = canvas.clientWidth;
-    var height = canvas.clientHeight;
+    console.log("has changed");
+    var width = window.innerWidth;
+    var height = window.innerHeight / 1.5;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
