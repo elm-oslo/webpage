@@ -22,7 +22,7 @@ kris : Speaker
 kris =
     { id = "kris"
     , name = "Kris Jenkins"
-    , bio = "TODO"
+    , bio = ""
     , imageUrl = "images/kris-jenkins.jpg"
     }
 
@@ -31,7 +31,7 @@ tessa : Speaker
 tessa =
     { id = "tessa"
     , name = "Tessa Kelly"
-    , bio = "TODO"
+    , bio = ""
     , imageUrl = "images/tessa-kelly.jpg"
     }
 
@@ -40,7 +40,7 @@ matthew : Speaker
 matthew =
     { id = "matthew"
     , name = "Matthew Griffith"
-    , bio = "TODO"
+    , bio = ""
     , imageUrl = "images/matthew-griffith.jpg"
     }
 
