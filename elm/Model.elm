@@ -75,12 +75,32 @@ sponsors =
     [ { name = "bekk"
       , url = "https://www.bekk.no"
       , imageUrl = "images/bekk_logo.svg"
-      , tier = Gold
+      , tier = Platinum
       }
     , { name = "kodemaker"
       , url = "https://www.kodemaker.no"
       , imageUrl = "images/kodemaker_logo.svg"
       , tier = Gold
+      }
+    , { name = "scelto"
+      , url = "https://scelto.no/"
+      , imageUrl = "images/scelto_logo.svg"
+      , tier = Gold
+      }
+    , { name = "lovdata"
+      , url = "https://lovdata.no/"
+      , imageUrl = "images/lovdata_logo.svg"
+      , tier = Gold
+      }
+    , { name = "eggs"
+      , url = "https://eggsdesign.com/"
+      , imageUrl = "images/eggs_logo.svg"
+      , tier = Gold
+      }
+    , { name = "Dialog eXe"
+      , url = "https://www.dx.no"
+      , imageUrl = "images/dx_logo.svg"
+      , tier = Silver
       }
     ]
 
