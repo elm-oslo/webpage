@@ -285,16 +285,19 @@ ul {
 }
 
 .sponsors-platinum {
-  width: 15%;
+  flex-grow: 0.3;
 }
 .sponsors-gold {
-  width: 32%;
+  flex-grow: 0.2;
 }
 .sponsors-silver {
-  width: 31.2%;
+  flex-grow: 0.2;
 }
 .sponsors-about {
-  width: 15%;
+  flex-grow: 0.2;
+}
+.contact {
+  flex-grow: 0.2;
 }
 
 .sponsor-forsale {
@@ -761,6 +764,12 @@ ul {
 .sponsor__logo {
   width: 130px;
   max-height: 40px;
+  position: relative;
+}
+
+.sponsors-platinum .sponsor__logo {
+  width: 200px;
+  max-height: 100px;
   position: relative;
 }
 
