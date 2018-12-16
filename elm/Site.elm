@@ -6,6 +6,7 @@ import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
 import Model exposing (Msg(..), Page(..), Sponsor, SponsorTier(..))
 import Pages
 import Route
+import Speakers
 import Svg exposing (defs, g, path, svg)
 import Svg.Attributes exposing (d, fill, viewBox)
 
@@ -254,19 +255,7 @@ information =
         , section [ class "information__block animate--medium seq-3 animate who" ]
             [ h2 []
                 [ text "Who?" ]
-            , ul [ class "who__list" ]
-                [ li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Richard Feldman", src "images/richard-feldman.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ class "richard"
-                        , Route.href <| Route.Speaker "richard"
-                        ]
-                        [ text "Richard Feldman" ]
-                    ]
-                ]
+            , viewPromotedSpeakers
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h2 []
@@ -275,3 +264,28 @@ information =
                 [ text "The Nordic Elm community is growing rapidly, with large interest for the local meetups and Elm topics on practically every tech conference. Several local companies have started experimenting with Elm in their projects and it’s time to start sharing our experiences.          " ]
             ]
         ]
+
+
+viewPromotedSpeakers : Html Msg
+viewPromotedSpeakers =
+    let
+        viewSpeaker speaker =
+            li [ class "who__list-item" ]
+                [ div [ class "who__avatar" ]
+                    [ img [ alt speaker.name, src speaker.imageUrl ]
+                        []
+                    ]
+                , a
+                    [ class speaker.id
+                    , Route.href <| Route.Speaker speaker.id
+                    ]
+                    [ text speaker.name ]
+                ]
+    in
+    ul [ class "who__list" ] <|
+        List.map viewSpeaker
+            [ Speakers.richard
+            , Speakers.tessa
+            , Speakers.kris
+            , Speakers.matthew
+            ]

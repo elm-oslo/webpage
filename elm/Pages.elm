@@ -2,8 +2,9 @@ module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (ScheduleEntry(..), Speaker, scheduleEntries, speakers)
+import Model exposing (ScheduleEntry(..), scheduleEntries)
 import Route
+import Speakers exposing (Speaker)
 
 
 viewAbout : Html a
@@ -190,7 +191,7 @@ viewSpeakers =
          , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
          ]
-            ++ List.map viewSpeaker speakers
+            ++ List.map viewSpeaker Speakers.all
         )
 
 
