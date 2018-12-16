@@ -245,7 +245,7 @@ information =
                 ]
             , p [ class "morespacebro" ]
                 [ text "The conference will be held in the awesome venue of "
-                , a [ href "https://goo.gl/maps/NQWAKrxqJCQ2" ]
+                , a [ href "https://goo.gl/maps/JGAXK2cdq1R2" ]
                     [ text "Moonfish Café (Månefisken)" ]
                 , text "."
                 ]
