@@ -6,6 +6,7 @@ import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
 import Model exposing (Msg(..), Page(..), Sponsor, SponsorTier(..))
 import Pages
 import Route
+import Speakers
 import Svg exposing (defs, g, path, svg)
 import Svg.Attributes exposing (d, fill, viewBox)
 
@@ -134,9 +135,9 @@ header_ =
                 [ li [ class "animate animate--small seq-1" ]
                     [ text "1 day" ]
                 , li [ class "animate animate--small seq-2" ]
-                    [ text "10 talks" ]
+                    [ text "18 talks" ]
                 , li [ class "animate animate--small seq-3" ]
-                    [ text "150 seats" ]
+                    [ text "200 seats" ]
                 ]
             ]
         ]
@@ -194,25 +195,25 @@ footer_ hidden =
                     ]
                 ]
             , section [ class "information__block animate--medium seq-5 animate contact" ]
-            [ h2 []
-                [ text "Contact" ]
-            , ul []
-                [ li []
-                    [ a [ href "https://twitter.com/osloelmday" ]
-                        [ text "@OsloElmDay" ]
+                [ h2 []
+                    [ text "Contact" ]
+                , ul []
+                    [ li []
+                        [ a [ href "https://twitter.com/osloelmday" ]
+                            [ text "@OsloElmDay" ]
+                        ]
+                    , li []
+                        [ a [ href "mailto:hello@osloelmday.no" ]
+                            [ text "hello@osloelmday.no" ]
+                        ]
                     ]
-                , li []
-                    [ a [ href "mailto:hello@osloelmday.no" ]
-                        [ text "hello@osloelmday.no" ]
+                , ul []
+                    [ li []
+                        [ a [ Route.href Route.CodeOfConduct ]
+                            [ text "Code of Conduct" ]
+                        ]
                     ]
                 ]
-            , ul []
-                [ li []
-                    [ a [ Route.href Route.CodeOfConduct ]
-                        [ text "Code of Conduct" ]
-                    ]
-                ]
-            ]
             ]
         ]
 
@@ -244,8 +245,8 @@ information =
                 ]
             , p [ class "morespacebro" ]
                 [ text "The conference will be held in the awesome venue of "
-                , a [ href "https://goo.gl/maps/NQWAKrxqJCQ2" ]
-                    [ text "SOMEWHERE" ]
+                , a [ href "https://goo.gl/maps/JGAXK2cdq1R2" ]
+                    [ text "Moonfish Café (Månefisken)" ]
                 , text "."
                 ]
             , a [ Route.href Route.About ]
@@ -254,19 +255,7 @@ information =
         , section [ class "information__block animate--medium seq-3 animate who" ]
             [ h2 []
                 [ text "Who?" ]
-            , ul [ class "who__list" ]
-                [ li [ class "who__list-item" ]
-                    [ div [ class "who__avatar" ]
-                        [ img [ alt "Richard Feldman", src "images/richard-feldman.jpg" ]
-                            []
-                        ]
-                    , a
-                        [ class "richard"
-                        , Route.href <| Route.Speaker "richard"
-                        ]
-                        [ text "Richard Feldman" ]
-                    ]
-                ]
+            , viewPromotedSpeakers
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h2 []
@@ -275,3 +264,28 @@ information =
                 [ text "The Nordic Elm community is growing rapidly, with large interest for the local meetups and Elm topics on practically every tech conference. Several local companies have started experimenting with Elm in their projects and it’s time to start sharing our experiences.          " ]
             ]
         ]
+
+
+viewPromotedSpeakers : Html Msg
+viewPromotedSpeakers =
+    let
+        viewSpeaker speaker =
+            li [ class "who__list-item" ]
+                [ div [ class "who__avatar" ]
+                    [ img [ alt speaker.name, src speaker.imageUrl ]
+                        []
+                    ]
+                , a
+                    [ class speaker.id
+                    , Route.href <| Route.Speaker speaker.id
+                    ]
+                    [ text speaker.name ]
+                ]
+    in
+    ul [ class "who__list" ] <|
+        List.map viewSpeaker
+            [ Speakers.richard
+            , Speakers.tessa
+            , Speakers.kris
+            , Speakers.matthew
+            ]

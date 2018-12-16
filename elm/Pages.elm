@@ -2,8 +2,9 @@ module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Model exposing (ScheduleEntry(..), Speaker, scheduleEntries, speakers)
+import Model exposing (ScheduleEntry(..), scheduleEntries)
 import Route
+import Speakers exposing (Speaker)
 
 
 viewAbout : Html a
@@ -42,8 +43,7 @@ viewAbout =
         , p []
             [ text "The conference will be hosted at the beautiful "
             , em []
-                [ text "SOMEWHERE" ]
-            , text " in downtown Oslo."
+                [ text "Moonfish Café (Månefisken)." ]
             ]
         , h3 []
             [ text "Pre-Conference Workshop" ]
@@ -124,11 +124,11 @@ viewAbout =
                     , a [ href "https://twitter.com/aaalvik" ]
                         [ text "@aaalvik" ]
                     ]
-                ]
-            , li []
-                [ text "Aksel Wester – "
-                , a [ href "https://twitter.com/akselw" ]
-                    [ text "@akselw" ]
+                , li []
+                    [ text "Aksel Wester – "
+                    , a [ href "https://twitter.com/akselw" ]
+                        [ text "@akselw" ]
+                    ]
                 ]
             ]
         , p []
@@ -184,13 +184,13 @@ viewSpeakers =
         ([ h2 []
             [ text "Speakers" ]
          , p []
-            [ text "The conference will have one track, with all talks taking place in the same room. We already have three Elm-heroes booked, but there’s room for a lot more! Depending on the amount and duration of talk submissions, we’re aiming for a normal full-length conference day of presentations.          " ]
+            [ text "The conference will have one track, with all talks taking place in the same room. We already have four Elm-heroes booked, but there’s room for a lot more! Depending on the amount and duration of talk submissions, we’re aiming for a normal full-length conference day of presentations.          " ]
          , p []
-            [ text "There might also be a panel debate or open-space session, in order to provide an arena for discussion or Q&A within the community.          " ]
+            [ text "There might also be a panel debate or open-space session, in order to provide an arena for discussion or Q&A within the community." ]
          , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
          ]
-            ++ List.map viewSpeaker speakers
+            ++ List.map viewSpeaker Speakers.all
         )
 
 
