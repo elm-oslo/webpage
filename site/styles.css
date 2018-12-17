@@ -223,8 +223,8 @@ ul {
   width: 9em;
   padding: 0.5em;
   text-align: center;
-  background-color: rgb(144, 18, 239);
-  color: #fff;
+  background-color: #FFCA6A;
+  color: #4E3C1B;
   text-decoration: none;
   border-radius: 3px;
   align-self: center;
@@ -266,6 +266,12 @@ ul {
 
 .information {
   margin-bottom: 60px;
+}
+
+@media (max-width: 740px){
+  .information {
+    margin-bottom: 0px;
+  }
 }
 
 .information,
@@ -317,6 +323,12 @@ ul {
 .information__block {
   border-radius: 5px;
   padding: 2rem 4rem;
+}
+
+@media (max-width: 740px){
+  .information__block{
+    padding: 1rem 2rem 2rem 2rem;
+  }
 }
 
 .information__block.what {
@@ -795,7 +807,7 @@ ul {
 }
 
 .sponsors-platinum .sponsor__logo {
-  width: 200px;
+  width: 120px;
   max-height: 100px;
   position: relative;
 }
@@ -1071,7 +1083,7 @@ ul {
   }
 
   .what {
-    margin-top: 3em !important;
+    margin-top: 5em !important;
   }
 
   .sponsors-platinum,
@@ -1131,7 +1143,7 @@ ul {
     position: absolute;
     top: 0px;
     left: 0px;
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
   .header {
