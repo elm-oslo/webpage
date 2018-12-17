@@ -57,24 +57,6 @@ app.ports.scrollToId.subscribe(function(id) {
   });
 });
 
-var anim;
-app.ports.triggerAnim.subscribe(function() {
-  if (anim) {
-    anim.destroy();
-  }
-  requestAnimationFrame(function() {
-    if (document.getElementById('shapes')) {
-      anim = bodymovin.loadAnimation({
-        wrapper: document.getElementById('shapes'),
-        animType: 'svg',
-        autoplay: true,
-        loop: false,
-        path: 'animation.json'
-      });
-    }
-  });
-});
-
 app.ports.startBuyTicketAnim.subscribe(function() {
   ticket_btn_anim.play();
 });

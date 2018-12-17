@@ -91,7 +91,7 @@ a:visited {
 }
 
 a:hover {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 0px solid currentColor;
 }
 
 p {
@@ -134,7 +134,7 @@ ul {
 
 .header__date {
   color: white;
-  font-weight: 500;
+  font-family: 'AvenirLTPro-Medium', sans-serif;
   font-size: 2em;
   line-height: 32px;
   position: relative;
@@ -507,6 +507,7 @@ ul {
 .content__menu-close {
   width: 70px;
   border-bottom: none;
+  font-family: 'AvenirLTPro-Medium', sans-serif;
 }
 
 .content__menu-item:hover,
@@ -613,8 +614,7 @@ ul {
 
 #shapes {
   position: absolute;
-  width: 730px;
-  max-width: 100%;
+  width: 100%;
   height: 600px;
   top: 0px;
   left: 0px;
@@ -699,18 +699,35 @@ ul {
   margin: 0 auto;
 }
 
+.content__box .information__block{
+  padding: 0;
+}
+
 .back {
   color: #fff !important;
 }
 
 .about {
-  background-color: #9013fe;
+  background-color: rgb(37, 46, 222);
   color: #fff;
 }
 
+.about p{
+  color: #C5E6FF;
+}
+
 .speakers {
-  background-color: #ce6bdb;
+  background-color: rgb(82, 163, 255);
   color: #fff;
+}
+
+.speakers h2,
+.speakers h3{
+  color: #0D0064;
+}
+
+.speakers p{
+  color: #233B9F;
 }
 
 .schedule {
