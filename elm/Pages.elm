@@ -180,18 +180,18 @@ viewCodeOfConduct =
 
 viewSpeakers : Html a
 viewSpeakers =
-    div []
-        ([ h2 []
+    div [] <|
+        [ h2 []
             [ text "Speakers" ]
-         , p []
+        , p []
             [ text "The conference will have one track, with all talks taking place in the same room. We already have four Elm-heroes booked, but there’s room for a lot more! Depending on the amount and duration of talk submissions, we’re aiming for a normal full-length conference day of presentations.          " ]
-         , p []
+        , p []
             [ text "There might also be a panel debate or open-space session, in order to provide an arena for discussion or Q&A within the community." ]
-         , p []
+        , p []
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
-         ]
+        ]
             ++ List.map viewSpeaker Speakers.all
-        )
+            ++ [ h3 [] [ text "+ 14 more!" ] ]
 
 
 viewSpeaker : Speaker -> Html a
