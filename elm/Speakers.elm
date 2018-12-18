@@ -41,7 +41,7 @@ matthew =
     { id = "matthew"
     , name = "Matthew Griffith"
     , bio = ""
-    , imageUrl = "images/matthew-griffith.jpg"
+    , imageUrl = "images/matthew-griffith.jpeg"
     }
 
 
