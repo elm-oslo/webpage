@@ -120,7 +120,7 @@ view model =
                 Nothing ->
                     False
     in
-    { title = "Oslo Elm Day 2017"
+    { title = "Oslo Elm Day 2019"
     , body =
         [ main_ [ classList [ ( "content-open", pageOpen ) ] ]
             [ Site.header_
