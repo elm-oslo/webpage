@@ -223,8 +223,8 @@ ul {
   width: 9em;
   padding: 0.5em;
   text-align: center;
-  background-color: #FFCA6A;
-  color: #4E3C1B;
+  background-color: #ffca6a;
+  color: #4e3c1b;
   text-decoration: none;
   border-radius: 3px;
   align-self: center;
@@ -268,7 +268,7 @@ ul {
   margin-bottom: 60px;
 }
 
-@media (max-width: 740px){
+@media (max-width: 740px) {
   .information {
     margin-bottom: 0px;
   }
@@ -301,16 +301,16 @@ ul {
 }
 
 .sponsors-platinum {
-  flex-grow: 0.3;
+  width: 25%;
 }
 .sponsors-gold {
-  flex-grow: 0.2;
+  width: 35%;
 }
 .sponsors-silver {
-  flex-grow: 0.2;
+  width: 25%;
 }
 .sponsors-about {
-  flex-grow: 0.2;
+  width: 15%;
 }
 .contact {
   flex-grow: 0.2;
@@ -325,8 +325,8 @@ ul {
   padding: 2rem 4rem;
 }
 
-@media (max-width: 740px){
-  .information__block{
+@media (max-width: 740px) {
+  .information__block {
     padding: 1rem 2rem 2rem 2rem;
   }
 }
@@ -710,7 +710,7 @@ ul {
   margin: 0 auto;
 }
 
-.content__box .information__block{
+.content__box .information__block {
   padding: 0;
 }
 
@@ -723,8 +723,8 @@ ul {
   color: #fff;
 }
 
-.about p{
-  color: #C5E6FF;
+.about p {
+  color: #c5e6ff;
 }
 
 .speakers {
@@ -733,12 +733,12 @@ ul {
 }
 
 .speakers h2,
-.speakers h3{
-  color: #0D0064;
+.speakers h3 {
+  color: #0d0064;
 }
 
-.speakers p{
-  color: #233B9F;
+.speakers p {
+  color: #233b9f;
 }
 
 .schedule {
