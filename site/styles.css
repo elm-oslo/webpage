@@ -325,6 +325,11 @@ ul {
   padding: 2rem 4rem;
 }
 
+.information__block.who p {
+  color: rgb(13, 0, 100);
+  font-weight: bold;
+}
+
 @media (max-width: 740px) {
   .information__block {
     padding: 1rem 2rem 2rem 2rem;
@@ -401,6 +406,9 @@ ul {
   margin-bottom: 8px;
 }
 
+.who__list {
+  margin-bottom: 2rem;
+}
 .who__list-item {
   margin-bottom: 1em;
 }
