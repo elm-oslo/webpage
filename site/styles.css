@@ -405,10 +405,6 @@ ul {
   margin-bottom: 1em;
 }
 
-.who__list-item:nth-child(3) {
-  margin-bottom: 2em;
-}
-
 .who__list a {
   margin: 12px 0 0 0;
   word-wrap: break-word;
@@ -1059,6 +1055,10 @@ ul {
 
   .why {
     margin-top: 2em;
+  }
+
+  .who__avatar {
+    float: unset;
   }
 }
 
