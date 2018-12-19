@@ -31,7 +31,7 @@ viewAbout =
         , p []
             [ text "The conference will be hosted at the beautiful "
             , em []
-                [ text "Månefisken (The Moonfish)." ]
+                [ text "Månefisken." ]
             ]
         , h3 []
             [ text "Pre-Conference Event" ]
@@ -176,7 +176,7 @@ viewSpeakers =
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
         ]
             ++ List.map viewSpeaker Speakers.all
-            ++ [ h3 [] [ text "+ 14 more coming!" ] ]
+            ++ [ h3 [] [ text "+ 14 more to be announced!" ] ]
 
 
 viewSpeaker : Speaker -> Html a
