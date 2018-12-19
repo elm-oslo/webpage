@@ -31,7 +31,7 @@ tessa : Speaker
 tessa =
     { id = "tessa"
     , name = "Tessa Kelly"
-    , bio = "Tessa Kelly is a software engineer NoRedInk, an edtech company helping teachers teach grammar and writing. She builds out new features in Elm, writes the occasional blog post, and never needs to argue about the Oxford comma. Tessa holds a BA in mathematics from New York University, where she minored in history and Middle Eastern studies."
+    , bio = "Tessa Kelly is also a software engineer at NoRedInk. She builds out new features in Elm, writes the occasional blog post, and never needs to argue about the Oxford comma. Tessa holds a BA in mathematics from New York University, where she minored in history and Middle Eastern studies."
     , imageUrl = "images/tessa-kelly.jpg"
     }
 
