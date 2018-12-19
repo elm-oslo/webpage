@@ -235,7 +235,10 @@ information =
             [ h2 []
                 [ text "Who?" ]
             , viewPromotedSpeakers
-            , p [] [ text "More speakers TBA" ]
+            , a
+                [ Route.href <| Route.Speakers
+                ]
+                [ text "See more" ]
             ]
         , section [ class "information__block animate--medium seq-4 animate why" ]
             [ h2 []
