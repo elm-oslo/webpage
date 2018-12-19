@@ -121,7 +121,7 @@ header_ =
         , div [ id "ticket_btn" ]
             [ a
                 [ class "ticket_btn_a"
-                , href "https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195"
+                , href "https://www.checkin.no/osloelmday"
                 , onMouseEnter TicketButtonMouseEnter
                 , onMouseLeave TicketButtonMouseLeave
                 , target "_blank"

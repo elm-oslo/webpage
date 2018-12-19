@@ -56,7 +56,7 @@ viewAbout =
         , h3 []
             [ text "Tickets" ]
         , p []
-            [ a [ href "https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195" ]
+            [ a [ href "https://www.checkin.no/osloelmday" ]
                 [ text "Available now!" ]
             ]
         , h3 []
