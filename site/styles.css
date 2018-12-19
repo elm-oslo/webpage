@@ -295,7 +295,8 @@ ul {
 .sponsors-platinum,
 .sponsors-gold,
 .sponsors-silver,
-.sponsors-about {
+.sponsors-about,
+.contact {
   padding: 0 !important;
 }
 
@@ -312,7 +313,7 @@ ul {
   width: 15%;
 }
 .contact {
-  flex-grow: 0.2;
+  width: 25%;
 }
 
 .sponsor-forsale {
@@ -1216,8 +1217,4 @@ ul {
   .content__box {
     padding: 80px 5%;
   }
-}
-
-.contact {
-  display: none;
 }
