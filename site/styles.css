@@ -806,8 +806,12 @@ ul {
   position: relative;
 }
 
+.dialog-exe {
+  width: 40px;
+}
+
 .sponsors-platinum .sponsor__logo {
-  width: 120px;
+  width: 190px;
   max-height: 100px;
   position: relative;
 }
