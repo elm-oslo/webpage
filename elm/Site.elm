@@ -242,13 +242,13 @@ information =
                     [ text "A one-day conference about the "
                     , a [ href "http://elm-lang.org/", target "_blank" ]
                         [ text "Elm programming language" ]
-                    , text " and practical use of Elm in Norway and the Nordics."
+                    , text " and practical use of Elm in real production systems."
                     ]
                 ]
             , p [ class "morespacebro" ]
-                [ text "The conference will be held in the awesome venue of "
+                [ text "The conference will be held in an old factory by the Aker river called "
                 , a [ href "https://goo.gl/maps/JGAXK2cdq1R2" ]
-                    [ text "Moonfish Café (Månefisken)" ]
+                    [ text "Månefisken" ]
                 , text "."
                 ]
             , a [ Route.href Route.About ]
@@ -263,7 +263,9 @@ information =
             [ h2 []
                 [ text "Why?" ]
             , p []
-                [ text "The Nordic Elm community is growing rapidly, with large interest for the local meetups and Elm topics on practically every tech conference. Several local companies have started experimenting with Elm in their projects and it’s time to start sharing our experiences.          " ]
+                [ text "The Elm community is growing, with more and more companies using Elm in their projects." ]
+            , p []
+                [ text "It’s time to start sharing our experiences.          " ]
             ]
         ]
 
