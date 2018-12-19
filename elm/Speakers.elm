@@ -22,7 +22,7 @@ kris : Speaker
 kris =
     { id = "kris"
     , name = "Kris Jenkins"
-    , bio = "Kris Jenkins is an independent developer building sites and tools in Haskell, PureScript and Elm. He organises reg- ular hack nights in London and is a regular speaker on the London tech scene. In a former life, he was the CTO and co-founder of a successful gold bullion trading platform, BullionVault."
+    , bio = "Kris Jenkins is an independent developer building sites and tools in Haskell, PureScript and Elm. He organises regular hack nights in London and is a regular speaker on the London tech scene. In a former life, he was the CTO and co-founder of a successful gold bullion trading platform, BullionVault."
     , imageUrl = "images/kris-jenkins.jpg"
     }
 
