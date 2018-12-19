@@ -192,7 +192,7 @@ footer_ hidden =
                 [ h3 []
                     [ text "We 💛 our sponsors" ]
                 , p []
-                    [ a [ href "https://drive.google.com/file/d/0B3Lh4pXvCufldDBoNC1zdXZLeVU/view", target "_blank" ]
+                    [ a [ href "https://drive.google.com/file/d/1AVQFA1sLD0e0-7eeVnicQrbkkq_vn-gb/view", target "_blank" ]
                         [ text "Sponsor our event?" ]
                     ]
                 ]
