@@ -199,7 +199,6 @@ ul {
 }
 
 .about_btn:hover {
-  /*border: 2px solid #919191;*/
   border: 2px solid #c5e6ff;
   background-color: rgba(197, 230, 255, 0.5);
 }
@@ -248,7 +247,7 @@ ul {
   top: 135px;
   right: 0;
   width: 100%;
-  padding: 0 4rem;
+  margin-right: 63px;
 }
 
 .summary__list {
@@ -403,10 +402,6 @@ ul {
 
 .who__list-item {
   margin-bottom: 1em;
-}
-
-.who__list-item:nth-child(3) {
-  margin-bottom: 2em;
 }
 
 .who__list a {
@@ -806,8 +801,12 @@ ul {
   position: relative;
 }
 
+.dialog-exe {
+  width: 40px;
+}
+
 .sponsors-platinum .sponsor__logo {
-  width: 120px;
+  width: 190px;
   max-height: 100px;
   position: relative;
 }
@@ -1030,7 +1029,6 @@ ul {
     font-size: 1em;
     line-height: 32px;
     position: relative;
-    top: 130px;
     padding-right: 364px;
     text-align: right;
   }
@@ -1055,6 +1053,10 @@ ul {
 
   .why {
     margin-top: 2em;
+  }
+
+  .who__avatar {
+    float: unset;
   }
 }
 

@@ -22,7 +22,7 @@ kris : Speaker
 kris =
     { id = "kris"
     , name = "Kris Jenkins"
-    , bio = ""
+    , bio = "Kris Jenkins is an independent developer building sites and tools in Haskell, PureScript and Elm. He organises reg- ular hack nights in London and is a regular speaker on the London tech scene. In a former life, he was the CTO and co-founder of a successful gold bullion trading platform, BullionVault."
     , imageUrl = "images/kris-jenkins.jpg"
     }
 
@@ -31,7 +31,7 @@ tessa : Speaker
 tessa =
     { id = "tessa"
     , name = "Tessa Kelly"
-    , bio = ""
+    , bio = "Tessa Kelly is a software engineer NoRedInk, an edtech company helping teachers teach grammar and writing. She builds out new features in Elm, writes the occasional blog post, and never needs to argue about the Oxford comma. Tessa holds a BA in mathematics from New York University, where she minored in history and Middle Eastern studies."
     , imageUrl = "images/tessa-kelly.jpg"
     }
 
@@ -40,7 +40,7 @@ matthew : Speaker
 matthew =
     { id = "matthew"
     , name = "Matthew Griffith"
-    , bio = ""
+    , bio = "Matthew Griffith is the author of Elm UI, Elm Style Animation, and the Why Elm book from O’Reilly."
     , imageUrl = "images/matthew-griffith.jpeg"
     }
 

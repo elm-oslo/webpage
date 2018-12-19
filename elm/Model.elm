@@ -97,7 +97,7 @@ sponsors =
       , imageUrl = "images/eggs_logo.svg"
       , tier = Gold
       }
-    , { name = "Dialog eXe"
+    , { name = "dialog-exe"
       , url = "https://www.dx.no"
       , imageUrl = "images/dx_logo.svg"
       , tier = Silver
