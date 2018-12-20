@@ -151,8 +151,6 @@ view model =
 
             Nothing ->
                 text ""
-
-        -- , node "script" [ src "animation/three.min.js" ] []
         ]
     }
 
