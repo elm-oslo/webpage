@@ -478,6 +478,7 @@ ul {
   top: 0;
   left: calc(50% - 20.25em);
   z-index: 2;
+  border-radius: 5px;
 }
 
 .content__menu-wrapper {
