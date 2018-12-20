@@ -102,7 +102,7 @@ all =
       , speaker = Speakers.james
       , time = ( "", "" )
       }
-    , { title = "Colors in Elm"
+    , { title = "Color Coding with Elm"
       , abstract = ""
       , speaker = Speakers.tessa
       , time = ( "", "" )
