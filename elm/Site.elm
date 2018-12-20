@@ -127,7 +127,7 @@ header_ =
 nav_ : Html a
 nav_ =
     nav [ class "nav animate animate--fixed mobile_ticket_btn" ]
-        [ a [ class "nav__signup", href "https://www.eventbrite.co.uk/e/oslo-elm-day-tickets-32813210195", target "_blank" ]
+        [ a [ class "nav__signup", href "https://www.checkin.no/osloelmday", target "_blank" ]
             [ text "Get your ticket" ]
         ]
 
