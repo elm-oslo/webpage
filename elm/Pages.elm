@@ -2,6 +2,7 @@ module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Markdown
 import Model exposing (ScheduleEntry(..), scheduleEntries)
 import Route
 import Speakers exposing (Speaker)
@@ -176,7 +177,6 @@ viewSpeakers =
             [ text "Our current speaker lineup consist of world-renowned Elm experts, experienced with using Elm in production." ]
         ]
             ++ List.map viewSpeaker Speakers.all
-            ++ [ h3 [] [ text "+ 14 more to be announced!" ] ]
 
 
 viewSpeaker : Speaker -> Html a
@@ -188,7 +188,7 @@ viewSpeaker speaker =
             [ h3 [ class "speaker__name", id speaker.id ]
                 [ text speaker.name ]
             , p []
-                [ text speaker.bio ]
+                [ Markdown.toHtml [] speaker.bio ]
             ]
         ]
 
