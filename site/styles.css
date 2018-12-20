@@ -1226,3 +1226,9 @@ ul {
     padding: 80px 5%;
   }
 }
+
+.information__block .talk__content h3 {
+  font-weight: bold;
+  margin-top: 1.7em;
+  margin-bottom: 0.2em;
+}

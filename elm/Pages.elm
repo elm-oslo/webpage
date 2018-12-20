@@ -210,11 +210,15 @@ viewTalks =
 
 viewTalk : Talk -> Html a
 viewTalk talk =
-    article [ class "speaker" ]
-        [ div [ class "speaker__content" ]
-            [ h3 [ class "speaker__name", id talk.speaker.id ]
-                [ a [ Route.href <| Route.Speaker talk.speaker.id ] [ text talk.speaker.name ]
-                , span [] [ text (" – " ++ talk.title) ]
+    article [ class "talk" ]
+        [ div [ class "talk__content" ]
+            [ h3 [ class "talk__name", id talk.speaker.id ]
+                [ text talk.title ]
+            , p []
+                [ a
+                    [ Route.href <| Route.Speaker talk.speaker.id
+                    ]
+                    [ text <| "(" ++ talk.speaker.name ++ ")" ]
                 ]
             ]
         ]
