@@ -25,6 +25,9 @@ viewPage page =
                 Schedule ->
                     ( "schedule", Pages.viewSchedule )
 
+                Talks ->
+                    ( "schedule", Pages.viewTalks )
+
                 CodeOfConduct ->
                     ( "codeofconduct", Pages.viewCodeOfConduct )
     in
@@ -49,15 +52,14 @@ viewPage page =
                     , Route.href Route.Speakers
                     ]
                     [ text "Who?" ]
-
-                -- , a
-                --     [ classList
-                --         [ ( "content__menu-item", True )
-                --         , ( "menu-item-active", page == Schedule )
-                --         ]
-                --     , Route.href Route.Schedule
-                --     ]
-                --     [ text "Schedule" ]
+                , a
+                    [ classList
+                        [ ( "content__menu-item", True )
+                        , ( "menu-item-active", page == Talks )
+                        ]
+                    , Route.href Route.Talks
+                    ]
+                    [ text "Talks" ]
                 ]
             , a [ class "content__menu-close", Route.href Route.Home ]
                 [ text "Close" ]

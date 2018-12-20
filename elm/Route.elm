@@ -13,6 +13,7 @@ type Route
     | Speakers
     | Speaker String
     | Schedule
+    | Talks
     | CodeOfConduct
 
 
@@ -24,6 +25,7 @@ route =
         , Url.map Speakers (Url.s "speakers")
         , Url.map Speaker (Url.s "speakers" </> Url.string)
         , Url.map Schedule (Url.s "schedule")
+        , Url.map Talks (Url.s "talks")
         , Url.map CodeOfConduct (Url.s "codeofconduct")
         ]
 
@@ -46,6 +48,9 @@ routeToString r =
 
                 Schedule ->
                     "schedule"
+
+                Talks ->
+                    "talks"
 
                 CodeOfConduct ->
                     "codeofconduct"

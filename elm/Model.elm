@@ -13,6 +13,7 @@ import Browser
 import Browser.Navigation as Nav
 import Route exposing (Route)
 import Speakers exposing (Speaker)
+import Talks exposing (Slottime, Talk)
 import Url
 
 
@@ -20,6 +21,7 @@ type Page
     = About
     | Speakers
     | Schedule
+    | Talks
     | CodeOfConduct
 
 
@@ -52,22 +54,10 @@ type alias Sponsor =
     }
 
 
-type alias Talk =
-    { title : String
-    , abstract : String
-    , speaker : Speaker
-    , time : Slottime
-    }
-
-
 type ScheduleEntry
     = TalkEntry Talk
     | NonTalk String Slottime
     | NonTalkWithDesc String String Slottime
-
-
-type alias Slottime =
-    ( String, String )
 
 
 sponsors : List Sponsor

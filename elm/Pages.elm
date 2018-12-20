@@ -1,4 +1,4 @@
-module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers)
+module Pages exposing (viewAbout, viewCodeOfConduct, viewSchedule, viewSpeakers, viewTalks)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -6,6 +6,7 @@ import Markdown
 import Model exposing (ScheduleEntry(..), scheduleEntries)
 import Route
 import Speakers exposing (Speaker)
+import Talks exposing (Slottime, Talk)
 
 
 viewAbout : Html a
@@ -170,7 +171,7 @@ viewSpeakers =
         [ h2 []
             [ text "Speakers" ]
         , p []
-            [ text "The conference will have two tracks. We have a total of eighteen speakers booked, but only four of these have been revealed yet." ]
+            [ text "The conference will have two tracks and we have a total of eighteen speakers booked!" ]
         , p []
             [ text "There might also be a panel debate, in order to provide an arena for discussion or Q&A within the community." ]
         , p []
@@ -189,6 +190,32 @@ viewSpeaker speaker =
                 [ text speaker.name ]
             , p []
                 [ Markdown.toHtml [] speaker.bio ]
+            ]
+        ]
+
+
+viewTalks : Html a
+viewTalks =
+    div []
+        ([ h2 []
+            [ text "Talks" ]
+         , p []
+            [ text "Oslo Elm Day will feature two tracks for parts of the day. The speaker lineup has a mix of Elm experts, international speakers and local Elm users with experience using Elm in production." ]
+         , p []
+            [ text "Talk descriptions and schedule will be announced soon." ]
+         ]
+            ++ List.map viewTalk Talks.all
+        )
+
+
+viewTalk : Talk -> Html a
+viewTalk talk =
+    article [ class "speaker" ]
+        [ div [ class "speaker__content" ]
+            [ h3 [ class "speaker__name", id talk.speaker.id ]
+                [ a [ Route.href <| Route.Speaker talk.speaker.id ] [ text talk.speaker.name ]
+                , span [] [ text (" – " ++ talk.title) ]
+                ]
             ]
         ]
 

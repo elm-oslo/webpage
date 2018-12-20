@@ -1,4 +1,4 @@
-module Speakers exposing (Speaker, all, kris, matthew, richard, tessa)
+module Speakers exposing (Speaker, all, brian, dan, einar, emma, filip, james, jonas, ju, kris, luca, manuel, matthew, ossi, richard, robin, teodor, tessa, viktor)
 
 
 type alias Speaker =

@@ -560,7 +560,7 @@ ul {
   background: white;
   position: absolute;
   top: 135%;
-  left: 45%;
+  left: 25%;
 }
 
 .content__menu-item:nth-child(1)::after {
@@ -607,7 +607,7 @@ ul {
   background: white;
   position: absolute;
   top: 190%;
-  left: 45%;
+  left: 25%;
   opacity: 0;
 }
 
