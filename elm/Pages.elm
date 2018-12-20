@@ -218,7 +218,7 @@ viewTalk talk =
                 [ a
                     [ Route.href <| Route.Speaker talk.speaker.id
                     ]
-                    [ text <| talk.speaker.name ]
+                    [ text talk.speaker.name ]
                 ]
             ]
         ]
