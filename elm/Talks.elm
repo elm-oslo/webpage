@@ -62,7 +62,7 @@ all =
       , speaker = Speakers.emma
       , time = ( "", "" )
       }
-    , { title = "All in on Elm for 18 months - an experience report from NSB!"
+    , { title = "On the Elm Track with NSB"
       , abstract = ""
       , speaker = Speakers.jonas
       , time = ( "", "" )

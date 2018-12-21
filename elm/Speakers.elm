@@ -139,7 +139,7 @@ jonas : Speaker
 jonas =
     { id = "jonas"
     , name = "Jonas Berdal"
-    , bio = "Jonas is one of those lucky developers who gets to work with Elm every day. He first fell in love with the language the summer of 2017, as a summer intern in the Norwegian consulting firm Bekk, where he now works as a developer. Besides coding Elm he spends his time flying back and forth between Oslo (where he works) and rainy Norwegian west coast town Bergen (where he lives). Bergen is also the town where he obtained his degrees in Programming Theory and Nanotechnology."
+    , bio = "Jonas is one of the lucky developers who gets to work with Elm every day. He first fell in love with the language the summer of 2017, as a summer intern in the Norwegian consulting firm Bekk, where he now works as a developer. Besides coding Elm he spends his time flying back and forth between Oslo (where he works) and rainy Norwegian west coast town Bergen (where he lives). Bergen is also the town where he obtained his degrees in Programming Theory and Nanotechnology."
     , imageUrl = "images/jonas-berdal.jpeg"
     }
 
