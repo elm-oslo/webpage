@@ -220,6 +220,8 @@ viewTalk talk =
                     ]
                     [ text talk.speaker.name ]
                 ]
+            , p []
+                [ Markdown.toHtml [] talk.abstract ]
             ]
         ]
 
