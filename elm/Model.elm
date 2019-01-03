@@ -92,6 +92,11 @@ sponsors =
       , imageUrl = "images/dx_logo.svg"
       , tier = Silver
       }
+    , { name = "rakuten"
+      , url = "https://global.rakuten.com/corp/"
+      , imageUrl = "images/rakuten_logo.svg"
+      , tier = Silver
+      }
     ]
 
 

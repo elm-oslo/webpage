@@ -813,12 +813,17 @@ ul {
 
 .dialog-exe {
   width: 40px;
+  height: 40px;
 }
 
 .sponsors-platinum .sponsor__logo {
   width: 190px;
   max-height: 100px;
   position: relative;
+}
+
+.sponsors-silver .sponsor__logo {
+  max-height: 20px;
 }
 
 .sponsors a,
@@ -830,7 +835,8 @@ ul {
 .sponsor__list a {
   border: none;
   margin-right: 20px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .arktekk {
