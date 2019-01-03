@@ -811,6 +811,10 @@ ul {
   position: relative;
 }
 
+.sponsor__logo.eggs {
+  width: 40px;
+}
+
 .dialog-exe {
   width: 40px;
   height: 40px;
