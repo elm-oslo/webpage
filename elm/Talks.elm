@@ -143,7 +143,7 @@ The takeaway of the talk will be: Is is possible to convert, with little effort 
       , time = ( "", "" )
       }
     , { title = "The Extensibility Problem"
-      , abstract = """There are a number of people who would like to see typeclasses, or a similar construct in Elm. In this talk, we'll look at some valid use cases such a construct would solve, discuss how this can be worked around, and try to imagine what Elm with type classes would look like. In the end, we might find that typeclasses might not be necessary after all."""
+      , abstract = """Elm's type system makes it easy to write concrete and easy to understand programs. However, such code also has little flexibility and is prone to break. On the other hand; making code less concrete can make your program harder to understand and easier to get wrong. How extensible should your code be? Let's find out."""
       , speaker = Speakers.robin
       , time = ( "", "" )
       }
