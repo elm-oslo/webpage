@@ -302,12 +302,16 @@ ul {
 
 .sponsors-platinum {
   width: 25%;
+  margin-bottom: 2em;
 }
 .sponsors-gold {
   width: 35%;
+  margin-right: 2em;
+  margin-bottom: 2em;
 }
 .sponsors-silver {
   width: 25%;
+  margin-bottom: 2em;
 }
 .sponsors-about {
   width: 15%;
