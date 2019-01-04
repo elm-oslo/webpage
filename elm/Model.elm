@@ -97,6 +97,16 @@ sponsors =
       , imageUrl = "images/rakuten_logo.svg"
       , tier = Silver
       }
+    , { name = "blank"
+      , url = "https://blank.no/"
+      , imageUrl = "images/blank_logo.svg"
+      , tier = Gold
+      }
+    , { name = "arktekk"
+      , url = "https://arktekk.no/"
+      , imageUrl = "images/arktekk_logo.svg"
+      , tier = Silver
+      }
     ]
 
 
