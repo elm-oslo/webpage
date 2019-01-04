@@ -45,7 +45,11 @@ We will take a look at Elm’s learning curve. How it’s like to not have a JS 
       , time = ( "", "" )
       }
     , { title = "Lessons learned teaching Elm to kids"
-      , abstract = """Oslo Code Club: Blindern has taught Elm to kids at age 14 and up. What can we learn from teaching Elm to an audience without much programming experience?"""
+      , abstract = """Ten Tuesdays. Eleven kids. Ages twelve to sixteen. They have grit. And they have Elm.
+
+Will they use front-end as a creative platform? Will they surpass the javascripters?
+
+Only this experience report will tell."""
       , speaker = Speakers.teodor
       , time = ( "", "" )
       }
