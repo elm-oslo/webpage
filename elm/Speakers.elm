@@ -103,7 +103,7 @@ viktor : Speaker
 viktor =
     { id = "viktor"
     , name = "Viktor Tymoshenko"
-    , bio = "My jorney with commercial software development has started in 2010. Since then, I've tried different roles: C++ developer, scrum master, product owner, founder. Combination of solid management experience and passion to FP has given birth to https://www.noconf.io, where I'm coding in Elm in my free time."
+    , bio = "My journey with commercial software development has started in 2010. Since then, I've tried different roles: C++ developer, scrum master, product owner, founder. Combination of solid management experience and passion to FP has given birth to https://www.noconf.io, where I'm coding in Elm in my free time."
     , imageUrl = "images/viktor-tymoshenko.jpg"
     }
 
