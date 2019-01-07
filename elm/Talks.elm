@@ -147,7 +147,9 @@ The takeaway of the talk will be: Is is possible to convert, with little effort 
       , time = ( "", "" )
       }
     , { title = "The Extensibility Problem"
-      , abstract = """Elm's type system makes it easy to write concrete and easy to understand programs. However, such code also has little flexibility and is prone to break. On the other hand; making code less concrete can make your program harder to understand and easier to get wrong. How extensible should your code be? Let's find out."""
+      , abstract = """Elm code tends to favour few abstractions and concrete data types, but writing code in this way can make your code inflexible and require more work in the face of changes. Writing code in a more open way can be a solution to this, but can also make your code harder to understand and easier to get wrong.
+
+Robin will show some common pitfalls of writing concrete code and how these can be avoided by writing with a more open mindset. There will also be an exploration on how a common tool for extensibility, type classes, could work in Elm and why it might not be a good idea."""
       , speaker = Speakers.robin
       , time = ( "", "" )
       }
