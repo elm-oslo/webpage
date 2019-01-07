@@ -116,6 +116,9 @@ viewAbout =
                     , a [ href "https://twitter.com/akselw" ]
                         [ text "@akselw" ]
                     ]
+                , li []
+                    [ text "Runar Furenes"
+                    ]
                 ]
             ]
         , p []
