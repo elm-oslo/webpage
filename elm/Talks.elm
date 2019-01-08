@@ -40,7 +40,11 @@ We will take a look at Elm’s learning curve. How it’s like to not have a JS 
       , time = ( "", "" )
       }
     , { title = "Slaying a UI Antipattern"
-      , abstract = """Kris will be talking about his immensely popular RemoteData library. More talk details coming!"""
+      , abstract = """Fetching data from the server should be one of the easiest things frontend programmers do. And yet even big names like Twitter and Slack make a simple mistake that consistently spoils the UX of their sites.
+
+In this talk we’ll look afresh at the simple act of loading remote data, and how it’s just slightly more complicated than people think. Then we’ll see how Elm’s excellent data modeling capabilities let you capture this complexity and banish the bug permanently.
+
+You’ll learn how to improve the user experience of every HTTP call you make, and pick up some wider ideas on how Elm’s type system can guide you to clearer, more useful designs that make for better software."""
       , speaker = Speakers.kris
       , time = ( "", "" )
       }
