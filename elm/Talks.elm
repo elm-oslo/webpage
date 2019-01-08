@@ -73,7 +73,11 @@ Time allowing, I’ll show off working with live streams, capturing from a webca
       , time = ( "", "" )
       }
     , { title = "A Markup for the Statically Typed"
-      , abstract = """What would a markup language made specifically for Elm's paradigm look like? Let's bring static types, beautiful error messages, and easy extensibility to a markup language!"""
+      , abstract = """Elm Markup brings static types, beautiful error messages, and easy extensibility to a markup language!
+
+Parse a document to Html, Elm UI Elements, or anything you'd like.  Or make it dynamic by parsing to a _view function_!
+
+Let's intermix structured data with human formatted text for an experience much more like an interactive notebook than just writing static markdown."""
       , speaker = Speakers.matthew
       , time = ( "", "" )
       }
