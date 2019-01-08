@@ -107,6 +107,11 @@ sponsors =
       , imageUrl = "images/arktekk_logo.svg"
       , tier = Silver
       }
+    , { name = "knowit"
+      , url = "https://knowit.no/"
+      , imageUrl = "images/knowit_logo.svg"
+      , tier = Gold
+      }
     ]
 
 
