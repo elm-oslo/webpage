@@ -565,7 +565,7 @@ ul {
   background: white;
   position: absolute;
   top: 135%;
-  left: 25%;
+  left: 45%;
 }
 
 .content__menu-item:nth-child(1)::after {
@@ -1246,4 +1246,49 @@ ul {
   font-weight: bold;
   margin-top: 1.7em;
   margin-bottom: 0.2em;
+}
+
+/* SCHEDULE */
+
+.scheduleEntry {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2.5rem;
+}
+
+.scheduleEntry__heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 1.5rem;
+}
+.scheduleEntry__heading--left {
+  width: 20%;
+}
+.scheduleEntry__heading--right {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #233b9f;
+}
+
+.scheduleEntry__body h3 {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+}
+
+.scheduleEntry__body {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  margin-bottom: 1.5em;
+}
+.scheduleEntry__body--left {
+  width: 20%;
+  color: #233b9f;
+}
+.scheduleEntry__body--right {
+  flex: 1;
 }

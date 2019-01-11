@@ -55,11 +55,11 @@ viewPage page =
                 , a
                     [ classList
                         [ ( "content__menu-item", True )
-                        , ( "menu-item-active", page == Talks )
+                        , ( "menu-item-active", page == Schedule )
                         ]
-                    , Route.href Route.Talks
+                    , Route.href Route.Schedule
                     ]
-                    [ text "Talks" ]
+                    [ text "Schedule" ]
                 ]
             , a [ class "content__menu-close", Route.href Route.Home ]
                 [ text "Close" ]

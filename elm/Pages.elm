@@ -5,6 +5,7 @@ import Html.Attributes exposing (..)
 import Markdown
 import Model exposing (ScheduleEntry(..), scheduleEntries)
 import Route
+import Schedule
 import Speakers exposing (Speaker)
 import Talks exposing (Slottime, Talk)
 
@@ -232,13 +233,12 @@ viewTalk talk =
 viewSchedule : Html a
 viewSchedule =
     div []
-        ([ h2 []
+        [ h2 []
             [ text "Schedule" ]
-         , p []
+        , p []
             [ text "Oslo Elm Day is a single-track conference, with a speaker lineup consisting of both world-renowned Elm experts and local Elm users, experienced with using Elm in production." ]
-         ]
-            ++ List.map viewScheduleEntry scheduleEntries
-        )
+        , Schedule.view
+        ]
 
 
 viewScheduleEntry : ScheduleEntry -> Html a
