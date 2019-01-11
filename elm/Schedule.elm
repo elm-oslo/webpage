@@ -190,7 +190,7 @@ viewPreConf expandableStuff =
             [ div [ class "scheduleEntry__body--left" ]
                 [ text <| "Folq?" ]
             , div [ class "scheduleEntry__body--right" ]
-                [ h3 []
+                [ h3 [ id key ]
                     [ text "Elm-GraphQL Workshop"
                     ]
                 , viewExpandableItem expandableStuff key <|
@@ -205,11 +205,15 @@ viewScheduleEntry : Dict String Bool -> ( Time.Posix, ScheduleEntry ) -> Html Ms
 viewScheduleEntry expandedStuff ( startTime, entry ) =
     let
         viewTalk t r =
+            let
+                key =
+                    "talk-" ++ t.title
+            in
             div [ class "scheduleEntry__body" ]
                 [ div [ class "scheduleEntry__body--left" ]
                     [ text <| room r ]
                 , div [ class "scheduleEntry__body--right" ]
-                    [ h3 []
+                    [ h3 [ id key ]
                         [ a
                             [ Route.href <| Route.Speaker t.speaker.id
                             ]
@@ -218,7 +222,7 @@ viewScheduleEntry expandedStuff ( startTime, entry ) =
                             " – "
                                 ++ t.title
                         ]
-                    , viewExpandableItem expandedStuff t.title <|
+                    , viewExpandableItem expandedStuff key <|
                         p
                             []
                             [ Markdown.toHtml [] t.abstract ]

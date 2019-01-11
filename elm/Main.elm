@@ -113,8 +113,8 @@ update msg model =
             ( model, Ports.stopBuyTicketAnim () )
 
         ExpandableItemClicked key ->
-            ( { model
-                | expandableStuff =
+            let
+                updatedDict =
                     Dict.update key
                         (\mb ->
                             case mb of
@@ -125,8 +125,15 @@ update msg model =
                                     Just True
                         )
                         model.expandableStuff
+            in
+            ( { model
+                | expandableStuff = updatedDict
               }
-            , Cmd.none
+            , if Dict.get key updatedDict == Just False then
+                Ports.scrollToId key
+
+              else
+                Cmd.none
             )
 
 
