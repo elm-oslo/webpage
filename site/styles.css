@@ -612,7 +612,7 @@ ul {
   background: white;
   position: absolute;
   top: 190%;
-  left: 25%;
+  left: 45%;
   opacity: 0;
 }
 
@@ -1291,4 +1291,37 @@ ul {
 }
 .scheduleEntry__body--right {
   flex: 1;
+}
+
+.expandableItem {
+  position: relative;
+}
+.expandableItem__content {
+  overflow: hidden;
+  max-height: 150px;
+  padding-bottom: 2em;
+}
+.expandableItem--expanded .expandableItem__content {
+  max-height: none;
+}
+
+.expandableItem__readMore {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgb(21, 0, 156));
+  cursor: pointer;
+}
+.expandableItem--expanded .expandableItem__readMore {
+  background: unset;
+  cursor: unset;
+}
+
+.expandableItem__button {
+  position: absolute;
+  bottom: 0;
+  text-decoration: underline;
+  cursor: pointer;
 }

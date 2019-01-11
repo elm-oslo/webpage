@@ -1,9 +1,12 @@
 module Schedule exposing (view)
 
 import DateFormat
+import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Markdown
+import Model exposing (Msg(..))
 import Route
 import Talks exposing (Talk)
 import Time
@@ -111,22 +114,22 @@ schedule =
     ]
 
 
-view : Html msg
-view =
+view : Dict String Bool -> Html Msg
+view expandableStuff =
     div []
         [ div []
             [ h2 [] [ text "Friday 15" ]
-            , viewPreConf
+            , viewPreConf expandableStuff
             ]
         , div []
             [ h2 [] [ text "Saturday 16" ]
-            , viewSchedule
+            , viewSchedule expandableStuff
             ]
         ]
 
 
-viewSchedule : Html msg
-viewSchedule =
+viewSchedule : Dict String Bool -> Html Msg
+viewSchedule expandableStuff =
     let
         startTime =
             Time.partsToPosix timeZone
@@ -155,13 +158,16 @@ viewSchedule =
             ( startTime, [] )
         |> Tuple.second
         |> List.reverse
-        |> List.map viewScheduleEntry
+        |> List.map (viewScheduleEntry expandableStuff)
         |> div []
 
 
-viewPreConf : Html msg
-viewPreConf =
+viewPreConf : Dict String Bool -> Html Msg
+viewPreConf expandableStuff =
     let
+        key =
+            "pre-conf-workshop"
+
         startTime =
             Time.partsToPosix timeZone
                 { year = 2019
@@ -187,15 +193,16 @@ viewPreConf =
                 [ h3 []
                     [ text "Elm-GraphQL Workshop"
                     ]
-                , p []
-                    [ Markdown.toHtml [] preConfWorkshopDescription ]
+                , viewExpandableItem expandableStuff key <|
+                    p []
+                        [ Markdown.toHtml [] preConfWorkshopDescription ]
                 ]
             ]
         ]
 
 
-viewScheduleEntry : ( Time.Posix, ScheduleEntry ) -> Html msg
-viewScheduleEntry ( startTime, entry ) =
+viewScheduleEntry : Dict String Bool -> ( Time.Posix, ScheduleEntry ) -> Html Msg
+viewScheduleEntry expandedStuff ( startTime, entry ) =
     let
         viewTalk t r =
             div [ class "scheduleEntry__body" ]
@@ -211,8 +218,10 @@ viewScheduleEntry ( startTime, entry ) =
                             " – "
                                 ++ t.title
                         ]
-                    , p []
-                        [ Markdown.toHtml [] t.abstract ]
+                    , viewExpandableItem expandedStuff t.title <|
+                        p
+                            []
+                            [ Markdown.toHtml [] t.abstract ]
                     ]
                 ]
 
@@ -260,6 +269,49 @@ viewScheduleEntry ( startTime, entry ) =
                 , viewTalk talk1 Room1
                 , viewTalk talk2 Room2
                 ]
+
+
+viewExpandableItem : Dict String Bool -> String -> Html Msg -> Html Msg
+viewExpandableItem expandableStuff key content =
+    let
+        expanded =
+            expandableStuff
+                |> Dict.get key
+                |> Maybe.withDefault False
+    in
+    div
+        [ classList
+            [ ( "expandableItem", True )
+            , ( "expandableItem--expanded", expanded )
+            ]
+        , onClick <|
+            if expanded then
+                NoOp
+
+            else
+                ExpandableItemClicked key
+        ]
+        [ div [ class "expandableItem__content" ]
+            [ content ]
+        , div [ class "expandableItem__readMore" ]
+            [ div
+                [ class "expandableItem__button"
+                , onClick <|
+                    if not expanded then
+                        NoOp
+
+                    else
+                        ExpandableItemClicked key
+                ]
+                [ text <|
+                    if expanded then
+                        "Show less"
+
+                    else
+                        "Read more"
+                ]
+            ]
+        ]
 
 
 room : Room -> String

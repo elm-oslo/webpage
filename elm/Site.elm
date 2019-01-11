@@ -1,5 +1,6 @@
 module Site exposing (footer_, header_, information, nav_, viewPage)
 
+import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
@@ -11,8 +12,8 @@ import Svg exposing (defs, g, path, svg)
 import Svg.Attributes exposing (d, fill, viewBox)
 
 
-viewPage : Page -> Html a
-viewPage page =
+viewPage : Dict String Bool -> Page -> Html Msg
+viewPage expandableStuff page =
     let
         ( className, content ) =
             case page of
@@ -23,7 +24,7 @@ viewPage page =
                     ( "speakers", Pages.viewSpeakers )
 
                 Schedule ->
-                    ( "schedule", Pages.viewSchedule )
+                    ( "schedule", Pages.viewSchedule expandableStuff )
 
                 Talks ->
                     ( "schedule", Pages.viewTalks )
