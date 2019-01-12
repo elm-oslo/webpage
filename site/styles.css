@@ -1271,7 +1271,7 @@ ul {
 .scheduleEntry__heading--right {
   flex-grow: 1;
   height: 2px;
-  background-color: #233b9f;
+  background-color: #3d22e9;
 }
 
 .scheduleEntry__body h3 {
@@ -1288,7 +1288,7 @@ ul {
 }
 .scheduleEntry__body--left {
   width: 20%;
-  color: #233b9f;
+  color: #917fff;
 }
 .scheduleEntry__body--right {
   flex: 1;
