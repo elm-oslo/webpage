@@ -182,7 +182,9 @@ viewPreConf expandableStuff =
     div [ class "scheduleEntry" ]
         [ div [ class "scheduleEntry__heading" ]
             [ div [ class "scheduleEntry__heading--left" ]
-                [ text <| timeRangeFormatter timeZone startTime 180 ]
+                [ text <|
+                    timeFormatter timeZone startTime
+                ]
             , div [ class "scheduleEntry__heading--right" ]
                 []
             ]
@@ -230,7 +232,7 @@ viewScheduleEntry expandedStuff ( startTime, entry ) =
                 ]
 
         time d =
-            timeRangeFormatter timeZone startTime d
+            timeFormatter timeZone startTime
     in
     case entry of
         Hidden _ _ ->
