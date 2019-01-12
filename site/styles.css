@@ -1284,6 +1284,7 @@ ul {
   flex-direction: row;
   align-content: flex-start;
   margin-bottom: 1.5em;
+  padding-top: 1em;
 }
 .scheduleEntry__body--left {
   width: 20%;

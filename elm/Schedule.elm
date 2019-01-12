@@ -179,7 +179,7 @@ viewPreConf expandableStuff =
                 , millisecond = 0
                 }
     in
-    div [ class "scheduleEntry" ]
+    div [ id key, class "scheduleEntry" ]
         [ div [ class "scheduleEntry__heading" ]
             [ div [ class "scheduleEntry__heading--left" ]
                 [ text <|
@@ -192,7 +192,7 @@ viewPreConf expandableStuff =
             [ div [ class "scheduleEntry__body--left" ]
                 [ text <| "Folq?" ]
             , div [ class "scheduleEntry__body--right" ]
-                [ h3 [ id key ]
+                [ h3 []
                     [ text "Elm-GraphQL Workshop"
                     ]
                 , viewExpandableItem expandableStuff key <|
@@ -211,11 +211,11 @@ viewScheduleEntry expandedStuff ( startTime, entry ) =
                 key =
                     "talk-" ++ t.title
             in
-            div [ class "scheduleEntry__body" ]
+            div [ id key, class "scheduleEntry__body" ]
                 [ div [ class "scheduleEntry__body--left" ]
                     [ text <| room r ]
                 , div [ class "scheduleEntry__body--right" ]
-                    [ h3 [ id key ]
+                    [ h3 []
                         [ a
                             [ Route.href <| Route.Speaker t.speaker.id
                             ]
