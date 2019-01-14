@@ -498,11 +498,12 @@ ul {
   display: flex;
 }
 
-.content__menu a, .content__menu-close{
+.content__menu a,
+.content__menu-close {
   color: white !important;
 }
 
-.content__menu a:nth-child(1){
+.content__menu a:nth-child(1) {
   margin-right: 8px;
 }
 
@@ -685,7 +686,7 @@ ul {
   .content__page {
     left: 0px !important;
   }
-  .contact h3{
+  .contact h3 {
     padding-top: 20px;
   }
 }
@@ -761,7 +762,7 @@ ul {
   color: #233b9f;
 }
 
-.speakers a{
+.speakers a {
   color: rgb(21, 0, 156);
 }
 
@@ -850,7 +851,7 @@ ul {
 }
 
 .sponsors a,
-.about a{
+.about a {
   color: #fff;
 }
 
@@ -969,10 +970,10 @@ ul {
   #logo {
     width: 190px !important;
   }
-  .content__menu a:nth-child(1){
+  .content__menu a:nth-child(1) {
     margin-right: 0px;
   }
-  .content__menu a:nth-child(2){
+  .content__menu a:nth-child(2) {
     margin-right: 8px;
   }
   .menu-item-active:nth-child(1)::before {
@@ -1012,13 +1013,13 @@ ul {
 }
 
 @media (min-width: 2200px) {
-  #logo{
+  #logo {
     width: 220px !important;
   }
-  .content__menu a:nth-child(1){
+  .content__menu a:nth-child(1) {
     margin-right: 10px;
   }
-  .content__menu a:nth-child(2){
+  .content__menu a:nth-child(2) {
     margin-right: 18px;
   }
 }
@@ -1332,6 +1333,10 @@ ul {
   flex: 1;
 }
 
+.scheduleEntry__body ul {
+  list-style: inside;
+}
+
 .expandableItem {
   position: relative;
 }
@@ -1356,6 +1361,10 @@ ul {
 .expandableItem--expanded .expandableItem__readMore {
   background: unset;
   cursor: unset;
+  pointer-events: none;
+}
+.expandableItem--expanded .expandableItem__button {
+  pointer-events: all;
 }
 
 .expandableItem__button {
@@ -1364,7 +1373,7 @@ ul {
   text-decoration: underline;
   cursor: pointer;
 }
-.expandableItem__readMore:hover .expandableItem__button{
+.expandableItem__readMore:hover .expandableItem__button {
   text-decoration: none;
 }
 @media (max-width: 525px) {
