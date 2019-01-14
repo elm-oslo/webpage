@@ -112,7 +112,7 @@ ul {
 }
 
 #logo {
-  width: 200px;
+  width: 180px;
   position: absolute;
   left: 60px;
   top: 49px;
@@ -223,7 +223,7 @@ ul {
   padding: 0.5em;
   text-align: center;
   background-color: #ffca6a;
-  color: #4e3c1b;
+  color: #4e3c1b !important;
   text-decoration: none;
   border-radius: 3px;
   align-self: center;
@@ -498,6 +498,14 @@ ul {
   display: flex;
 }
 
+.content__menu a, .content__menu-close{
+  color: white !important;
+}
+
+.content__menu a:nth-child(1){
+  margin-right: 8px;
+}
+
 .content__menu-close {
   opacity: 0;
   animation: fadein 0.5s 0.3s ease-in-out forwards;
@@ -677,6 +685,9 @@ ul {
   .content__page {
     left: 0px !important;
   }
+  .contact h3{
+    padding-top: 20px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -748,6 +759,10 @@ ul {
 
 .speakers p {
   color: #233b9f;
+}
+
+.speakers a{
+  color: rgb(21, 0, 156);
 }
 
 .schedule {
@@ -835,8 +850,7 @@ ul {
 }
 
 .sponsors a,
-.about a,
-.speakers a {
+.about a{
   color: #fff;
 }
 
@@ -954,7 +968,12 @@ ul {
   }
   #logo {
     width: 190px !important;
-    width: 175px !important;
+  }
+  .content__menu a:nth-child(1){
+    margin-right: 0px;
+  }
+  .content__menu a:nth-child(2){
+    margin-right: 8px;
   }
   .menu-item-active:nth-child(1)::before {
     left: 36% !important;
@@ -989,6 +1008,18 @@ ul {
   }
   .content__menu-item:nth-child(2) {
     margin-left: 0.8em;
+  }
+}
+
+@media (min-width: 2200px) {
+  #logo{
+    width: 220px !important;
+  }
+  .content__menu a:nth-child(1){
+    margin-right: 10px;
+  }
+  .content__menu a:nth-child(2){
+    margin-right: 18px;
   }
 }
 
@@ -1271,6 +1302,7 @@ ul {
 }
 .scheduleEntry__heading--left {
   width: 20%;
+  font-family: 'AvenirLTPro-Medium', sans-serif;
 }
 .scheduleEntry__heading--right {
   flex-grow: 1;
@@ -1280,7 +1312,8 @@ ul {
 
 .scheduleEntry__body h3 {
   margin-top: 0;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+  line-height: 1.4em;
 }
 
 .scheduleEntry__body {
@@ -1293,6 +1326,7 @@ ul {
 .scheduleEntry__body--track {
   width: 20%;
   color: #917fff;
+  font-family: 'AvenirLTPro-Medium', sans-serif;
 }
 .scheduleEntry__body--description {
   flex: 1;
@@ -1329,6 +1363,9 @@ ul {
   bottom: 0;
   text-decoration: underline;
   cursor: pointer;
+}
+.expandableItem__readMore:hover .expandableItem__button{
+  text-decoration: none;
 }
 @media (max-width: 525px) {
   .scheduleEntry__body {
