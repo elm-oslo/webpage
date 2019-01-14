@@ -1,5 +1,6 @@
 module Site exposing (footer_, header_, information, nav_, viewPage)
 
+import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onMouseEnter, onMouseLeave)
@@ -11,8 +12,8 @@ import Svg exposing (defs, g, path, svg)
 import Svg.Attributes exposing (d, fill, viewBox)
 
 
-viewPage : Page -> Html a
-viewPage page =
+viewPage : Dict String Bool -> Page -> Html Msg
+viewPage expandableStuff page =
     let
         ( className, content ) =
             case page of
@@ -23,7 +24,7 @@ viewPage page =
                     ( "speakers", Pages.viewSpeakers )
 
                 Schedule ->
-                    ( "schedule", Pages.viewSchedule )
+                    ( "schedule", Pages.viewSchedule expandableStuff )
 
                 Talks ->
                     ( "schedule", Pages.viewTalks )
@@ -55,11 +56,11 @@ viewPage page =
                 , a
                     [ classList
                         [ ( "content__menu-item", True )
-                        , ( "menu-item-active", page == Talks )
+                        , ( "menu-item-active", page == Schedule )
                         ]
-                    , Route.href Route.Talks
+                    , Route.href Route.Schedule
                     ]
-                    [ text "Talks" ]
+                    [ text "Schedule" ]
                 ]
             , a [ class "content__menu-close", Route.href Route.Home ]
                 [ text "Close" ]
@@ -176,7 +177,7 @@ footer_ hidden =
                     ]
                 ]
             , section [ class "information__block animate--medium seq-5 animate contact" ]
-                [ h2 []
+                [ h3 []
                     [ text "Contact" ]
                 , ul []
                     [ li []
@@ -246,9 +247,7 @@ information =
             [ h2 []
                 [ text "Why?" ]
             , p []
-                [ text "The Elm community is growing, with more and more companies using Elm in their projects." ]
-            , p []
-                [ text "It’s time to start sharing our experiences.          " ]
+                [ text "The Elm community is growing, with more and more companies using Elm in their projects. It’s time to start sharing our experiences." ]
             ]
         ]
 

@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Browser.Navigation as Nav
+import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -16,7 +17,7 @@ init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url navKey =
     let
         ( model, cmd ) =
-            setRoute (Route.fromUrl url) { page = Nothing, navKey = navKey }
+            setRoute (Route.fromUrl url) { page = Nothing, navKey = navKey, expandableStuff = Dict.empty }
     in
     ( model
     , Cmd.batch
@@ -111,6 +112,30 @@ update msg model =
         TicketButtonMouseLeave ->
             ( model, Ports.stopBuyTicketAnim () )
 
+        ExpandableItemClicked key ->
+            let
+                updatedDict =
+                    Dict.update key
+                        (\mb ->
+                            case mb of
+                                Just expanded ->
+                                    Just <| not expanded
+
+                                Nothing ->
+                                    Just True
+                        )
+                        model.expandableStuff
+            in
+            ( { model
+                | expandableStuff = updatedDict
+              }
+            , if Dict.get key updatedDict == Just False then
+                Ports.scrollToId key
+
+              else
+                Cmd.none
+            )
+
 
 view : Model -> Browser.Document Msg
 view model =
@@ -147,7 +172,7 @@ view model =
             []
         , case model.page of
             Just page ->
-                Site.viewPage page
+                Site.viewPage model.expandableStuff page
 
             Nothing ->
                 text ""

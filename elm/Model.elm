@@ -11,6 +11,7 @@ module Model exposing
 
 import Browser
 import Browser.Navigation as Nav
+import Dict exposing (Dict)
 import Route exposing (Route)
 import Speakers exposing (Speaker)
 import Talks exposing (Slottime, Talk)
@@ -31,12 +32,14 @@ type Msg
     | NavigateTo Route
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | ExpandableItemClicked String
     | NoOp
 
 
 type alias Model =
     { navKey : Nav.Key
     , page : Maybe Page
+    , expandableStuff : Dict String Bool
     }
 
 
