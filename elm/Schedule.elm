@@ -168,7 +168,7 @@ viewPreConf expandableStuff =
             , div [ class "scheduleEntry__body--description" ]
                 [ p
                     []
-                    [ text "Folq office"
+                    [ text "Folq"
                     , br [] []
                     , text "Youngs gate 7"
                     , br [] []
@@ -176,7 +176,14 @@ viewPreConf expandableStuff =
                     ]
                 , br [] []
                 , h3 []
-                    [ text "Elm-GraphQL Workshop"
+                    [ div []
+                        [ text <|
+                            "Elm-GraphQL Workshop"
+                        ]
+                    , a
+                        [ href "https://twitter.com/dillontkearns"
+                        ]
+                        [ text "Dillon Kearns" ]
                     ]
                 , viewExpandableItem expandableStuff key <|
                     p []
