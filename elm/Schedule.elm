@@ -17,11 +17,11 @@ view : Dict String Bool -> Html Msg
 view expandableStuff =
     div []
         [ div [ class "schedule__day" ]
-            [ h2 [] [ text "Friday 15 – pre-conference" ]
+            [ h2 [] [ text "Friday 15 – Pre-Conference" ]
             , viewPreConf expandableStuff
             ]
         , div [ class "schedule__day" ]
-            [ h2 [] [ text "Saturday 16" ]
+            [ h2 [] [ text "Saturday 16 –\u{00A0}Main Conference" ]
             , viewSchedule expandableStuff
             ]
         ]
