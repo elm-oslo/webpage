@@ -1386,3 +1386,12 @@ ul {
     margin-bottom: 1em;
   }
 }
+
+.schedule__preconfsponsorlogoContainer {
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+}
+.schedule__preconfsponsorlogo {
+    height: 30px;
+}

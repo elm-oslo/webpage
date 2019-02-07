@@ -186,8 +186,29 @@ viewPreConf expandableStuff =
                         [ text "Dillon Kearns" ]
                     ]
                 , viewExpandableItem expandableStuff key <|
-                    p []
-                        [ Markdown.toHtml [] preConfWorkshopDescription ]
+                    div []
+                        [ p []
+                            [ div []
+                                [ i []
+                                    [ text "The pre-conference is sponsored by"
+                                    ]
+                                ]
+                            , br [] []
+                            , a
+                                [ href "https://folq.no"
+                                , target "_blank"
+                                , class "schedule__preconfsponsorlogoContainer"
+                                ]
+                                [ img
+                                    [ class "schedule__preconfsponsorlogo"
+                                    , src "images/folq_logo.svg"
+                                    ]
+                                    []
+                                ]
+                            ]
+                        , p []
+                            [ Markdown.toHtml [] preConfWorkshopDescription ]
+                        ]
                 ]
             ]
         ]
