@@ -881,6 +881,10 @@ ul {
   bottom: 3px;
 }
 
+.finn {
+  width: 90px;
+}
+
 .about blockquote {
   margin: 1.1em;
 }
@@ -1388,10 +1392,10 @@ ul {
 }
 
 .schedule__preconfsponsorlogoContainer {
-    display: flex;
-    justify-content: center;
-    border-bottom: none;
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
 }
 .schedule__preconfsponsorlogo {
-    height: 30px;
+  height: 30px;
 }

@@ -115,6 +115,11 @@ sponsors =
       , imageUrl = "images/knowit_logo.svg"
       , tier = Gold
       }
+    , { name = "finn"
+      , url = "https://finn.no/"
+      , imageUrl = "images/finn_logo.svg"
+      , tier = Silver
+      }
     ]
 
 
