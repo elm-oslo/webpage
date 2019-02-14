@@ -152,63 +152,111 @@ viewPreConf expandableStuff =
                 , second = 0
                 , millisecond = 0
                 }
+
+        startTimeBeer =
+            Time.partsToPosix timeZone
+                { year = 2019
+                , month = Time.Feb
+                , day = 15
+                , hour = 20
+                , minute = 0
+                , second = 0
+                , millisecond = 0
+                }
     in
-    div [ id key, class "scheduleEntry" ]
-        [ div [ class "scheduleEntry__heading" ]
-            [ div [ class "scheduleEntry__heading--left" ]
-                [ text <|
-                    timeFormatter timeZone startTime
-                ]
-            , div [ class "scheduleEntry__heading--right" ]
-                []
-            ]
-        , div [ class "scheduleEntry__body" ]
-            [ div [ class "scheduleEntry__body--track" ]
-                [ text "Location:" ]
-            , div [ class "scheduleEntry__body--description" ]
-                [ p
+    div []
+        [ div [ id key, class "scheduleEntry" ]
+            [ div [ class "scheduleEntry__heading" ]
+                [ div [ class "scheduleEntry__heading--left" ]
+                    [ text <|
+                        timeFormatter timeZone startTime
+                    ]
+                , div [ class "scheduleEntry__heading--right" ]
                     []
-                    [ text "Folq"
-                    , br [] []
-                    , text "Youngs gate 7"
-                    , br [] []
-                    , text "0181 Oslo"
-                    ]
-                , br [] []
-                , h3 []
-                    [ div []
-                        [ text <|
-                            "Elm-GraphQL Workshop"
+                ]
+            , div [ class "scheduleEntry__body" ]
+                [ div [ class "scheduleEntry__body--track" ]
+                    [ text "Location:" ]
+                , div [ class "scheduleEntry__body--description" ]
+                    [ p
+                        []
+                        [ text "Folq"
+                        , br [] []
+                        , text "Youngs gate 7"
+                        , br [] []
+                        , text "0181 Oslo"
                         ]
-                    , a
-                        [ href "https://twitter.com/dillontkearns"
-                        ]
-                        [ text "Dillon Kearns" ]
-                    ]
-                , viewExpandableItem expandableStuff key <|
-                    div []
-                        [ p []
-                            [ div []
-                                [ i []
-                                    [ text "The pre-conference is sponsored by"
-                                    ]
-                                ]
-                            , br [] []
-                            , a
-                                [ href "https://folq.no"
-                                , target "_blank"
-                                , class "schedule__preconfsponsorlogoContainer"
-                                ]
-                                [ img
-                                    [ class "schedule__preconfsponsorlogo"
-                                    , src "images/folq_logo.svg"
-                                    ]
-                                    []
-                                ]
+                    , br [] []
+                    , h3 []
+                        [ div []
+                            [ text <|
+                                "Elm-GraphQL Workshop"
                             ]
-                        , p []
-                            [ Markdown.toHtml [] preConfWorkshopDescription ]
+                        , a
+                            [ href "https://twitter.com/dillontkearns"
+                            ]
+                            [ text "Dillon Kearns" ]
                         ]
+                    , viewExpandableItem expandableStuff key <|
+                        div []
+                            [ p []
+                                [ div []
+                                    [ i []
+                                        [ text "The pre-conference is sponsored by"
+                                        ]
+                                    ]
+                                , br [] []
+                                , a
+                                    [ href "https://folq.no"
+                                    , target "_blank"
+                                    , class "schedule__preconfsponsorlogoContainer"
+                                    ]
+                                    [ img
+                                        [ class "schedule__preconfsponsorlogo"
+                                        , src "images/folq_logo.svg"
+                                        ]
+                                        []
+                                    ]
+                                ]
+                            , p []
+                                [ Markdown.toHtml [] preConfWorkshopDescription ]
+                            ]
+                    ]
+                ]
+            ]
+        , div [ id key, class "scheduleEntry" ]
+            [ div [ class "scheduleEntry__heading" ]
+                [ div [ class "scheduleEntry__heading--left" ]
+                    [ text <|
+                        timeFormatter timeZone startTimeBeer
+                    ]
+                , div [ class "scheduleEntry__heading--right" ]
+                    []
+                ]
+            , div [ class "scheduleEntry__body" ]
+                [ div [ class "scheduleEntry__body--track" ]
+                    [ text "Location:" ]
+                , div [ class "scheduleEntry__body--description" ]
+                    [ p
+                        []
+                        [ text "Smelteverket"
+                        , br [] []
+                        , text "Vulkan 5"
+                        , br [] []
+                        , text "0182 Oslo"
+                        ]
+                    , br [] []
+                    , h3 []
+                        [ div []
+                            [ text <|
+                                "Pre-conference hangout"
+                            ]
+                        ]
+                    , div []
+                        [ p []
+                            [ text "After the workshop, there’ll be a a chance to meet other attendees along with the organizers and speakers at Smelteverket." ]
+                        ]
+                    ]
                 ]
             ]
         ]
