@@ -48,7 +48,11 @@ app.ports.init.subscribe(function() {
   }, 300);
 
   // Load the background animation
-  window.initAnimation();
+  try {
+    window.initAnimation();
+  } catch (e) {
+    console.warning && console.warning('init animation failed', e);
+  }
 });
 
 app.ports.scrollToId.subscribe(function(id) {
