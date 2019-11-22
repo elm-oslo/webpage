@@ -1,36 +1,26 @@
 language: node_js
 node_js: node
 env:
-    - ELM_VERSION=0.19.0 OUTPUT_FILENAME=site/elm2019.js OUTPUT_MINIFIED=site/elm.min.js
+  - ELM_VERSION=0.19.0 OUTPUT_FILENAME=site/elm2019.js OUTPUT_MINIFIED=site/elm.min.js
 cache:
-    directories:
-        - elm-stuff/build-artifacts
-        - elm-stuff/packages
-        - sysconfcpus
-        - '$HOME/.npm'
+  directories:
+    - elm-stuff/build-artifacts
+    - elm-stuff/packages
+    - sysconfcpus
+    - '$HOME/.npm'
 install:
-    - npm install -g elm@$ELM_VERSION uglify-js
+  - npm install -g elm@$ELM_VERSION uglify-js
 script:
-    - travis_retry elm make elm/Main.elm --output $OUTPUT_FILENAME --optimize
-    - travis_retry uglifyjs $OUTPUT_FILENAME --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=$OUTPUT_MINIFIED
+  - travis_retry elm make elm/Main.elm --output $OUTPUT_FILENAME --optimize
+  - travis_retry uglifyjs $OUTPUT_FILENAME --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=$OUTPUT_MINIFIED
 deploy:
-    - provider: s3
-      access_key_id: AKIAJORVT7GGMLEJS2RA
-      secret_access_key:
-          secure: v0zBJLtfu3IOS2GDx9YUvdyOM5G3NhUCneRhF+8vwlLc8RVzSvPhh5FdT9y9DXH2VmCljRzRCCFICKBn0OSlxRFAEBlZIXyF/3GfxxjfqTkM7HbQWik6YylNDi3Nxy97t5HGn3lDe+WyJ3fLjv+qxam4Eu/wJEntJHnI2zn1MAZMhUZd6AotCowJoDfgdAwC7oZS9T9OW35YYBf8y5mjpXD2vHOWWeyqpsmznD5dCzOPUJkO95j/Opjn1DO3Ukx8WalIlBRuq3kQB7iDMC9iLefA8CTsD3RoCXPVZJ1St2Ek+4zQbbL0OmFI1UImMrg3+Kru5Ww7r1Ta1hIayzzjf6TV6N74tuYtfSWXAqc4rw8QV0dahMTtMuhdk43zUFrVtkxvvy14FJiMEDYivyC4epDNRKjnqhvvvqFbOhvon/fC2qFQUjfBaT7r/5AsQlU20+JDoc47OTsgPrNTBZLLqNa+Mi8zvIeDRE16n5/Cj4MJ8f1f23KvZtM/pI7FFStRrZQ/VjwhjvGlD7xPmcUtgDACRIFEf7PCvdPD9hdKEa4/JSSW0DJ4YJA/s8eHyPGLy1KqiQB6URLUHLJKJu/Y4UIFGWzgsBRoaT6sUY5UqvmQH7knS7jG01ed24ti6IcUmtFRMpQkIiv19J87dkXZntFHexvSUwI4OTGpxeabask=
-      bucket: elm-oslo-webpage-test
-      local-dir: site
-      skip_cleanup: true
-      region: eu-central-1
-      on:
-          all_branches: true
-    - provider: s3
-      access_key_id: AKIAJORVT7GGMLEJS2RA
-      secret_access_key:
-          secure: 'v9a+VJo1pwsTg89qXwsN8Owyx/lj+DBL5s8qug2uEM7kdHrPg3FH6g/LAa4RTdEpVC45XYpOmYFUlEDLaeaYxCgBm5bpIMHOf0trTjWkUtjvGZENqnPhb4l3rY5E1vV2MBdYXi861Pf5WH8CxlLj3/kSPu7qN4EW+7/H0krNlRm5JUvRhZ7v6ZBw80JcZHdR+yqDx2RZyrGKiuhpCzGmQmPKqffFzchqMVX1OVT6yFwQMr7UXxna1GcyISHUEJ2R/IqCrWNZx4LLwWi/SFcaqxpBh48pJ05JGVf0E7YvZDXopYJk5Cj4AMd1P23aOrd8IgucClvcFFLVw4P/Luc01WmDXg8XQU3aWI5EnJSyG43QR0oeX605Z1OiEqgzYQlNNS45xuIs4uVfOIZf90t5C5gMsKsNaWjhxnVDZWmJFhhJziPYBY2MpFkxMySGF818meTb4nByE9yqMWyYnBsUOluqvEbtpOwPSMHlC8Ho72aKsZ1jhMHLP138VO3xsvB0llMaIpDqX32UjJSeC0/os/xG83AX448cVMQCfaVUmFJcbfWWmcAILOlQ3zv2whHfiIV9j/rEj1rPl0TzVUolZNdX+lyGfl1On2ygwFadLzQIXSU115Fq9v63i/+ypNrFfnjFmafm/9o8amh3lDiYDClX4I6vniZ/h5zbAENK3QU='
-      bucket: elm-oslo-webpage
-      local-dir: site
-      skip_cleanup: true
-      region: eu-central-1
-      on:
-          branch: master
+  - provider: s3
+    access_key_id: AKIAJORVT7GGMLEJS2RA
+    secret_access_key:
+      secure: 'v9a+VJo1pwsTg89qXwsN8Owyx/lj+DBL5s8qug2uEM7kdHrPg3FH6g/LAa4RTdEpVC45XYpOmYFUlEDLaeaYxCgBm5bpIMHOf0trTjWkUtjvGZENqnPhb4l3rY5E1vV2MBdYXi861Pf5WH8CxlLj3/kSPu7qN4EW+7/H0krNlRm5JUvRhZ7v6ZBw80JcZHdR+yqDx2RZyrGKiuhpCzGmQmPKqffFzchqMVX1OVT6yFwQMr7UXxna1GcyISHUEJ2R/IqCrWNZx4LLwWi/SFcaqxpBh48pJ05JGVf0E7YvZDXopYJk5Cj4AMd1P23aOrd8IgucClvcFFLVw4P/Luc01WmDXg8XQU3aWI5EnJSyG43QR0oeX605Z1OiEqgzYQlNNS45xuIs4uVfOIZf90t5C5gMsKsNaWjhxnVDZWmJFhhJziPYBY2MpFkxMySGF818meTb4nByE9yqMWyYnBsUOluqvEbtpOwPSMHlC8Ho72aKsZ1jhMHLP138VO3xsvB0llMaIpDqX32UjJSeC0/os/xG83AX448cVMQCfaVUmFJcbfWWmcAILOlQ3zv2whHfiIV9j/rEj1rPl0TzVUolZNdX+lyGfl1On2ygwFadLzQIXSU115Fq9v63i/+ypNrFfnjFmafm/9o8amh3lDiYDClX4I6vniZ/h5zbAENK3QU='
+    bucket: elm-oslo-webpage
+    local-dir: site
+    skip_cleanup: true
+    region: eu-central-1
+    on:
+      branch: master
